@@ -1,0 +1,705 @@
+\documentclass[normaltoc, espacoumemeio, pnumromarab,ruledheader]{abnt}		
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amssymb}
+\usepackage{theorem}
+\usepackage{fancyhdr}
+\usepackage{epsf}
+%\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[linesnumbered,boxed,vlined,portuguese]{algorithm2e}
+%\usepackage[Conny]{fncychap}
+%\usepackage{hyperref}
+%\usepackage[all]{hypcap} 
+%\hypersetup{urlcolor=cyan}
+%\usepackage{acronym} 
+
+\usepackage{rotating} % UTILIZADO PELO AMBIENTE SIDEWAYTABLE PARA TABELAS GIRADAS DE 90o
+\usepackage{booktabs} % ALTERA O LAYOUT DE TABELAS
+\usepackage{longtable} % CRIA TABELAS EM MAIS DE UMA PÁGINA
+\usepackage{float} % MELHORA O POSICIONAMENTO DE OBJETOS FLOAT COMO FIGURAS E TABELAS
+\usepackage[format=hang,font=it,justification=centerlast,labelfont=bf,labelsep=endash]{caption} % FORMATA A LEGENDA DE TABELAS E FIGURAS
+
+\usepackage{color}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\newif\ifpdf
+%\ifx\pdfoutput\undefined
+%	\pdffalse
+%\else
+%	\pdftrue
+%\fi
+
+%\ifpdf
+%\pdfoutput=1
+\usepackage{graphicx}
+\usepackage[output=pdf]{logo-each}
+%\else
+% Enables the usage of graphics in .jpg format, rather than .eps
+% (Encapsulated PostScript).
+% Furthermore, is also required by package logo-each below.
+%\usepackage{graphicx}
+%\usepackage{logo-each}	% EACH-USP logo.
+%\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Additional ABNTex definitions.
+%\usepackage[disable=copyright,disable=biblabel]{ach2017}
+
+
+
+
+\newtheorem{theorem}{Teorema}
+\newtheorem{acknowledgement}{Acknowledgement}
+\newtheorem{axiom}{Axioma}
+\newtheorem{case}{Caso}
+\newtheorem{Propriedade}{Propriedade}
+\newtheorem{claim}{Claim}
+\newtheorem{conclusion}{Conclus\~ao}
+\newtheorem{condition}{Condi\c{c}\~ao}
+\newtheorem{conjecture}{Conjectura}
+\newtheorem{corollary}{Corol\'ario}
+\newtheorem{criterion}{Criterio}
+\newtheorem{definition}{Defini\c{c}\~ao}
+\newtheorem{example}{Exemplo}
+\newtheorem{exercise}{Exercise}
+\newtheorem{lemma}{Lema}
+\newtheorem{notation}{Notat\c{c}\~ao}
+\newtheorem{problem}{Problema}
+\newtheorem{proposition}{Proposi\c{c}\~ao}
+\newtheorem{remark}{Observa\c{c}\~ao}
+\newtheorem{solution}{Solu\c{c}\~ao}
+\newtheorem{summary}{Sum\'ario}
+\newenvironment{proof}[1][Demonstra\c{c}\~ao]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}\vspace{0.5cm}}
+\newcommand{\usp}{Universidade de S\~{a}o Paulo}
+\newcommand{\MakeIndex}{\textsl{MakeIndex}}
+\newcommand{\itemnorma}[1]{\textit{#1}}
+\newcommand{\ingles}[1]{\textsl{#1}}
+\newcommand{\bibTeX}{bib\kern-.13ex\TeX}%
+\newcommand{\abnt}{{\smaller ABNT}}%
+\newcommand{\report}{{\smaller REPORT}}%
+\newcommand{\xypic}{X\hspace*{-.2ex}\raisebox{-.5ex}{Y}-pic}%
+ %\newcommand{\ac}{\symbol{123}}  % abre chaves
+%\newcommand{\fc}{\symbol{125}}  % fecha chaves
+\newcommand{\bs}{\symbol{92}}   % barra invertida (backslash)
+\renewcommand{\ABNTtravessao}{}
+\setlength{\ABNTanapindent}{0cm}
+\renewcommand{\ABNTaposindicativoanap}
+                    {\protect\\[4mm]\protect\centering}
+
+
+
+% ***************************************
+% *******Capa personalizada *************
+% ***************************************
+
+
+
+%---------------------------------------------------------------------
+
+\providecommand{\ABNTvarautordata}{}
+\let\oldautor\autor\relax
+\renewcommand{\autor}[2][] {%
+\renewcommand{\ABNTvarautordata}{#1}
+\oldautor{#2}}
+
+\renewcommand{\capa} {%
+\begin{titlepage}
+\makeheader
+\begin{center}
+\vfill
+{
+\Large\ABNTautordata}\\[2cm]
+{\LARGE\textbf{\ABNTtitulodata}}\\[2cm]
+
+\vfill
+{\large \ABNTlocaldata \\ \ABNTdatadata}
+\end{center}
+\end{titlepage}}
+
+% ***************************************
+% ****Folha de rosto personalizada ******
+% ***************************************
+
+
+\renewcommand{\folhaderosto}{
+\begin{titlepage}
+	\vfill
+	\begin{center}
+		{\large \ABNTautordata}\\[5cm]
+		{\LARGE \textbf{\ABNTtitulodata}}\\[2cm]
+		\hspace{.45\textwidth}
+		\begin{minipage}{.5\textwidth}
+		\begin{espacosimples}
+			\begin{small}
+				\ABNTcomentariodata
+				\\ \\
+				%Ã?rea de ConcentraÃ§Ã£o: \ABNTareadata
+%As duas linhas abaixo devem ser comentadas se nÃ£o houver necessidade de opÃ§Ã£o
+				%\\
+				%OpÃ§Ã£o: \ABNTopcaodata
+%--------------------------------------------------------------------------------------------
+				\\
+				Orientador(a): \ABNTorientadordata
+%As duas linhas abaixo devem ser comentadas se nÃ£o houver necessidade de co-orientador
+				\\
+				Co-orientador(a): \ABNTcoorientadordata
+%--------------------------------------------------------------------------------------------
+			\end{small}
+		\end{espacosimples}
+		\end{minipage}
+		\vfill
+		{\large \ABNTlocaldata \\ \ABNTdatadata}
+	\end{center}
+\end{titlepage}
+}
+
+
+%************************************
+%**** Definições das referencias*****
+%************************************
+
+%\usepackage[num]{abntcite}
+\usepackage[alf]{abntcite}
+\usepackage{abnt-UFPR}
+%\citebrackets[] % para que a citaçao apareça entre colhetes
+%\newcommand*{\refname}{Referências Bibliográficas}
+
+
+
+
+
+
+
+
+% ********************************
+% ***** Início do Documento ******
+% ********************************
+
+
+
+\begin{document}
+
+% DADOS PARA CAPA E FOLHA DE ROSTO
+% Obs.: autor, título, local e data devem ser maiúsculas
+% Para o título: em maiúscula apenas a primeira letra da sentença, exceto nomes próprios, geográficos, institucionais ou Programas ou Projetos ou siglas.
+
+
+\instituicao{Universidade de São Paulo\\Escola de Artes, Ciências e Humanidades}
+\autor{\uppercase{Lucas Fernandes Brunialti}}
+
+\titulo{Biclusterização aplicada em Sistemas de Recomendação baseados em Conteúdo Textual}
+
+\orientador{Profa. Dra. Sarajane Marques Peres}
+
+\coorientador{Prof. Dr. Valdinei Freire da Silva}  %opcional. Se não houver coorientação, remover
+
+%\coorientador{Co-orientador 1\protect\\Co-orientador 2}
+
+\comentario{Texto de Exame de Qualificação apresentado à Escola de Artes, Ciências e Humanidades da Universidade de São Paulo como parte dos requisitos para obtenção do título de Mestre em Ciências pelo Programa de Pós-graduação em Sistemas de Informação. %Para texto de Exame de Qualificação, trocar esse texto por: Texto de Exame de Qualificação apresentado à Escola de Artes, Ciências e Humanidades da Universidade de São Paulo como parte dos requisitos para obtenção do título de Mestre em Ciências pelo Programa de Pós-graduação em Sistemas de Informação.
+\newline
+\newline
+%Versão original.%Manter essa informação apensa em caso de versão de depósito da Dissertação de Mestrado
+%Em caso de texto de Exame de Qualificação: remover essa informação 
+%Em caso de versão definitiva da Dissertação de Mestrado: substituir essa informação por "Versão corrigida contendo as alterações solicitadas pela comissão julgadora em xx de xxxxxxxxxxxx de xxxx. A versão original encontra-se em acervo reservado na Biblioteca da EACH-USP e na Biblioteca Digital de Teses e Dissertações da USP (BDTD), de acordo com a Resolução CoPGr 6018, de 13 de outubro de 2011.", onde 'xx de xxxxxxxxxxxx de xxxx' é a 'data da defesa'
+}
+
+\local{São Paulo}
+
+\data{2014} %/Para a versão definitiva da Dissertação de Mestrado: usar o ano de depósito da versão definitiva, e não o ano de defesa da Dissertação de Mestrado, caso eles sejam diferentes..
+
+% ************* CAPA **************
+% ********* SEM NUMERAÇÃO *********
+\capa
+
+% ******** FOLHA DE ROSTO *********
+\folhaderosto
+
+
+
+% ********** Autorização para Reprodução **********
+% Página a ser incluída apenas em Dissertação de Mestrado (tanto na versão de depósito quanto na versão definitiva).
+% 
+% Solicitar a ficha catalográfica na Biblioteca da EACH. Duas versões devem ser solicitadas, em dois momentos distintos: 
+% uma vez para a versão de depósito, e depois outra atualizada para a versão definitiva.
+
+% IMPORTANTE: esta página de "autorização para reprodução e ficha catalográfica" deve ser impressa obrigatoriamente no verso da folha de rosto, de forma que ela não é contada como nova página.
+
+% *********** OPCIONAL ************
+\pretextualchapter{}
+
+\begin{center}
+Autorização para Reprodução
+
+Ficha catalográfica
+\end{center}
+%\newpage
+
+%********* FOLHA 	DE APROVAÇÃO*****
+%
+% Esta “Folha de Aprovação” já deve ser incluída na versão de depósito de Dissertação de Mestrado, 
+% ou seja, ainda antes da aprovação propriamente dita, como uma previsão em caso de aprovação.
+%
+% Para isso, use os dados que certamente não mudarão, e deixe os demais sem preencher, na forma de um template.
+%
+% IMPORTANTE: Depois, para a versão definitiva da Dissertação de Mestrado aprovada, esta folha deverá ser substituída 
+% por uma imagem digitalizada da folha oficial, com as assinaturas, fornecida pelo Serviço de Pós-graduação no dia da defesa.
+%
+
+%************************************
+
+
+\begin{folhadeaprovacao}
+\pretextualchapter{}
+\begin{center}
+Folha de Aprovação
+\end{center}
+
+\noindent Texto de Exame de Qualificação de Mestrado sob o título \textit{\textquotedblleft Biclusterização aplicada em Sistemas de Recomendação baseados em Conteúdo Textual\textquotedblright}, apresentado por Lucas Fernandes Brunialti e aprovado em \_\_\_ de \_\_\_\_\_\_\_\_\_\_\_\_\_ de \_\_\_\_\_, em São Paulo, Estado de São Paulo, pela comissão examinadora constituída pelos doutores: % Deixe a data em branco, pois a data pode mudar, mesmo que ela já esteja prevista.
+
+% Para texto de Exame de Qualificação, trocar o texto acima por:
+%
+% Texto de Exame de Qualificação de Mestrado sob o título \textit{\textquotedblleft xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxx\textquotedblright}, apresentado por xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx e aprovado em \_\_\_ de \_\_\_\_\_\_\_\_\_\_\_\_\_ de \_\_\_\_\_, em São Paulo, Estado de São Paulo, pela comissão examinadora constituída pelos doutores:
+
+\assinatura{Prof. Dr. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\ Presidente \\ Instituição: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}
+\assinatura{Prof. Dr. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\ Instituição: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}
+\assinatura{Prof. Dr. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\ Instituição: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}
+% Deixe em os nomes dos membros da banca em branco, pois os membros da banca podem mudar, mesmo que eles já estejam previstos.
+
+\end{folhadeaprovacao}
+
+
+% ********** DEDICATÓRIA **********
+%Opcional para Dissertação de Mestrado (não sugerido para texto de Exame de Qualificação).
+% *********** OPCIONAL ************
+%\pretextualchapter{}
+
+%\vspace{12cm}
+%\hspace{.3\textwidth}
+%\begin{minipage}{.6\textwidth}
+%	\par Escreva aqui a sua dedicatória...
+%	\par $\phantom{linha em branco}$
+	
+%\end{minipage}
+
+%\newpage
+
+% ******** AGRADECIMENTOS *********
+%Opcional para Dissertação de Mestrado (não sugerido para texto de Exame de Qualificação).
+% *********** OPCIONAL ************
+%\pretextualchapter{}
+
+%\vspace{12cm}
+%\hspace{.3\textwidth}
+%\begin{minipage}{.6\textwidth}
+%	\par Escreva aqui os seus agradecimentos...
+%	\newline
+	%\par Minha família e aos meus amigos, por todo auxílio, paciência e compreensão que me deram durante o decorrer do projeto;
+%	\end{minipage}
+
+% *********** EPÍGRAFE ************
+%Opcional para Dissertação de Mestrado (não sugerido para texto de Exame de Qualificação).
+% *********** OPCIONAL ************
+%\pretextualchapter{}
+
+%\vspace*{12cm}
+%\hspace{.3\textwidth}
+%\begin{minipage}{.6\textwidth}
+
+%\par Qualquer idéia que te agrade,
+%\par Por isso mesmo... é tua.
+%\par O autor nada mais fez que vestir a verdade
+%\par Que dentro em ti se achava inteiramente nua...
+%\par (Mário Quintana)
+%\newline
+%\par Por mais longa que seja a caminhada o mais importante é dar o primeiro passo.
+%\par (Vinícius de Moraes)
+
+	
+%\end{minipage}
+
+%************** - RESUMO - **********************
+%Troque pelos seus dados os seguintes campos abaixo (mantendo a formatação e pontuação):
+%
+%SOBRENOME
+%Nome1
+%Nome2
+%Nome3
+%Título do trabalho
+%Ano1 (Ano de Depósito da versão definitiva)
+%NúmeroDePáginas (considerar da Introdução para frente, ou seja, desconsiderar as páginas iniciais na contagem)
+%Ano2 (Ano de Defesa)
+%
+%Mantenha todas as demais informações exatamente como estão.
+%
+%[Não usar em caso de texto de Exame de Qualificação]
+%
+%************************************
+
+\begin{resumo}
+\begin{flushleft}
+\noindent BRUNIALTI, Lucas Fernandes. \textbf{Biclusterização aplicada em Sistemas de Recomendação baseados em Conteúdo Textual}. 2015. NúmeroDePáginas f. Dissertação (Mestrado em Ciências) -- Escola de Artes, Ciências e Humanidades, Universidade de São Paulo, São Paulo, Ano2.
+\newline
+\end{flushleft}
+
+
+\noindent Biclusterização representa uma estratégia de análise de dados com potencial para encontrar grupos de objetos similares considerando a correlação parcial existente entre os atributos descritivos dos mesmos. Esse potencial pode ser particularmente útil para Sistemas de Recomendação baseados em conteúdo, nos quais se faz necessária a sugestão de itens úteis, porém diversificados, para um usuário. Esta necessidade configura-se como um problema de serendipidade, uma das propriedades de Sistemas de Recomendação. O objetivo deste trabalho é analisar a aderência dos resultados provenientes de algoritmos de biclusterização, aplicados aos itens a serem recomendados, à meta de otimização da serendipidade. Para alcançar tal objetivo, este trabalho propõe um estudo da aplicação de algoritmos clássicos de biclusterização à conteúdo textual referente ao escopo de um Sistema de Recomendação de notícias. Ainda, este trabalho propõe a utilização de \emph{essembles} como uma forma alternativa de encontrar biclusters. A hipótese defendida é que devido à análise de correlações parciais dos atributos descritivos dos dados, seria possível encontrar notícias com similaridades parciais entre si devido às particularidades presentes nas mesmas. Desta forma, uma mesma notícia que cobre mais de um contexto poderia ser recomendada a usuários que estariam, à princípio, interessandos em assuntos diferentes.
+Como forma de avaliação dos resultados obtidos, é proposta uma análise comparativa entre os resultados da recomendação obtida via biclusterização e os resultados de recomendação obtida via filtro colaborativo, onde o problema da serendipidade é reconhecidamente bem resolvido.
+\end{resumo}
+
+% redigido em parágrafo único, contendo no máximo 500 palavras, e apresentar os objetivos, metodologia, resultados e conclusões.
+
+\par
+\vspace{2em}
+\noindent \textbf{Palavras-chave}: Biclusterização. Sistemas de Recomendação. Recomendação de Notícias. Mineração de Textos. \emph{Essembles}.
+
+
+%**************** ABSTRACT ***********************
+%Troque pelos seus dados os seguintes campos abaixo (mantendo a formatação e pontuação):
+%
+%SURNAME
+%FirstName1
+%MiddleName1
+%MiddleName2
+%Work title
+%Year1 (Ano de Depósito da versão definitiva)
+%NumberOfPages (considerar da Introdução para frente)
+%Year2 (Ano de Defesa)
+%
+%Mantenha todas as demais informações exatamente como estão.
+%
+%[Não usar em caso de texto de Exame de Qualificação]
+%
+%***************************************
+
+
+\begin{abstract}
+\begin{flushleft}
+\noindent BRUNIALTI, Lucas Fernandes. \textbf{Work title}. 2015. NumberOfPages p. Dissertation (Master of Science) -- School of Arts, Sciences and Humanities, University of São Paulo, São Paulo, Year2.
+\newline
+\end{flushleft}
+
+
+\noindent Write here the English version of your \textquotedblleft Resumo \textquotedblright...
+\end{abstract}
+
+\par
+\vspace{2em}
+\noindent \textbf{Keywords}: Keyword1. Keyword2. Keyword3. Etc.
+
+% 1 - Lista de Figuras
+\listoffigures
+
+% 2 - Lista de Tabelas
+\listoftables
+
+%\part{teste}
+
+
+% ************ SUMÁRIO ************
+\tableofcontents
+% ************ LISTAS *************
+% ** Condicionadas à necessidade **
+
+
+\chapter{Introdução}
+\label{intro}
+
+%\pagenumbering{arabic} 
+%\lhead[\fancyplain{}{\helv\thepage}] 
+%{\fancyplain{}{\helv\rightmark}} 
+%\rhead[\fancyplain{}{\helv\leftmark}] 
+%{\fancyplain{}{\helv\thepage}} 
+%\pagestyle{fancy}
+%\fancyhead[RO,RE]{\helv\thepage}
+%\fancyhead[LO,LE]{\it\nouppercase\leftmark}
+%\fancyfoot{}
+
+
+Sugestão: fazer uma introdução contextualizada em um probema de recomendação de notícias. Para esse problema, criar um cenário onde uma notícia poderia ser recomendada para dois usuários diferentes que estariam inicialmente navegando em notícias diferentes (de contextos diferentes). Mostrar que uma notícia pode estar relacionada a duas outras que por sua vez não estão relacionadas.
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\section{Apresentação do Problema de Recomendação}
+
+Apresentar de maneira mais formal (acima foi só um cenário), o problema de recomendação. Tentar caracterizar (aí acho que de maneira não formal necessariamente) a propriedade de serendipidade.
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\section{Apresentação do contexto de Biclusterização}
+
+Apresentar o que é biclusterização, em linhas gerais e com uma pequena formulação. Falar que existem vários algoritmos.
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+Apresentar em linhas gerais a possibilidade de implementar bicluterização usando a alternativa de essemble.
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\section{Hipótese}
+
+% Apresentar a nossa hipótese de que se juntar biclustering com recomendação vai resolver serendipidade.
+
+% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+Um grande problema referente à SRs baseados em conteúdo é a sobre-especialização, que é a falta de recomendações com conteúdo novo ou inesperado à um usuário, ou a falta de serendipidade nas recomendações. Como a Biclusterização é capaz de expandir o espaço de busca, levando em consideração subconjuntos das características para a formação de clusters, a hipótese desse projeto é que a aplicação de algoritmos de biclusterização em SRs baseados em conteúdo pode amenizar o problema de sobre-especialização, melhorando a qualidade das recomendações e contribuindo para a área de SRs.
+
+
+\section{Objetivos}
+
+Colocar o objetivo de resolver o problema acima, otimizando a serendipidade, através do uso de biclusterização nos documentos (notícias).
+
+Colocar objetivos especificos:
+\begin{itemize}
+ \item levantamento do referencial teórico de sistemas de recomendação textual
+		\begin{itemize}
+		   \item levantamento do estado da arte (sua revisao sistemática)
+			\end{itemize}
+ \item levantamento de referencial teórico de biclustering
+ \item construção de um conjunto de dados
+ \item estudo de processamento de texto (text mining)
+ \item estudo das técnicas de biclustering aplicadas a texto
+ \item estudo das técnicas de essemble aplicadas a text
+\end{itemize}
+
+\section{Metodologia}
+
+Aqui explicar cada um dos passos. Explicar que o levantamento do referencial teórico através de análise exploratória. Explicar como é a revisão sistemática (um parágrafo). Explicar a motivação de tê-la realizado. \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+Explicar como o conjunto de dados foi construído. Explicar a base de cliques. \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+Explicar que as técnica de biclustering e essemble serão aplicadas aos textos processados e que uma avaliação será feita com base nas informações de cliques. \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\section{Organização do documento}
+
+Este documento é composto por X capítulos incluindo esta introdução. O Capítulo 1 ..... e apresentar cada um. \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\chapter{Conceitos Fundamentais}
+
+Este capítulo introduz os conceitos fundamentais para o entendimento dessa dissertação, fazendo um apanhado dos conceitos na área de Sistemas de Recomendação (seção~\ref{cf:sr}), Biclusterização (seção~\ref{cf:bicl}) e Mineração de Texto (seção~\ref{cf:mt}).
+
+\section{Sistemas de Recomendação}
+\label{cf:sr}
+
+% Um parágrafo com definição geral, mais completa do que foi dado na introdução.
+A grande maioria das pessoas que usam a Internet muito provavelmente já interagiram com algum Sistema de Recomendação (SR), por isso, o seu conceito é intuitivo. Porém, por ser uma área relativamente nova (handbook-1), muitos autores não usam uma definicão que reflete a realidade dos SRs, isso acontece por ser uma área relativamente nova que teve um crescimento muito grande nos últimos anos (tese-chap2).
+
+Resnick and Varian (1997), quem criou o termo Sistemas de Recomendação (Tese chap2, (Neumann, 2007)), argumentam que Sistemas de Recomendação servem para nos ajudar em processos de tomada de decisão do nosso dia-a-dia, como quais itens comprar, quais músicas ouvir, ou quais notícias ler. Além disso, Resnick and Varian (1997) provê uma taxonomia para definição de Sistemas de Recomendação:
+\begin{itemize}
+  \item Conteúdo recomendado: os itens que são recomendados pelo Sistema de Recomendação, ex: produtos, músicas, notícias e/ou etc.
+  \item Entrada dos usuários: as interações que os usuários realizam com os itens são a entrada para um SR, estas podem ser implícitas (ex: o usuário $x$ leu a notícia $y$) ou explícitas (ex: o usuário $x$ classificou o filme $y$ como $5$ estrelas).
+  \item Target of recommendation: os itens recomendados podem ser diretamente para um usuário (personalizado), direcionados para um grupo de usuários ou todos os usuários (não-personalizado).
+  \item Técnicas para recomendação (agregações): qual as estratégias e os algoritmos que os SRs usam para criar recomendações.
+  \item Uso das recomendações: trata-se de como mostrar as recomendações para os usuários, ex: filtrando recomendações negativas, ordenando pelo fator numérico, etc.
+\end{itemize}
+
+Porém, definições mais recentes (Burke 2002 e 2007), descrevem SRs como qualquer sistema que produz recomendações personalizadas ou tem o efeito de guiar um usuário de modo personalizado, mostrando itens que possam ser interessantes para este usuário, dentro de uma grande quantidade de opções. Isso faz com que SRs que provêm recomendações não personalizadas deixem de adequar com a definição de SR. É provável que isso se deve ao fato que das estratégias usadas atualmente, que têm o foco de produzir recomendações personalizadas.
+
+Formalmente, Burke 2002 e 2007 define SRs como $I$ um conjunto de itens que podem ser recomendados e $U$ um conjunto de usuários que as preferências são conhecidas, $u$ um usuário pra o qual as recomendações são geradas, e $i$ algum item que queremos predizer a preferência para $u$. Adomavicius extende a definição com uma função de utilidade $f$ que mede o quão útil é o item $i$ para o usuário $u$: $f: I \times U \rightarrow R$, em que $R$ um conjunto ordenado de inteiros ou reais.
+
+No entanto, existem tipos de SRs que não estimam $f$ completamente, podendo otimizar funções auxiliares para gerar as recomendações para um usuário $u$ (handbook-1).
+
+Em síntese, um Sistema de Recomendação tem a função de auxiliar os usuários de uma aplicação à interagir com itens, provendo sugestões de quais itens interagir, baseando-se no histórico de interações desses usuários com esses itens.
+
+% As pesquisas em Sistemas de Recomendação são relativamente novas
+
+% - list of recommendations are a list of items
+% - help us make decisions
+% - implicit or explicit feedbacks
+
+ \subsection{Tipos de Sistemas de Recomendação}
+ \label{sec:tipos}
+
+% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+Para estimar $f$ e chegar no conjunto ordenado $R$ existem diversas estratégias, daí surgem os tipos de SRs. Os tipos de SRs diferem quanto ao domínio, dados usados para recomendação, algoritmos (handobook-1), e principalmente nas propriedades em que cada tipo se destaca.
+
+% Não sei se coloco a taxonomia tradicional, ou se coloco essa, handbook-1 diz que é clássica, podem burke de 2002 para 2007 muda a taxonomia, enquanto isso, Adomavicius usa a tradicional e o livro usa a tradicional + baseado em conhecimento
+Burke 2002 e 2007 provê uma taxonomia já considerada clássica (handbook-1), que categoriza os SRs em cinco diferentes tipos:
+\begin{itemize}
+ \item \textit{Filtragem colaborativo}, o primeiro tipo de SR que foi implementado (Resnick), tem como idéia básica encontrar outros usuários $u_{1..n}$ em $U$ com preferências semelhantes à $u$, e então recomendar itens que $u_{1..n}$ interagiram e que $u$ ainda não interagiu, estabelecendo alguma métrica para estimar $f$. Medidas geralmente usadas incluem \textit{Correlação de Pearson} e \textit{Similaridade dos Cossenos}, também são usados técnicas para redução de dimensionalidade, como \textit{Decomposição de Valores Singulares} e \textit{Fatorização de Matriz} (Livro).
+ \item \textit{Baseado em conteúdo}, é um dos tipos de SR que otimiza funções auxiliares à $f$. Descreve os itens por características possibilitando o uso de medidas de similaridade entre itens. Então, com as interações dos usuários de $U$ sob itens em $I$, constrói um perfil de interesses para cada usuário. Neste caso são usadas técnicas de Recuperação de Informação (livro) para representar os itens e calcular similaridades entre itens, assim como técnicas de Aprendizado de Máquina Supervisionado e Não-supervisionado (livro, burke2002).
+ % \item Demográfico, considera atributos demográficos de cada usuário, estimando $f$ a partir dessas informações. Neste tipo também são usadas técnicas de Aprendizado de Máquina Supervisionado para classificar usuários em diferentes classes demográficas.%constrói recomendações personalizadas com base no perfil demográfico de usuários
+ \item \textit{Baseado em Conhecimento}, tem o intuito de sugerir itens, de forma personalizada, baseando-se nas necessidades ou regras estabelecidas por um usuário $u$ e nas características dos itens em $I$. São estabelecidas medidas de similaridade para estimar o quanto as necessidades do usuário match as recomendações (livro, burke07, handbook-1).
+ \item \textit{Híbrido}, é capaz de combinar as vantagens de cada tipo de SR descrito para suprir as limitações associadas à cada tipo. A dificuldade esta em como combinar as diferentes técnicas de cada algoritmo (livro, burke07). Burke07 identificou 7 tipos de SRs Híbridos em uma revisão da literatura: Pesagem, atribui um peso para cada algoritmo; Switching, seleciona um dos algoritmos (ou tipos); Mixed, recomendações são mostradas em conjunto; Combinação de características, diferentes fontes são combinadas em apenas um algoritmo; Feature Augumentation, uma técnica é usada para computar características que servem de entrada para outra técnica; Cascade, é atribuído um grau de prioridade para cada algoritmo; Meta-level, uma técnica gera um modelo, que é usado como entrada para outras técnicas.
+\end{itemize}
+
+ \subsubsection{Limitações e Problemas}
+ \label{sec:lim}
+
+% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+% - User cold-start
+% - Item cold-start
+% - Sparsity
+% - Limited Content Analysis
+% - Overspecialization
+
+Cada um dos tipos de SRs descritos possuem vantagens e limitações independentes se comparados com os outros tipos ou não. Em livro, Adomavicius, Burke e handbook-3 são nomeadas os problemas de \textit{novo usuário} (\textit{user cold-start}), \textit{novo item} (\textit{item cold-start}), \textit{esparsidade}, \textit{sobre-especialização} e \textit{análise limitada do conteúdo} referentes aos SRs.
+
+Os problemas de \textit{novo usuário} e \textit{novo item} são similares, basicamente, enquanto o primeiro se trata da dificuldade de gerar recomendações para novos usuários, o segundo se trata de gerar recomendações para novos itens. O problema de \textit{novo usuário} esta presente como uma desvantagem nos SRs de filtragem colaborativa e baseado em conteúdo, pois o SR não conhece as preferências dos novos usuários, tendo dificuldade de construir um modelo que tem como base essas preferências. Já o problema de \textit{novo item} é considerado uma desvantagem para a filtragem colaborativa, enquanto para o baseado em conteúdo é uma vantagem. Como a filtragem colaborativa se baseia apenas nas interações de usuários em itens, um item novo, que não teve ou teve poucas interações, não será recomendado, diferentemente do SR baseado em conteúdo, que leva em consideração a representação do item para construir recomendações.
+
+
+
+% Os SRs baseados em filtragem colaborativa têm a limitação de fazer recomendações com acurácia para novos usuários ou novos itens, ou seja, é difícil encontrar usuários ou itens similares caso estes tenham poucas interações ou notas 
+
+
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+ \subsection{Avaliação da Recomendação}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\section{Biclusterização}
+
+Um parágrafo com definição geral. \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+   \subsection{Tipo de biclustering}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	 \subsection{Algoritmos para biclustering}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	 \subsection{Avaliação de biclustering}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+	 \subsection{Essembles para clusterização}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+		
+\section{Mineração de Textos}
+
+Uma definição geral. \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+	 \subsection{Etapas de pré-processamento}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	 \subsection{Representação de textos}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\chapter{Sistemas de Recomendação por Conteúdo e Aprendizado de Máquina}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\chapter{Proposta}
+
+% Um parágrafo inicial. \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\section{Apresentação do corpus IG}
+
+% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+O corpus do IG é composto por um conjunto de notícias $\{ n_1, n_2, \dots, n_m \}$ em que cada notícia $n_i$ é representado pela tupla $(t, st, b, c_i)$, onde $t$ é o título, $st$ o subtítulo, $b$ o corpo da notícia e $c_i$ um elemento do conjunto de canais $\{ gente , ultimosegundo , delas , \\economia , esporte , saude , igay , deles , tecnologia , receitas , igirl , jovem , arena , luxo \}$, em que cada canal representa um assunto ou tópico de notícias.
+
+% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+O número total de notícias é $m = xxx$, ...
+
+\subsection{Pré processamento do corpus IG}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\section{Estudos iniciais de biclustering no corpus IG}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\section{Próximos passos - cronograma}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	
+% ********** REFERÊNCIAS **********
+
+%\bibliography{abnt-options,abnt-10520-2001,abnt-10520-2002,abnt-6023-2000,normas,abnt-test,abntex-doc,dissertacao}
+
+\bibliography{dissertacao}					% o nome do arquivo .bib com as referências
+
+%***********************************
+%***** Anexos e Apêndices *********
+%***********************************
+
+
+\end{document}
