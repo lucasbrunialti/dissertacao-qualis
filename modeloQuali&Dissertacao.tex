@@ -499,9 +499,11 @@ Este capítulo introduz os conceitos fundamentais para o entendimento dessa diss
 \label{cf:sr}
 
 % Um parágrafo com definição geral, mais completa do que foi dado na introdução.
-A grande maioria das pessoas que usam a Internet muito provavelmente já interagiram com algum Sistema de Recomendação (SR), por isso, o seu conceito é intuitivo. Porém, por ser uma área relativamente nova (handbook-1), muitos autores não usam uma definicão que reflete a realidade dos SRs, isso acontece por ser uma área relativamente nova que teve um crescimento muito grande nos últimos anos (tese-chap2).
+A grande maioria das pessoas que usam a Internet muito provavelmente já interagiram com algum Sistema de Recomendação (SR), por isso, o seu conceito é intuitivo.
+Porém, por ser uma área relativamente nova (handbook-1), muitos autores não usam uma definicão que reflete a realidade dos SRs, isso acontece por ser uma área relativamente nova que teve um crescimento muito grande nos últimos anos (tese-chap2).
 
-Resnick and Varian (1997), quem criou o termo Sistemas de Recomendação (Tese chap2, (Neumann, 2007)), argumentam que Sistemas de Recomendação servem para nos ajudar em processos de tomada de decisão do nosso dia-a-dia, como quais itens comprar, quais músicas ouvir, ou quais notícias ler. Além disso, Resnick and Varian (1997) provê uma taxonomia para definição de Sistemas de Recomendação:
+Resnick and Varian (1997), quem criou o termo Sistemas de Recomendação (Tese chap2, (Neumann, 2007)), argumentam que Sistemas de Recomendação servem para nos ajudar em processos de tomada de decisão do nosso dia-a-dia, como quais itens comprar, quais músicas ouvir, ou quais notícias ler.
+Além disso, Resnick and Varian (1997) provê uma taxonomia para definição de Sistemas de Recomendação:
 \begin{itemize}
   \item Conteúdo recomendado: os itens que são recomendados pelo Sistema de Recomendação, ex: produtos, músicas, notícias e/ou etc.
   \item Entrada dos usuários: as interações que os usuários realizam com os itens são a entrada para um SR, estas podem ser implícitas (ex: o usuário $x$ leu a notícia $y$) ou explícitas (ex: o usuário $x$ classificou o filme $y$ como $5$ estrelas).
@@ -510,9 +512,12 @@ Resnick and Varian (1997), quem criou o termo Sistemas de Recomendação (Tese c
   \item Uso das recomendações: trata-se de como mostrar as recomendações para os usuários, ex: filtrando recomendações negativas, ordenando pelo fator numérico, etc.
 \end{itemize}
 
-Porém, definições mais recentes (Burke 2002 e 2007), descrevem SRs como qualquer sistema que produz recomendações personalizadas ou tem o efeito de guiar um usuário de modo personalizado, mostrando itens que possam ser interessantes para este usuário, dentro de uma grande quantidade de opções. Isso faz com que SRs que provêm recomendações não personalizadas deixem de adequar com a definição de SR. É provável que isso se deve ao fato que das estratégias usadas atualmente, que têm o foco de produzir recomendações personalizadas.
+Porém, definições mais recentes (Burke 2002 e 2007), descrevem SRs como qualquer sistema que produz recomendações personalizadas ou tem o efeito de guiar um usuário de modo personalizado, mostrando itens que possam ser interessantes para este usuário, dentro de uma grande quantidade de opções.
+Isso faz com que SRs que provêm recomendações não personalizadas deixem de adequar com a definição de SR.
+É provável que isso se deve ao fato que das estratégias usadas atualmente, que têm o foco de produzir recomendações personalizadas.
 
-Formalmente, Burke 2002 e 2007 define SRs como $I$ um conjunto de itens que podem ser recomendados e $U$ um conjunto de usuários que as preferências são conhecidas, $u$ um usuário pra o qual as recomendações são geradas, e $i$ algum item que queremos predizer a preferência para $u$. Adomavicius extende a definição com uma função de utilidade $f$ que mede o quão útil é o item $i$ para o usuário $u$: $f: I \times U \rightarrow R$, em que $R$ um conjunto ordenado de inteiros ou reais.
+Formalmente, Burke 2002 e 2007 define SRs como $I$ um conjunto de itens que podem ser recomendados e $U$ um conjunto de usuários que as preferências são conhecidas, $u$ um usuário pra o qual as recomendações são geradas, e $i$ algum item que queremos predizer a preferência para $u$.
+Adomavicius extende a definição com uma função de utilidade $f$ que mede o quão útil é o item $i$ para o usuário $u$: $f: I \times U \rightarrow R$, em que $R$ um conjunto ordenado de inteiros ou reais.
 
 No entanto, existem tipos de SRs que não estimam $f$ completamente, podendo otimizar funções auxiliares para gerar as recomendações para um usuário $u$ (handbook-1).
 
@@ -528,48 +533,51 @@ Em síntese, um Sistema de Recomendação tem a função de auxiliar os usuário
  \label{sec:tipos}
 
 % \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-Para estimar $f$ e chegar no conjunto ordenado $R$ existem diversas estratégias, daí surgem os tipos de SRs. Os tipos de SRs diferem quanto ao domínio, dados usados para recomendação, algoritmos (handobook-1), e principalmente nas propriedades em que cada tipo se destaca.
+Para estimar $f$ e chegar no conjunto ordenado $R$ existem diversas estratégias, daí surgem os tipos de SRs.
+Os tipos de SRs diferem quanto ao domínio, informações usadas para recomendação, algoritmos (handobook-1), e principalmente nas propriedades em que cada tipo se destaca.
 
 % Não sei se coloco a taxonomia tradicional, ou se coloco essa, handbook-1 diz que é clássica, podem burke de 2002 para 2007 muda a taxonomia, enquanto isso, Adomavicius usa a tradicional e o livro usa a tradicional + baseado em conhecimento
 Burke 2002 e 2007 provê uma taxonomia já considerada clássica (handbook-1), que categoriza os SRs em cinco diferentes tipos:
 \begin{itemize}
- \item \textit{Filtragem colaborativo}, o primeiro tipo de SR que foi implementado (Resnick), tem como idéia básica encontrar outros usuários $u_{1..n}$ em $U$ com preferências semelhantes à $u$, e então recomendar itens que $u_{1..n}$ interagiram e que $u$ ainda não interagiu, estabelecendo alguma métrica para estimar $f$. Medidas geralmente usadas incluem \textit{Correlação de Pearson} e \textit{Similaridade dos Cossenos}, também são usados técnicas para redução de dimensionalidade, como \textit{Decomposição de Valores Singulares} e \textit{Fatorização de Matriz} (Livro).
- \item \textit{Baseado em conteúdo}, é um dos tipos de SR que otimiza funções auxiliares à $f$. Descreve os itens por características possibilitando o uso de medidas de similaridade entre itens. Então, com as interações dos usuários de $U$ sob itens em $I$, constrói um perfil de interesses para cada usuário. Neste caso são usadas técnicas de Recuperação de Informação (livro) para representar os itens e calcular similaridades entre itens, assim como técnicas de Aprendizado de Máquina Supervisionado e Não-supervisionado (livro, burke2002).
+ \item \textit{Filtragem colaborativo}, o primeiro tipo de SR que foi implementado (Resnick), tem como idéia básica encontrar outros usuários $u_{1,\dots,n}$ em $U$, sendo $n < |U|$ e não necessariamente em ordem, com preferências semelhantes à $u$, e então recomendar itens que $u_{1,\dots,n}$ interagiram e que $u$ ainda não interagiu, estabelecendo alguma métrica para estimar $f$. Medidas geralmente usadas incluem \textit{Correlação de Pearson} e \textit{Similaridade dos Cossenos}, também são usados técnicas para redução de dimensionalidade, como \textit{Decomposição de Valores Singulares} e \textit{Fatorização de Matriz} (Livro).
+ \item \textit{Baseado em conteúdo}, é um dos tipos de SR que otimiza funções auxiliares à $f$. Descreve os itens por características possibilitando o uso de medidas de similaridade entre itens. Então, com as interações dos usuários de $U$ sob itens em $I$, é construído um perfil de interesses para cada usuário. As recomendações são feitas a partir da combinação do perfil de interesses de um usuário $u$ com os itens em $I$ que $u$ ainda não interagiu. Neste caso são usadas técnicas de Recuperação de Informação (livro) para representar os itens e calcular similaridades entre itens, assim como técnicas de Aprendizado de Máquina Supervisionado e Não-supervisionado (livro, burke2002).
  % \item Demográfico, considera atributos demográficos de cada usuário, estimando $f$ a partir dessas informações. Neste tipo também são usadas técnicas de Aprendizado de Máquina Supervisionado para classificar usuários em diferentes classes demográficas.%constrói recomendações personalizadas com base no perfil demográfico de usuários
  \item \textit{Baseado em Conhecimento}, tem o intuito de sugerir itens, de forma personalizada, baseando-se nas necessidades ou regras estabelecidas por um usuário $u$ e nas características dos itens em $I$. São estabelecidas medidas de similaridade para estimar o quanto as necessidades do usuário match as recomendações (livro, burke07, handbook-1).
  \item \textit{Híbrido}, é capaz de combinar as vantagens de cada tipo de SR descrito para suprir as limitações associadas à cada tipo. A dificuldade esta em como combinar as diferentes técnicas de cada algoritmo (livro, burke07). Burke07 identificou 7 tipos de SRs Híbridos em uma revisão da literatura: Pesagem, atribui um peso para cada algoritmo; Switching, seleciona um dos algoritmos (ou tipos); Mixed, recomendações são mostradas em conjunto; Combinação de características, diferentes fontes são combinadas em apenas um algoritmo; Feature Augumentation, uma técnica é usada para computar características que servem de entrada para outra técnica; Cascade, é atribuído um grau de prioridade para cada algoritmo; Meta-level, uma técnica gera um modelo, que é usado como entrada para outras técnicas.
 \end{itemize}
 
- \subsubsection{Limitações e Problemas}
+ \subsubsection{Vantagens e desvantagens}
  \label{sec:lim}
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+Cada um dos tipos de SRs descritos possuem algumas limitações independentes se comparados com os outros tipos ou não.
+Em livro, Adomavicius, Burke e handbook-3 são nomeadas os problemas no desenvolvimento de SRs de \textit{novo usuário} (\textit{user cold-start}), \textit{novo item} (\textit{item cold-start}), \textit{esparsidade}, \textit{sobre-especialização} e \textit{análise de conteúdo limitada} referentes aos SRs.
 
-% - User cold-start
-% - Item cold-start
-% - Sparsity
-% - Limited Content Analysis
-% - Overspecialization
+Os problemas de \textit{novo usuário} e \textit{novo item} são similares, basicamente, enquanto o primeiro se trata da dificuldade de gerar recomendações para novos usuários, o segundo se trata de gerar recomendações para novos itens.
+O problema de \textit{novo usuário} esta presente como uma desvantagem nos SRs de filtragem colaborativa e baseado em conteúdo, pois o SR não conhece as preferências dos novos usuários, tendo dificuldade de construir um modelo que tem como base essas preferências.
+Já o problema de \textit{novo item} é considerado uma vantagem para os SRs baseados em conteúdo, enquanto uma desvantagem para os SRs baseados em filtragem colaborativa.
+Como a filtragem colaborativa se baseia apenas nas interações de usuários em itens, um item novo, que não teve ou teve poucas interações, não será recomendado, diferentemente do SR baseado em conteúdo, que leva em consideração a representação do item para construir recomendações.
 
-Cada um dos tipos de SRs descritos possuem vantagens e limitações independentes se comparados com os outros tipos ou não. Em livro, Adomavicius, Burke e handbook-3 são nomeadas os problemas de \textit{novo usuário} (\textit{user cold-start}), \textit{novo item} (\textit{item cold-start}), \textit{esparsidade}, \textit{sobre-especialização} e \textit{análise limitada do conteúdo} referentes aos SRs.
+Contrariamente, o problema de \textit{sobre-especialização} é uma vantagem para os SRs de filtragem colaborativa e uma desvantagem para os SRs baseados em conteúdo.
+A \textit{sobre-especialização} diz respeito ao problema de sugerir apenas itens previsíveis para o usuário, por exemplo, se o usuário viu notícias apenas de esporte, ele já espera receber sugestões de notícias de esporte, porém este usuário muito provavelmente pode gostar de ler notícias de outras categorias.
+A capacidade do SR de sugerir notícias imprevisíveis é chamado de \textit{serendipidade} (livro, handbook-3).
+SRs baseados em conteúdo sofrem desse problema pois combina o perfil de preferências de um usuário com os itens em $I$, restrigindo o espaço de busca para realizar a sugestão de itens.
+Enquanto isso, os SRs baseados em filtragem colaborativa são capazes de oferecer sugestões úteis e serendipitas, pois são capazes de ampliar o espaço de busca através da estratégia de sugerir itens que usuários semelhantes à $u$ interagiram e que $u$ ainda não interagiu.
 
-Os problemas de \textit{novo usuário} e \textit{novo item} são similares, basicamente, enquanto o primeiro se trata da dificuldade de gerar recomendações para novos usuários, o segundo se trata de gerar recomendações para novos itens. O problema de \textit{novo usuário} esta presente como uma desvantagem nos SRs de filtragem colaborativa e baseado em conteúdo, pois o SR não conhece as preferências dos novos usuários, tendo dificuldade de construir um modelo que tem como base essas preferências. Já o problema de \textit{novo item} é considerado uma desvantagem para a filtragem colaborativa, enquanto para o baseado em conteúdo é uma vantagem. Como a filtragem colaborativa se baseia apenas nas interações de usuários em itens, um item novo, que não teve ou teve poucas interações, não será recomendado, diferentemente do SR baseado em conteúdo, que leva em consideração a representação do item para construir recomendações.
+Os SRs baseados em filtragem colaborativa são os únicos que sofrem do problema de \textit{esparsidade}, que é o fato de usuários interagirem com apenas um pequeno subconjunto do conjunto de itens, tornando a matriz de interações ou preferências ($U \times I$) esparsa.
+Isso faz com que aumente a necessidade de ter uma grande quantidade de usuários, pois este tipo de SR necessita de intersecções nas interações de itens por usuários, para que seja possível encontrar usuários similares a um dado usuário.
 
-
-
-% Os SRs baseados em filtragem colaborativa têm a limitação de fazer recomendações com acurácia para novos usuários ou novos itens, ou seja, é difícil encontrar usuários ou itens similares caso estes tenham poucas interações ou notas 
-
-
-
-\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-
-\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+Assim como os SRs de filtragem colaborativa, os SRs baseados em conteúdo sofrem de um problema único, que é a \textit{análise de conteúdo limitada}.
+Este problema se refere à representação dos itens, que tem de ser suficiente para discriminá-los (handbook-3).
+Em SRs baseados em conteúdo é comum ter que limitar a representação de itens, tanto pelo número de características quanto pela modelagem.
+Por exemplo, no contexto de notícias na web, se a representação for um vetor com o número de ocorrências de cada palavra, perdemos a relação entre as palavras, e também todo o conteúdo que não é texto, como imagens, vídeos, etc.
 
  \subsection{Avaliação da Recomendação}
 
-\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
 
-\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+Diferentes técnicas foram mostradas e uma variedade de problemas relacionados à essas técnicas, mas como avaliar se uma estratégia adotada no desenvolvimento realmente esta sendo efetiva?
 
 \section{Biclusterização}
 
