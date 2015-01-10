@@ -464,14 +464,16 @@ Um grande problema referente à SRs baseados em conteúdo é a sobre-especializa
 
 \section{Objetivos}
 
-Colocar o objetivo de resolver o problema acima, otimizando a serendipidade, através do uso de biclusterização nos documentos (notícias).
+% Colocar o objetivo de resolver o problema acima, otimizando a serendipidade, através do uso de biclusterização nos documentos (notícias).
+O objetivo geral desse trabalho é amenizar o problema da serendipidade em SRs baseados em conteúdo textual, no domínio de notícias. Isso será possível através da aplicação de algoritmos de biclusterização nessas notícias, fazendo uso de diversas representações para estruturação do conteúdo textual.
 
-Colocar objetivos especificos:
+Assim, foram estabelecidos os seguintes objetivos específicos:
+
 \begin{itemize}
  \item levantamento do referencial teórico de sistemas de recomendação textual
-		\begin{itemize}
-		   \item levantamento do estado da arte (sua revisao sistemática)
-			\end{itemize}
+ \begin{itemize}
+  \item levantamento do estado da arte (sua revisao sistemática)
+ \end{itemize}
  \item levantamento de referencial teórico de biclustering
  \item construção de um conjunto de dados
  \item estudo de processamento de texto (text mining)
@@ -498,12 +500,12 @@ Este capítulo introduz os conceitos fundamentais para o entendimento dessa diss
 \section{Sistemas de Recomendação}
 \label{cf:sr}
 
-% Um parágrafo com definição geral, mais completa do que foi dado na introdução.
+% provavelmente vou ter que fazer o bib de tese-chap2: http://tampub.uta.fi/bitstream/handle/10024/95965/978-951-44-9551-9.pdf
 A grande maioria das pessoas que usam a Internet muito provavelmente já interagiram com algum Sistema de Recomendação (SR), por isso, o seu conceito é intuitivo.
-Porém, por ser uma área relativamente nova (handbook-1), muitos autores não usam uma definicão que reflete a realidade dos SRs, isso acontece por ser uma área relativamente nova que teve um crescimento muito grande nos últimos anos (tese-chap2).
+Porém, por ser uma área relativamente nova \cite{Lops2011}, muitos autores não usam uma definicão que reflete a realidade dos SRs, isso acontece por ser uma área relativamente nova que teve um crescimento muito grande nos últimos anos (tese-chap2).
 
-Resnick and Varian (1997), quem criou o termo Sistemas de Recomendação (Tese chap2, (Neumann, 2007)), argumentam que Sistemas de Recomendação servem para nos ajudar em processos de tomada de decisão do nosso dia-a-dia, como quais itens comprar, quais músicas ouvir, ou quais notícias ler.
-Além disso, Resnick and Varian (1997) provê uma taxonomia para definição de Sistemas de Recomendação:
+\citeonline{Resnick1997}, quem criou o termo Sistemas de Recomendação (tese-chap2) \cite{Neumann2007}, argumentam que Sistemas de Recomendação servem para nos ajudar em processos de tomada de decisão do nosso dia-a-dia, como quais itens comprar, quais músicas ouvir, ou quais notícias ler.
+Além disso, \citeonline{Resnick1997} provê uma taxonomia para definição de Sistemas de Recomendação:
 \begin{itemize}
   \item Conteúdo recomendado: os itens que são recomendados pelo Sistema de Recomendação, ex: produtos, músicas, notícias e/ou etc.
   \item Entrada dos usuários: as interações que os usuários realizam com os itens são a entrada para um SR, estas podem ser implícitas (ex: o usuário $x$ leu a notícia $y$) ou explícitas (ex: o usuário $x$ classificou o filme $y$ como $5$ estrelas).
@@ -512,45 +514,37 @@ Além disso, Resnick and Varian (1997) provê uma taxonomia para definição de 
   \item Uso das recomendações: trata-se de como mostrar as recomendações para os usuários, ex: filtrando recomendações negativas, ordenando pelo fator numérico, etc.
 \end{itemize}
 
-Porém, definições mais recentes (Burke 2002 e 2007), descrevem SRs como qualquer sistema que produz recomendações personalizadas ou tem o efeito de guiar um usuário de modo personalizado, mostrando itens que possam ser interessantes para este usuário, dentro de uma grande quantidade de opções.
+Porém, definições mais recentes \cite{Burke2002,Burke2007}, descrevem SRs como qualquer sistema que produz recomendações personalizadas ou tem o efeito de guiar um usuário de modo personalizado, mostrando itens que possam ser interessantes para este usuário, dentro de uma grande quantidade de opções.
 Isso faz com que SRs que provêm recomendações não personalizadas deixem de adequar com a definição de SR.
 É provável que isso se deve ao fato que das estratégias usadas atualmente, que têm o foco de produzir recomendações personalizadas.
 
-Formalmente, Burke 2002 e 2007 define SRs como $I$ um conjunto de itens que podem ser recomendados e $U$ um conjunto de usuários que as preferências são conhecidas, $u$ um usuário pra o qual as recomendações são geradas, e $i$ algum item que queremos predizer a preferência para $u$.
-Adomavicius extende a definição com uma função de utilidade $f$ que mede o quão útil é o item $i$ para o usuário $u$: $f: I \times U \rightarrow R$, em que $R$ um conjunto ordenado de inteiros ou reais.
-
-No entanto, existem tipos de SRs que não estimam $f$ completamente, podendo otimizar funções auxiliares para gerar as recomendações para um usuário $u$ (handbook-1).
+Formalmente, \citeonline{Burke2002,Burke2007} define SRs como um conjunto de itens $I$  que podem ser recomendados e um conjunto de usuários $U$ que as preferências são conhecidas, um usuário $u$ pra o qual as recomendações são geradas, e algum item $i$ que queremos predizer a preferência para $u$.
+\citeonline{Adomavicius2005} extende a definição com uma função de utilidade $f$ que mede o quão útil é o item $i$ para o usuário $u$: $f: I \times U \rightarrow R$, em que $R = \{ r_{u_1,i_1}, r_{u_1,i_2}, \dots, r_{u_1,i_m}, \dots, r_{u_1,i_m} \}$ é um conjunto ordenado com valores faltantes, sendo $r_{u_i,i_j}$ um inteiro ou real que representa a interação do usuário $u_i$ no item $i_j$.
+No entanto, existem tipos de SRs que não estimam $f$ completamente, podendo otimizar funções auxiliares para gerar as recomendações para um usuário $u$ \cite{Lops2011}.
 
 Em síntese, um Sistema de Recomendação tem a função de auxiliar os usuários de uma aplicação à interagir com itens, provendo sugestões de quais itens interagir, baseando-se no histórico de interações desses usuários com esses itens.
-
-% As pesquisas em Sistemas de Recomendação são relativamente novas
-
-% - list of recommendations are a list of items
-% - help us make decisions
-% - implicit or explicit feedbacks
 
  \subsection{Tipos de Sistemas de Recomendação}
  \label{sec:tipos}
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
 Para estimar $f$ e chegar no conjunto ordenado $R$ existem diversas estratégias, daí surgem os tipos de SRs.
-Os tipos de SRs diferem quanto ao domínio, informações usadas para recomendação, algoritmos (handobook-1), e principalmente nas propriedades em que cada tipo se destaca.
+Os tipos de SRs diferem quanto ao domínio, informações usadas para recomendação, algoritmos \cite{Feldman2006}, e principalmente nas propriedades em que cada tipo se destaca.
 
 % Não sei se coloco a taxonomia tradicional, ou se coloco essa, handbook-1 diz que é clássica, podem burke de 2002 para 2007 muda a taxonomia, enquanto isso, Adomavicius usa a tradicional e o livro usa a tradicional + baseado em conhecimento
-Burke 2002 e 2007 provê uma taxonomia já considerada clássica (handbook-1), que categoriza os SRs em cinco diferentes tipos:
+\citeonline{Burke2002,Burke2007} provê uma taxonomia já considerada clássica \citeonline{Lops2011}, que categoriza os SRs em cinco diferentes tipos:
 \begin{itemize}
- \item \textit{Filtragem colaborativo}, o primeiro tipo de SR que foi implementado (Resnick), tem como idéia básica encontrar outros usuários $u_{1,\dots,n}$ em $U$, sendo $n < |U|$ e não necessariamente em ordem, com preferências semelhantes à $u$, e então recomendar itens que $u_{1,\dots,n}$ interagiram e que $u$ ainda não interagiu, estabelecendo alguma métrica para estimar $f$. Medidas geralmente usadas incluem \textit{Correlação de Pearson} e \textit{Similaridade dos Cossenos}, também são usados técnicas para redução de dimensionalidade, como \textit{Decomposição de Valores Singulares} e \textit{Fatorização de Matriz} (Livro).
- \item \textit{Baseado em conteúdo}, é um dos tipos de SR que otimiza funções auxiliares à $f$. Descreve os itens por características possibilitando o uso de medidas de similaridade entre itens. Então, com as interações dos usuários de $U$ sob itens em $I$, é construído um perfil de interesses para cada usuário. As recomendações são feitas a partir da combinação do perfil de interesses de um usuário $u$ com os itens em $I$ que $u$ ainda não interagiu. Neste caso são usadas técnicas de Recuperação de Informação (livro) para representar os itens e calcular similaridades entre itens, assim como técnicas de Aprendizado de Máquina Supervisionado e Não-supervisionado (livro, burke2002).
+ \item \textit{Filtragem colaborativo}, o primeiro tipo de SR que foi implementado \cite{Resnick1997}, tem como idéia básica encontrar outros usuários $u_{1,\dots,n}$ em $U$, sendo $n < |U|$ e não necessariamente em ordem, com preferências semelhantes à $u$, e então recomendar itens que $u_{1,\dots,n}$ interagiram e que $u$ ainda não interagiu, estabelecendo alguma métrica para estimar $f$. Medidas geralmente usadas incluem \textit{Correlação de Pearson} e \textit{Similaridade dos Cossenos}, também são usados técnicas para redução de dimensionalidade, como \textit{Decomposição de Valores Singulares} e \textit{Fatorização de Matriz} \cite{Jannach2011}.
+ \item \textit{Baseado em conteúdo}, é um dos tipos de SR que otimiza funções auxiliares à $f$. Descreve os itens por características possibilitando o uso de medidas de similaridade entre itens. Então, com as interações dos usuários de $U$ sob itens em $I$, é construído um perfil de interesses para cada usuário. As recomendações são feitas a partir da combinação do perfil de interesses de um usuário $u$ com os itens em $I$ que $u$ ainda não interagiu. Neste caso são usadas técnicas de Recuperação de Informação \cite{Jannach2011} para representar os itens e calcular similaridades entre itens, assim como técnicas de Aprendizado de Máquina Supervisionado e não-supervisionado \cite{Jannach2011,Burke2002}.
  % \item Demográfico, considera atributos demográficos de cada usuário, estimando $f$ a partir dessas informações. Neste tipo também são usadas técnicas de Aprendizado de Máquina Supervisionado para classificar usuários em diferentes classes demográficas.%constrói recomendações personalizadas com base no perfil demográfico de usuários
- \item \textit{Baseado em Conhecimento}, tem o intuito de sugerir itens, de forma personalizada, baseando-se nas necessidades ou regras estabelecidas por um usuário $u$ e nas características dos itens em $I$. São estabelecidas medidas de similaridade para estimar o quanto as necessidades do usuário match as recomendações (livro, burke07, handbook-1).
- \item \textit{Híbrido}, é capaz de combinar as vantagens de cada tipo de SR descrito para suprir as limitações associadas à cada tipo. A dificuldade esta em como combinar as diferentes técnicas de cada algoritmo (livro, burke07). Burke07 identificou 7 tipos de SRs Híbridos em uma revisão da literatura: Pesagem, atribui um peso para cada algoritmo; Switching, seleciona um dos algoritmos (ou tipos); Mixed, recomendações são mostradas em conjunto; Combinação de características, diferentes fontes são combinadas em apenas um algoritmo; Feature Augumentation, uma técnica é usada para computar características que servem de entrada para outra técnica; Cascade, é atribuído um grau de prioridade para cada algoritmo; Meta-level, uma técnica gera um modelo, que é usado como entrada para outras técnicas.
+ \item \textit{Baseado em Conhecimento}, tem o intuito de sugerir itens, de forma personalizada, baseando-se nas necessidades ou regras estabelecidas por um usuário $u$ e nas características dos itens em $I$. São estabelecidas medidas de similaridade para estimar o quanto as necessidades do usuário match as recomendações \cite{Jannach2011,Lops2011,Burke2007}.
+ \item \textit{Híbrido}, é capaz de combinar as vantagens de cada tipo de SR descrito para suprir as limitações associadas à cada tipo. A dificuldade esta em como combinar as diferentes técnicas de cada algoritmo \cite{Jannach2011,Burke2007}. \citeonline{Burke2007} identificou 7 tipos de SRs Híbridos em uma revisão da literatura: Pesagem, atribui um peso para cada algoritmo; Switching, seleciona um dos algoritmos (ou tipos); Mixed, recomendações são mostradas em conjunto; Combinação de características, diferentes fontes são combinadas em apenas um algoritmo; Feature Augumentation, uma técnica é usada para computar características que servem de entrada para outra técnica; Cascade, é atribuído um grau de prioridade para cada algoritmo; Meta-level, uma técnica gera um modelo, que é usado como entrada para outras técnicas.
 \end{itemize}
 
  \subsubsection{Vantagens e desvantagens}
  \label{sec:lim}
 
 Cada um dos tipos de SRs descritos possuem algumas limitações independentes se comparados com os outros tipos ou não.
-Em livro, Adomavicius, Burke e handbook-3 são nomeadas os problemas no desenvolvimento de SRs de \textit{novo usuário} (\textit{user cold-start}), \textit{novo item} (\textit{item cold-start}), \textit{esparsidade}, \textit{sobre-especialização} e \textit{análise de conteúdo limitada} referentes aos SRs.
+Em \citeonline{Jannach2011,Adomavicius2005,Burke2002,Lops2011} são nomeadas os problemas no desenvolvimento de SRs de \textit{novo usuário} (\textit{user cold-start}), \textit{novo item} (\textit{item cold-start}), \textit{esparsidade}, \textit{sobre-especialização} e \textit{análise de conteúdo limitada} referentes aos SRs.
 
 Os problemas de \textit{novo usuário} e \textit{novo item} são similares, basicamente, enquanto o primeiro se trata da dificuldade de gerar recomendações para novos usuários, o segundo se trata de gerar recomendações para novos itens.
 O problema de \textit{novo usuário} esta presente como uma desvantagem nos SRs de filtragem colaborativa e baseado em conteúdo, pois o SR não conhece as preferências dos novos usuários, tendo dificuldade de construir um modelo que tem como base essas preferências.
@@ -559,7 +553,7 @@ Como a filtragem colaborativa se baseia apenas nas interações de usuários em 
 
 Contrariamente, o problema de \textit{sobre-especialização} é uma vantagem para os SRs de filtragem colaborativa e uma desvantagem para os SRs baseados em conteúdo.
 A \textit{sobre-especialização} diz respeito ao problema de sugerir apenas itens previsíveis para o usuário, por exemplo, se o usuário viu notícias apenas de esporte, ele já espera receber sugestões de notícias de esporte, porém este usuário muito provavelmente pode gostar de ler notícias de outras categorias.
-A capacidade do SR de sugerir notícias imprevisíveis é chamado de \textit{serendipidade} (livro, handbook-3).
+A capacidade do SR de sugerir notícias imprevisíveis é chamado de \textit{serendipidade} \cite{Jannach2011,Lops2011}.
 SRs baseados em conteúdo sofrem desse problema pois combina o perfil de preferências de um usuário com os itens em $I$, restrigindo o espaço de busca para realizar a sugestão de itens.
 Enquanto isso, os SRs baseados em filtragem colaborativa são capazes de oferecer sugestões úteis e serendipitas, pois são capazes de ampliar o espaço de busca através da estratégia de sugerir itens que usuários semelhantes à $u$ interagiram e que $u$ ainda não interagiu.
 
@@ -567,21 +561,54 @@ Os SRs baseados em filtragem colaborativa são os únicos que sofrem do problema
 Isso faz com que aumente a necessidade de ter uma grande quantidade de usuários, pois este tipo de SR necessita de intersecções nas interações de itens por usuários, para que seja possível encontrar usuários similares a um dado usuário.
 
 Assim como os SRs de filtragem colaborativa, os SRs baseados em conteúdo sofrem de um problema único, que é a \textit{análise de conteúdo limitada}.
-Este problema se refere à representação dos itens, que tem de ser suficiente para discriminá-los (handbook-3).
+Este problema se refere à representação dos itens, que tem de ser suficiente para discriminá-los \cite{Lops2011}.
 Em SRs baseados em conteúdo é comum ter que limitar a representação de itens, tanto pelo número de características quanto pela modelagem.
 Por exemplo, no contexto de notícias na web, se a representação for um vetor com o número de ocorrências de cada palavra, perdemos a relação entre as palavras, e também todo o conteúdo que não é texto, como imagens, vídeos, etc.
 
  \subsection{Avaliação da Recomendação}
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+Diferentes técnicas foram mostradas e uma variedade de problemas relacionados à essas técnicas, mas como avaliar se uma estratégia adotada no desenvolvimento realmente é efetiva?
+SRs podem ser avaliados através de \textit{experimentos online}, que podem descobrir a real influência do SR no comportamento do usuário, e \textit{experimentos offline}, que estimam o erro de predição e simulam o comportamento do usuário no SR usando um conjunto de dados \cite{Ricci22011}.
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+Para experimentos online podem ser estabelecidas variáveis através da captura implícita ou explícita do comportamento, como satisfação do usuário e taxa de cliques (\textit{click-through rate} - CTR).
+Uma das maneiras para realizar esse tipo de experimento é por meio de testes A/B \cite{Jannach2011}, em que cada usuário, ao interagir com o SR, recebe um tratamento diferente aleatóriamente, dentro dos possíveis tratamentos estabelecidos pelo experimento.
+Assim, é possível dizer, por exemplo, a influência de um novo componente no SR no comportamento dos usuários.
 
-Diferentes técnicas foram mostradas e uma variedade de problemas relacionados à essas técnicas, mas como avaliar se uma estratégia adotada no desenvolvimento realmente esta sendo efetiva?
+Tradicionalmente, SRs são avaliados através de experimentos offline \cite{Jannach2011}.
+Por serem simples, esses tipos de experimentos podem ser usados para para selecionar algoritmos, no entanto, \citeonline{Ricci22011} argumentam que não é possível medir diretamente a influência das recomendações no comportamento dos usuários.
+Para simular o comportamento do usuário em um SR usando um conjunto de dados, são estabelecidos dois subconjunto das interações de $u$ aleatoriamente ($\{ r_{u,i_4}, r_{u,i_3}, \dots \}$), um para treinamento dos modelos $\text{conj treino}_u$ e outro para teste $\text{conj teste}_u$.
+Assim é possível adotar estratégias semelhantemente com às adotadas em Aprendizado de Máquina, como \textit{matriz de confusão}, \textit{precisão}, \textit{revocação}, \textit{f1-score}, \textit{cross-validation} e etc.
+A técnica de \textit{matriz de confusão} é possível ser usada em \textit{experimentos online} e \textit{offline}, da seguinte maneira: se o usuário gostar do item sugerido à ele, é considerada uma predição correta (verdadeiro positivo); se o usuário não solicita preferência pela sugestão ou se não existe informações da preferência do usuário para esta sugestão, será considerada uma predição errada (falso positivo); contrariamente, se o SR não fazer essas sugestões, é considerada uma emissão correta (verdadeiro negativo); por fim, se o SR não sugerir itens que o usuário tem preferência, é consuderada uma predição errada (falso negativo).
+
+Uma das métricas mais comuns usadas para \textit{experimentos offline} é o \textit{erro absoluto médio} (\textit{Mean Absolute Error} - MAE) e \textit{raiz do erro quadrático médio} (\textit{Root Mean Squared Error} - RMSE) \cite{Jannach2011}, o qual foi usado como métrica para a competição Netflix Prize\footnote{http://www.netflixprize.com/}, que teve grande repercursão na academia e na indústria. A defição formal das métricas MAE e RMSE são descritas nas equações~\ref{eq:mae} e~\ref{eq:rmse}, respectivamente.
+
+\begin{equation}
+\label{eq:mae}
+MAE = \sum_{u \in U} \frac{\sum_{i \in \text{conj teste}_u} |f(u,i) - r_{u,i}|}{|\text{conj teste}_u|}
+\end{equation}
+
+\begin{equation}
+\label{eq:rmse}
+RMSE = \sum_{u \in U} \sqrt{\frac{\sum_{i \in \text{conj teste}_u} (f(u,i) - r_{u,i}^2}{|\text{conj teste}_u|}}
+\end{equation}
+
+A métrica MAE computa o erro médio entre as predições feitas pelo SR ($f(u,i)$) e os valores reais das preferências dos usuários ($r_{u,i}$) para todos os usuários em $U$, enquanto o RMSE amplifica erros grandes, pois eleva o mesmo ao quadrado. Essas métricas são usadas para valores reais, ou seja, $r_{u,i} \in [0,1]$, por exemplo.
+
+Para valores binários de $r_{u,i}$ ou quando deseja-se prever o número de recomendações relevantes para um usuário $u$, são usadas as métricas \textit{precisão} e \textit{revocação} \cite{Jannach2011}.
+
+Para medir a serendipidade das recomendações, \citeonline{Ricci22011} propõem uma estratégia: estabelecer uma medida de distância entre itens e rotular os itens com menor distância entre si como ausentes de serendipidade, assim, algoritmos que evitem esses itens, serão considerados superiores.
 
 \section{Biclusterização}
 
-Um parágrafo com definição geral. \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+% Um parágrafo com definição geral. \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+
+Técnicas e algoritmos de biclusterização são usadas, principalmente, no contexto de expressão genética.
+No entanto, algoritmos de biclusterização se fazem útil quando se deseja encontrar \textit{modelos locais}.
+Ou seja, enquanto algoritmos de clusterização têm o intuito de encontrar \textit{modelos globais}, que geram grupos de dados levando em consideração todas as características, algoritmos de biclusterização geram grupos de dados em que as características tem alta correlação \cite{Madeira2004}.
+
+Para a descrição do problema formal de biclusterização usa-se a seguinte definição \cite{Madeira2004}: uma matriz $A$, $n \times m$, um conjunto de linhas $X = \{ x_1, \dots, x_n \}$ e um conjunto de colunas $Y = \{ y_1, \dots, y_m \}$, em que $a_{ij}$, geralmente um número real, e representa a relação entre a linha $x_i$ e a coluna $y_j$.
+O problema de biclusterização é encontrar biclusters, que são submatrizes de $A$, denotados por $A_{IJ}$, em que $I \subseteq X$ e $J \subseteq Y$.
+Assim, o bicluster $A_{IJ}$ é um grupo dos exemplos em $I$, perante as características com alta correlação $J$.
 
    \subsection{Tipo de biclustering}
 	
@@ -607,42 +634,75 @@ Um parágrafo com definição geral. \textcolor{red}{Texto texto texto texto tex
 	
 	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
 
-	 \subsection{Essembles para clusterização}
+% 	 \subsection{Essembles para clusterização}
 
-\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
 
-\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
 
-\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
 		
-\section{Mineração de Textos}
+\section{Mineração de Texto}
 
-Uma definição geral. \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+Técnicas de Mineração de Texto são muito usadas para SRs baseados em conteúdo textual \cite{Lops2011}, principalmente quando o contexto do SR se trata de informações não-estruturadas. Mineração de Texto lida com análise de texto, suportando a sua natureza não-estruturada, imprecisa, incerta e difusa, para extração de informação e conhecimento \cite{Hotho2005}. Além disso, a área de Mineração de Texto utiliza de técnicas das áreas de Recuperação de Informação, Processamento de Linguagem Natural (PLN), conectando essas técnicas com algoritmos e métodos de Descoberta de Conhecimento em Banco de Dados, Mineração de Dados, Aprendizado de Máquina e Estatística \cite{Hotho2005}.
 
-\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+% MOTIVAÇAO (?)
 
-	 \subsection{Etapas de pré-processamento}
-	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-	
-	 \subsection{Representação de textos}
-	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+\citeonline{Feldman2006}, apresentam uma arquitetura geral para aplicações de Mineração de Textos composta por quatro etapas: tarefas de pré-processamento, que preparam os dados para a central de operações de mineração; central de operações de mineração, incluem algoritmos para a descoberta de padrões, tendências e conhecimentos através de técnicas e algoritmos; componentes de apresentação, incluem interfaces para o usuário apresentando visualizações dos conhecimentos gerados na etapa anterior; e técnicas de refinamento, também descrito como uma fase de pós-processamento, que inclui métodos para filtrar informações redundantes.
+
+	\subsection{Tarefas de pré-processamento}
+
+	As tarefas de pré-processamento incluem rotinas, processos e métodos para a estruturação dos textos presentes nos documentos.
+	A estruturação se faz necessária para a extração de informações e descoberta de conhecimento por meio de técnicas e algoritmos \cite{Hotho2005}.
+
+	\subsubsection{Representação textual}
+
+	Para a estruturação dos textos é necessário a definição da representação textual dos documentos.
+	O vetor de palavras, ou Vector Space Model \cite{Salton1975}, é a representação clássica usada para representar documentos textuais (referencia). Cada dimensão desse vetor esta associado à palavra, sendo que todas as dimensões representam todas as palavras do conjunto de documentos.
+	Formalmente, temos um conjunto de documentos $D = \{ d_1, d_2, \dots, d_n \}$, em que $d_i$ representa um documento e $n$ o número total de documentos, e um conjunto de palavras $P = \{ p_1, p_2, \dots, p_m \}$, em que $p_j$ representa uma palavra e $m$ o número de palavras presentes em todos os documentos.
+	Representando a frequência de uma palavra, o número de vezes que $p_j$ aparece em um documento $d_i$, por $fp(p_j, d_i)$, o vetor de palavras pode ser construído e representado da seguinte forma: $\vec{vp}_{d_i} = ( fp(p_1, d_i), fp(p_2, d_i), \dots, fp(p_m, d_i) )$.
+	\citeonline{Salton1975} argumenta que a representação textual de documentos em vetor de palavras é suficiente para separar documentos.
+	Ao invés de frequência de palavra, também é comumente usado, a representação binária (referencia), ou seja, $p_j$ aparecendo em $d_i$ corresponde à entrada $1$ na dimensão $j$ em $\vec{vp}_{d_i}$.
+	Há também outros métodos para representação textual, como \textit{n-gramas} e \textit{ontologias}.
+
+	Ainda sobre o vetor de palavras, \citeonline{Salton1975} mostra com experimentos em diversos conjuntos de dados, que o uso da normalização nos vetores usando a técnica de Frequência de Palavras-Frequência de Documentos Inversa (\textit{Term Frequency-Inversed Document Frequency} - TFIDF) é capaz de melhorar a separação de documentos:
+	\begin{equation}
+	\begin{split}
+		\text{\textit{fp-fdi}}(p_j, d_i) = fp(p_j, d_i) \cdot fdi(p_j) \\
+		\text{\textit{fp-fdi}}(p_j, d_i) = fp(p_j, d_i) \cdot \left( log_{2} \frac{n}{fd(p_j) + 1} \right)
+	\end{split}
+	\end{equation}
+	em que $fdi(p_j)$ representa a Frequência de Documentos Inversa da palavra $p_j$ e $fd(p_j)$ a frequência de documentos que contém $p_j$. Essa normalização faz com que a frequência das palavras que aparecem em muitos documentos seja reduzida, e a frequência das palavras que aparecem em alguns raros documentos seja aumentada, com um fator de $\log_{2}$.
+
+	\subsubsection{Tokenização}
+
+	Para realizar a estruturação de textos e representar os textos dos documentos em vetores de palavras, o primeiro processo a ser realizado é a \textit{tokenização}, que cria um dicionário de palavras para cada documento através da quebra dos textos desses documentos. A quebra do texto pode ser feita através de caracteres delimitadores de termos, como espaços em branco, pontuações e etc. No entanto, existem casos que esses caracteres podem não ser delimitadores de termos, como por exemplo os termos \textit{Prof.} e \textit{Sr.}. Este problema é chamado de determinação de fim de sentença, e pode ser resolvido por métodos estáticos (\textit{hard-coded}), baseados em regras e métodos de Aprendizado de Máquina \cite{Weiss2010}.
+
+	\subsubsection{Filtragem}
+
+	Métodos de filtragem têm a função de retirar palavras do conjunto $P$ que não contribuem para distinguir ou identificar documentos, como exemplo, conjunções (\textit{e}, \textit{pois}, \textit{que}), artigos (\textit{um}, \textit{o}, \textit{a}), preposições (\textit{de}, \textit{para}) e etc.
+	A técnica de retirar determinadas palavras de $P$ a partir de uma lista, é chamada de \textit{stopwords}.
+	Também são usadas outras técnicas, como a eliminação de palavras com a frequência muito alta ou muito baixa.
+
+	% \subsubsection{Lematização} (?)
+
+	\subsubsection{Stemming}
+
+	A fim de reduzir a ambiguidade de palavras, o método de \textit{stemming} é capaz de juntar em uma única forma palavras relacionadas \cite{Miner2012}, como exemplo o verbo \textit{fazer}, que pode se apresentar em diversas formas, como \textit{fazendo}, \textit{fez}, etc. Esse processo pode ser capaz de aumentar a capacidade da representação em distinguir ou identificar documentos.
+
+	\subsubsection{Redução de Dimensionalidade}
+
+	A representação em vetor de palavras pode resultar em vetores esparsos num espaço de alta dimensão, que pode fazer com que algoritmos sofram do problema de \textit{Maldição de Dimensionalidade} (footnote haykin).
+	Para amenização desse problema, são usados métodos de \textit{redução de dimensionalidade}.
+	A técnica mais comum de \textit{redução de dimensionalidade} é chamada \textit{Análise dos Componentes Principais} (\textit{Principal Component Analysis - PCA}) \cite{Murphy2012}.
+	Esta técnica tem o objetivo de encontrar uma representação compacta através da descoberta de $k$ vetores n-dimensionais ortogonais aos dados ($\vec{v}$), em que $k \leq m$. Os vetores são encontrados a partir da minimização da projeção dos dados em $\vec{v}$.
+	Depois de encontrados os vetores $\vec{v}$, é feita a projeção dos dados nesses vetores, resultando em uma representação num espaço mais compacto \cite{Kamber2011}.
+	É possível aplicar o algoritmo \textit{PCA}, no vetor de palavras, diminuindo a dimensionalidade e esparsidade, superando o problema de \textit{Maldição de Dimensionalidade}.
+
 
 \chapter{Sistemas de Recomendação por Conteúdo e Aprendizado de Máquina}
 
+%  - instanciação do framework de text mining aqui
 \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
 
 \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
@@ -703,7 +763,7 @@ O número total de notícias é $m = xxx$, ...
 
 %\bibliography{abnt-options,abnt-10520-2001,abnt-10520-2002,abnt-6023-2000,normas,abnt-test,abntex-doc,dissertacao}
 
-\bibliography{dissertacao}					% o nome do arquivo .bib com as referências
+\bibliography{refs}					% o nome do arquivo .bib com as referências
 
 %***********************************
 %***** Anexos e Apêndices *********

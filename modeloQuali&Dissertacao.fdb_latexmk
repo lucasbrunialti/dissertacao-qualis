@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex modeloQuali&Dissertacao"] 1420562155 "modeloQuali&Dissertacao.aux" "modeloQuali&Dissertacao.bbl" "modeloQuali&Dissertacao" 1420562168
+["bibtex modeloQuali&Dissertacao"] 1420926695 "modeloQuali&Dissertacao.aux" "modeloQuali&Dissertacao.bbl" "modeloQuali&Dissertacao" 1420926698
   "./abnt-alf.bst" 1618859958 60101 003f65fc9adebf0a393717a2d6a19106 ""
-  "dissertacao.bib" 1618859958 59438 98efef1f07943bfb61c9c87fb529ac2c ""
-  "modeloQuali&Dissertacao.aux" 1420562164 3326 9081107116ef03b3217d1a39103dbf3f ""
+  "modeloQuali&Dissertacao.aux" 1420926697 7524 157435009280161b5aa97d989a4d533c ""
   "modeloQuali&Dissertacao.bcf" 0 -1 0 ""
+  "refs.bib" 1420926552 21975 8ed2a2bd69a3e0c6185c9418bbecd4ea ""
   (generated)
   "modeloQuali&Dissertacao.bbl"
   "modeloQuali&Dissertacao.blg"
-["pdflatex"] 1420562159 "modeloQuali&Dissertacao.tex" "modeloQuali&Dissertacao.pdf" "modeloQuali&Dissertacao" 1420562168
+["pdflatex"] 1420926696 "modeloQuali&Dissertacao.tex" "modeloQuali&Dissertacao.pdf" "modeloQuali&Dissertacao" 1420926698
   "/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/babel-portuges/portuges.ldf" 1367878976 6605 2bd2937f1ce929b4a1367cc2d320364e ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.def" 1395780385 49536 e1475dd245ff2196764ba5b91ac63714 ""
@@ -77,18 +77,18 @@
   "abntex-abrev.sty" 1387323570 2353 81ce713e26c3d21cda91655d9c1d7b25 ""
   "cvs-id.def" 1387323570 1184 7a6ef141b3abb0144013e62e01beccf9 ""
   "logo-each.sty" 1618859958 8165 eada52ecccabc31a81a402615bd4143e ""
-  "modeloQuali&Dissertacao.aux" 1420562164 3326 9081107116ef03b3217d1a39103dbf3f ""
-  "modeloQuali&Dissertacao.bbl" 1420562159 228 734fa92002fe13e3f67a1bb32b4f5d97 "bibtex modeloQuali&Dissertacao"
-  "modeloQuali&Dissertacao.lof" 1420562164 26 40048587411634ca0873ba1eb7c5b9bc ""
-  "modeloQuali&Dissertacao.lot" 1420562164 26 40048587411634ca0873ba1eb7c5b9bc ""
-  "modeloQuali&Dissertacao.tex" 1420562132 61296 bdf7235dee832c70b77522bdde885cfc ""
-  "modeloQuali&Dissertacao.toc" 1420562164 2369 c2c55dca858e9c5b6a11c7d4b75816a6 ""
+  "modeloQuali&Dissertacao.aux" 1420926697 7524 157435009280161b5aa97d989a4d533c ""
+  "modeloQuali&Dissertacao.bbl" 1420926696 5063 c99582ac49746af46e27ef0981d60757 "bibtex modeloQuali&Dissertacao"
+  "modeloQuali&Dissertacao.lof" 1420926697 26 40048587411634ca0873ba1eb7c5b9bc ""
+  "modeloQuali&Dissertacao.lot" 1420926697 26 40048587411634ca0873ba1eb7c5b9bc ""
+  "modeloQuali&Dissertacao.tex" 1420926691 68135 34948975c72a49e8f1404cddcd7bb9fe ""
+  "modeloQuali&Dissertacao.toc" 1420926697 2594 66a036603b5ee9b0131be7e2f444b721 ""
   "nbr10520-2002.def" 1618859958 748 b3a64e6861d8e6f4d5a027668b61b6da ""
   "nbr10522-1988.def" 1387323570 2033 2640f31db66d54c88372a64ed1ddf7cb ""
   (generated)
-  "modeloQuali&Dissertacao.lot"
-  "modeloQuali&Dissertacao.aux"
-  "modeloQuali&Dissertacao.pdf"
-  "modeloQuali&Dissertacao.lof"
   "modeloQuali&Dissertacao.log"
   "modeloQuali&Dissertacao.toc"
+  "modeloQuali&Dissertacao.pdf"
+  "modeloQuali&Dissertacao.lof"
+  "modeloQuali&Dissertacao.lot"
+  "modeloQuali&Dissertacao.aux"
