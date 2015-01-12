@@ -11,8 +11,10 @@
 \usepackage{theorem}
 \usepackage{fancyhdr}
 \usepackage{epsf}
-%\usepackage{graphicx}
-\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+% \usepackage{subfigure}
 \usepackage[linesnumbered,boxed,vlined,portuguese]{algorithm2e}
 %\usepackage[Conny]{fncychap}
 %\usepackage{hyperref}
@@ -599,6 +601,7 @@ Para valores binários de $r_{u,i}$ ou quando deseja-se prever o número de reco
 Para medir a serendipidade das recomendações, \citeonline{Ricci22011} propõem uma estratégia: estabelecer uma medida de distância entre itens e rotular os itens com menor distância entre si como ausentes de serendipidade, assim, algoritmos que evitem esses itens, serão considerados superiores.
 
 \section{Biclusterização}
+\label{sec:bic}
 
 % Um parágrafo com definição geral. \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
 
@@ -610,15 +613,86 @@ Para a descrição do problema formal de biclusterização usa-se a seguinte def
 O problema de biclusterização é encontrar biclusters, que são submatrizes de $A$, denotados por $A_{IJ}$, em que $I \subseteq X$ e $J \subseteq Y$.
 Assim, o bicluster $A_{IJ}$ é um grupo dos exemplos em $I$, perante as características com alta correlação $J$.
 
-   \subsection{Tipo de biclustering}
+   \subsection{Tipos de biclusters}
+   \label{sec:tiposbic}
+
+	Como a definição de bicluster não inclui uma prévia estrutura da matriz $A$ e dos biclusters $A_{IJ}$, diversos algoritmos propostos na literatura diferem quanto ao tipo de bicluster que são capazes de encontrar. Uma taxonomia dos tipos de biclusters é proposta por \citeonline{Madeira2004}:
+	 \begin{itemize}
+	  \item \textit{Biclusters com valores constantes}, se trata de biclusters em que todos os valores de $A_{IJ}$ são constantes: $a_{ij} = \mu, \forall i,j \in I,J$, onde $\mu$ é um valor constante dentro de $A_{IJ}$. Porém, em conjuntos de dados reais, esses biclusters estão presentes com algum tipo de ruído $\mu + \eta_{ij}$, onde $\eta_{ij}$ é o ruído associado com os valures de $\mu$ e $a_{ij}$ \cite{Madeira2004}.
+	  \item \textit{Biclusters com valores constantes nas linhas ou colunas}, se trata de biclusters com valores constantes nas linhas: $a_{ij} = \mu + \alpha_i, \forall i,j \in I,J$ ou $a_{ij} = \mu \cdot \alpha_i, \forall i,j \in I,J$, onde $\alpha_i$ é um fator aditivo ou multiplicativo para cada linha; ou ainda biclusters com valores constantes nas colunas: $a_{ij} = \mu + \beta_j, \forall i,j \in I,J$ ou $a_{ij} = \mu \cdot \beta_j, \forall i,j \in I,J$, onde $\beta_j$ é um fator aditivo ou multiplicativo para cada coluna \cite{Madeira2004}.
+	  \item \textit{Biclusters com valores coerentes}, em que são considerados valores próximos entre si (coerentes) para definição de um bicluster: $a_{ij} = \mu + \alpha_i + \beta_j, \forall i,j \in I,J$, ou $a_{ij} = \mu' \cdot \alpha_i' \cdot \beta_j', \forall i,j \in I,J$, sendo que se $\mu = \log \mu'\implies \alpha_i = \alpha_i', \beta_j = \beta_j'$ \cite{Madeira2004}.
+	  \item \textit{Biclusters com evoluções coerentes}, têm seus valores com evoluções coerentes, por exemplo, um bicluster com $a_{i4} \leq a_{i3} \leq a_{i2} \leq a_{i1}$ tem valores com evolução coerente na coluna \cite{Madeira2004}. Seus valores podem ser gerados por uma função geradora de valores com evolução coerente $a_{ij} = g(a_{ij}), \forall i,j \in I,J$, sendo $g(\cdot)$ não linear e não constante, para que o tipo de bicluster não seja classificado nos casos anteriores.
+	 \end{itemize}
 	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	Os biclusters também se diferem quanto a sua estrutura, cada algoritmo faz uma suposição da estrutura de biclusters que é capaz de encontrar. A Figura~\ref{fig:bicstruct} sumariza as diferentes estruturas de biclusters, com as linhas e colunas ordenadas, para permitir a visualização dos biclusters por meio do mapa de calor dos valores de $A$.
+
+	\begin{figure}[H]
+        % \captionsetup[subfigure]{labelformat=simple}
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/a-bic-struct.png}
+                \caption{Bicluster único}
+                \label{fig:bicstruct-a}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/b-bic-struct.png}
+                \caption{Biclusters com linhas e colunas exclusivas}
+                \label{fig:bicstruct-b}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/c-bic-struct.png}
+                \caption{Biclusters com estrutura de tabuleiro de xadrez}
+                \label{fig:bicstruct-c}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/d-bic-struct.png}
+                \caption{Biclusters com linhas exclusivas}
+                \label{fig:bicstruct-d}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/e-bic-struct.png}
+                \caption{Biclusters com colunas exclusivas}
+                \label{fig:bicstruct-e}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/f-bic-struct.png}
+                \caption{Biclusters sem sobreposição com estrutura em árvore}
+                \label{fig:bicstruct-f}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/g-bic-struct.png}
+                \caption{Biclusters sem sobreposição e não exclusivos}
+                \label{fig:bicstruct-g}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/h-bic-struct.png}
+                \caption{Biclusters com sobreposição com estrutura hierarquica}
+                \label{fig:bicstruct-h}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/i-bic-struct.png}
+                \caption{Biclusters com sobreposição arbitrariamente posicionados}
+                \label{fig:bicstruct-i}
+        \end{subfigure}
+        \caption{Diferentes estruturas de biclusters, quadrados com cores sólidas representam biclusters (Adaptado de \cite{Madeira2004})}
+        \label{fig:bicstruct}
+	\end{figure}
 	
 	 \subsection{Algoritmos para biclustering}
 	
