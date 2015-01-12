@@ -479,8 +479,8 @@ Assim, foram estabelecidos os seguintes objetivos específicos:
  \item levantamento de referencial teórico de biclustering
  \item construção de um conjunto de dados
  \item estudo de processamento de texto (text mining)
- \item estudo das técnicas de biclustering aplicadas a texto
- \item estudo das técnicas de essemble aplicadas a text
+ \item estudo das técnicas de biclustering aplicadas à texto
+ % \item estudo das técnicas de essemble aplicadas a texto
 \end{itemize}
 
 \section{Metodologia}
@@ -694,13 +694,40 @@ Assim, o bicluster $A_{IJ}$ é um grupo dos exemplos em $I$, perante as caracter
         \label{fig:bicstruct}
 	\end{figure}
 	
-	 \subsection{Algoritmos para biclustering}
+	\subsection{Algoritmos para biclustering}
+
+	Diversos algoritmos para encontrar biclusters, de diferentes tipos e estruturas, foram propostos na literatura \cite{Tanay2005,Madeira2004}.
 	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	Um dos mais comuns e simples algoritmos de biclusterização, que encontra biclusters com valores coerentes e estrutura com sobreposição e arbitrariamente posicionados, é o \textit{Coupled Two-way Clustering} (CTWC) \cite{Getz2000}, pois encontra biclusters através da clusterização de características e exemplos (linhas e colunas), separadamente.
+	O algoritmo de clusterização usado por \cite{Getz2000} foi o \textit{Superparamagnetic Clustering} (SPC), pois é capaz de determinar o número de clusters automaticamente e com uma estratégia de clusterização hierárquica \textit{top-down} é capaz de gerar clusters estáveis \cite{Getz2000}.
+	O SPC tem como entrada uma matriz de similaridade e um parâmetro temperatura, que controla o quão estáveis serão os clusters que o algoritmo irá gerar.
+	Assim, o CTWC encontra clusters estáveis de linhas e colunas através do SPC, e iterativamente, performa o SPC novamente nos clusters de linhas e colunas encontrados, mantendo na memória um par do subconjunto de linhas e do subconjunto de colunas (biclusters), assim como os clusters estáveis de linhas e colunas, separadamente.
+
+
+
+
+
+ It uses a heuristic to avoid brute-force
+enumeration of all possible combinations: Only subsets of
+rows or columns that are identified as stable clusters in
+previous clustering iterations are candidates for the next
+iteration. CTWC begins with only one pair of rows and
+columns, where each pair is the set containing all rows and
+the set that contains all columns, respectively.
+
+
+	A hierarchical
+clustering algorithm is applied on each set generating
+stable clusters of rows and columns, and consequently a set
+of biclusters at a time
+
+	- euclidiana para medida de dissimilaridade
+
+	% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
 	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
 	
-	\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+	% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
 	
 	 \subsection{Avaliação de biclustering}
 	
