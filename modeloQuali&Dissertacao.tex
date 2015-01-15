@@ -995,12 +995,12 @@ Variando os parâmetros, os autores chegaram na conclusão que, incorporando exe
 
 O aprendizado do perfil do usuário é como um problema de classificação, onde o vetor de exemplos é dado por $X = \{d_{pref_i}, y^{+-}_i\}$, sendo que $y^{+-}_i$ representa o rótulo, ou seja, se $d_{pref_i}$ é um item que o usuário gostou($+$) ou não($-$).
 Então, é treinado um classificador que irá classificar itens que o usuário ainda não consumiu, para saber se é um item que o usuário irá consumir/gostar.
-Diversos algoritmos são usados para resolver esse tipo de problema: Redes Bayesianas (\cite{Yeung2012, Cleger2012}), Naïve Bayes (\cite{Lee2012, Semeraro2012}), SVM (\textit{Support Vector Machine}) \cite{Tantanasiriwong2012, Lee2012}.
+Diversos algoritmos são usados para resolver esse tipo de problema: Redes Bayesianas \cite{Yeung2012, Cleger2012}, Naïve Bayes \cite{Lee2012, Semeraro2012}, SVM (\textit{Support Vector Machine}) \cite{Tantanasiriwong2012, Lee2012}.
 
-Existem trabalhos que tratam o aprendizado do perfil com técnicas de Aprendizado Semi-Supervisionado, \citeonline{YenHsien2012} faz uso de comitê de máquinas para construir um modelo de Aprendizado de Máquina que classifica apenas classes positivas, visando classificar se o usuário de um e-commerce irá gostar ou não de um produto. Primeiramente, classifica exemplos sem rótulo, para depois entrarem no modelo final que agrega todos os exemplos (SVM ou Naïve Bayes).
+Existem trabalhos que tratam o aprendizado do perfil com técnicas de Aprendizado Semi-Supervisionado, \citeonline{Lee2012} faz uso de comitê de máquinas para construir um modelo de Aprendizado de Máquina que classifica apenas classes positivas, visando classificar se o usuário de um e-commerce irá gostar ou não de um produto. Primeiramente, classifica exemplos sem rótulo, para depois entrarem no modelo final que agrega todos os exemplos (SVM ou Naïve Bayes).
 Foi verificado que o SR proposto trata o problema de poucos dados para a identificação do perfil do usuário, pois não necessita apenas de dados rotulados.
 
-É possível tratar o problema de aprendizado do perfil como um problema de clusterização (\cite{Davoodi2012, Bielikova2012}).
+É possível tratar o problema de aprendizado do perfil como um problema de clusterização \cite{Davoodi2012, Bielikova2012}.
 \citeonline{Davoodi2012} apresentam um SR de especialistas, que representa o perfil dos usuários com semântica e constrói uma \textit{Rede Social}, para então, usar o algoritmo de clusterização (\textit{k-means}) para encontrar perfis de usuário.
 Além desse, \cite{Bielikova2012} apresenta um SR de notícias que faz o uso de clusterização hierárquica, tendo como medidade de similaridade a similaridade dos cossenos e índice de jaccard.
 Com uma abordagem \textit{bottom-up} de agrupamento e uma estrutura de árvore binária, é realizado a clusterização das notícias: as folhas representam as notícias e os nós pais, clusters que representam temas das notícias.
@@ -1009,7 +1009,7 @@ O usuário desse sistema é representado por caminhos nesta árvore construída,
 \subsection{Componente de Filtragem}
 \label{subsec:filtragem}
 
-Essa é a etapa mais simples, por ser na maioria das vezes, apenas uma filtragem das recomendações já calculadas na etapa de Aprendizagem do Perfil, essa estratégia é apresentada em \cite{Cleger2012, Qu2012, Wang2012, Davoodi2012, Mannens2011, Semeraro2012}. Outra estratégia simples é a determinação de um limiar \cite{Capelle2012, Lops2013}, ou seja, os valores da lista de recomendação gerada são filtradas pelo limiar estabelecido. Nos estudos apresentados, foram encontrados muitos SRs Híbridos, que faziam uma outra abordagem para a filtragem, usando uma combinação dos métodos de Filtro Colaborativo e baseados em conteúdo \cite{Lops2013, Qu2012, Domingues2012, Spaeth2013, Vaz2012}.
+Essa é a etapa mais simples, por ser na maioria das vezes, apenas uma filtragem das recomendações já calculadas na etapa de Aprendizagem do Perfil, essa estratégia é apresentada em \citeonline{Cleger2012, Qu2012, Wang2012, Davoodi2012, Mannens2011, Semeraro2012}. Outra estratégia simples é a determinação de um limiar \cite{Capelle2012, Lops2013}, ou seja, os valores da lista de recomendação gerada são filtradas pelo limiar estabelecido. Nos estudos apresentados, foram encontrados muitos SRs Híbridos, que faziam uma outra abordagem para a filtragem, usando uma combinação dos métodos de Filtro Colaborativo e baseados em conteúdo \cite{Lops2013, Qu2012, Domingues2012, Spaeth2013, Vaz2012}.
 
 O trabalho desenvolvido por \citeonline{Bielikova2012} foi o único que apresentou uma estratégia diferente para o Componente de Filtragem, com a árvore binária montada, todas as notícias dos menores para os maiores grupos, que não foram lidas pelo usuário, foram separadas para a recomendação. Então, é construída uma matriz com as recomendações, sendo as linhas ordenadas pelos grupos menores para os grupos maiores, e as colunas ordenadas pelas notícias mais recentes. Assim, cada coluna é transformada em um vetor, concatenando-os e formando uma lista que é apresentada para o usuário.
 
@@ -1129,7 +1129,7 @@ O cronograma apresentado no Gráfico~\ref{misc:cronograma} se refere às ativida
   \item[{\texttt{[4]}}] Estudo e aplicação de técnicas de Biclusterização.
   \begin{enumerate}
     \item[{\texttt{[3.1]}}] Estudo das técnicas de Biclusterização, incluindo algoritmos e formas de avaliação.
-    \item[{\texttt{[3.2]}}] Implementação das técnicas e algoritmos de Biclusterização, um dos algoritmos estudados já foi implementado (\cite{Cheng2000}) e esta disponibilizado em \textit{https://github.com/lucasbrunialti/biclustering-experiments}.
+    \item[{\texttt{[3.2]}}] Implementação das técnicas e algoritmos de Biclusterização, um dos algoritmos estudados já foi implementado \cite{Cheng2000} e esta disponibilizado em \textit{https://github.com/lucasbrunialti/biclustering-experiments}.
     \item[{\texttt{[3.3]}}] Validação das técnicas implementadas em conjuntos de dados sintéticos, o algoritmo implementado já foi testado em conjuntos de dados sintéticos, possibilitando a aprendizagem do seu comportamento.
     \item[{\texttt{[3.4]}}] Aplicação dos algoritmos no corpus iG.
   \end{enumerate}
