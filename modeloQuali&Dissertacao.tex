@@ -501,17 +501,17 @@ Então, usando as técnicas e algoritmos de Biclusterização, que possibilita e
 Assim, foram estabelecidos os seguintes objetivos específicos:
 
 \begin{itemize}
- \item Levantamento do referencial teórico de Sistemas de Recomendação.
- \begin{itemize}
-  \item Levantamento do estado da arte de Sistemas de Recomendação baseados em conteúdo textual.
- \end{itemize}
- \item Levantamento do referencial teórico de Biclusterização.
- \item Construção de um corpus de notícias e um conjunto de dados de recomendação.
- \item Estudo das técnicas de Mineração de Texto.
- \item Estudo das técnicas de biclusterização.
- \item Implementação das técnicas de biclusterização aplicadas à texto
- \item Análise dos resultados obtidos pelas estratégias propostas.
- % \item estudo das técnicas de essemble aplicadas a texto
+  \item Levantamento do referencial teórico de Sistemas de Recomendação.
+  \begin{itemize}
+    \item Levantamento do estado da arte de Sistemas de Recomendação baseados em conteúdo textual.
+  \end{itemize}
+  \item Levantamento do referencial teórico de Biclusterização.
+  \item Construção de um corpus de notícias e um conjunto de dados de recomendação.
+  \item Estudo das técnicas de Mineração de Texto.
+  \item Estudo das técnicas de biclusterização.
+  \item Implementação das técnicas de biclusterização aplicadas à texto
+  \item Análise dos resultados obtidos pelas estratégias propostas.
+  % \item estudo das técnicas de essemble aplicadas a texto
 \end{itemize}
 
 \section{Metodologia}
@@ -653,204 +653,204 @@ Para a descrição do problema formal de biclusterização usa-se a seguinte def
 O problema de biclusterização é encontrar biclusters, que são submatrizes de $A$, denotados por $A_{IJ}$, em que $I \subseteq X$ e $J \subseteq Y$.
 Assim, o bicluster $A_{IJ}$ é um grupo dos exemplos em $I$, perante as características com alta correlação $J$.
 
-   \subsection{Tipos de biclusters}
-   \label{sec:tiposbic}
+\subsection{Tipos de biclusters}
+\label{sec:tiposbic}
 
-    Como a definição de bicluster não inclui uma prévia estrutura da matriz $A$ e dos biclusters $A_{IJ}$, diversos algoritmos propostos na literatura diferem quanto ao tipo de bicluster que são capazes de encontrar. Uma taxonomia dos tipos de biclusters é proposta por \citeonline{Madeira2004}:
-     \begin{itemize}
-      \item \textit{Biclusters com valores constantes}, se trata de biclusters em que todos os valores de $A_{IJ}$ são constantes: $a_{ij} = \mu, \forall i,j \in I,J$, onde $\mu$ é um valor constante dentro de $A_{IJ}$. Porém, em conjuntos de dados reais, esses biclusters estão presentes com algum tipo de ruído $\mu + \eta_{ij}$, onde $\eta_{ij}$ é o ruído associado com os valures de $\mu$ e $a_{ij}$ \cite{Madeira2004}.
-      \item \textit{Biclusters com valores constantes nas linhas ou colunas}, se trata de biclusters com valores constantes nas linhas: $a_{ij} = \mu + \alpha_i, \forall i,j \in I,J$ ou $a_{ij} = \mu \cdot \alpha_i, \forall i,j \in I,J$, onde $\alpha_i$ é um fator aditivo ou multiplicativo para cada linha; ou ainda biclusters com valores constantes nas colunas: $a_{ij} = \mu + \beta_j, \forall i,j \in I,J$ ou $a_{ij} = \mu \cdot \beta_j, \forall i,j \in I,J$, onde $\beta_j$ é um fator aditivo ou multiplicativo para cada coluna \cite{Madeira2004}.
-      \item \textit{Biclusters com valores coerentes}, em que são considerados valores próximos entre si (coerentes) para definição de um bicluster: $a_{ij} = \mu + \alpha_i + \beta_j, \forall i,j \in I,J$, ou $a_{ij} = \mu' \cdot \alpha_i' \cdot \beta_j', \forall i,j \in I,J$, sendo que se $\mu = \log \mu'\implies \alpha_i = \alpha_i', \beta_j = \beta_j'$ \cite{Madeira2004}.
-      \item \textit{Biclusters com evoluções coerentes}, têm seus valores com evoluções coerentes, por exemplo, um bicluster com $a_{i4} \leq a_{i3} \leq a_{i2} \leq a_{i1}$ tem valores com evolução coerente na coluna \cite{Madeira2004}. Seus valores podem ser gerados por uma função geradora de valores com evolução coerente $a_{ij} = g(a_{ij}), \forall i,j \in I,J$, sendo $g(\cdot)$ não linear e não constante, para que o tipo de bicluster não seja classificado nos casos anteriores.
-     \end{itemize}
-    
-    Os biclusters também se diferem quanto a sua estrutura, cada algoritmo faz uma suposição da estrutura de biclusters que é capaz de encontrar. A Figura~\ref{fig:bicstruct} sumariza as diferentes estruturas de biclusters, com as linhas e colunas ordenadas, para permitir a visualização dos biclusters por meio do mapa de calor dos valores de $A$.
+Como a definição de bicluster não inclui uma prévia estrutura da matriz $A$ e dos biclusters $A_{IJ}$, diversos algoritmos propostos na literatura diferem quanto ao tipo de bicluster que são capazes de encontrar. Uma taxonomia dos tipos de biclusters é proposta por \citeonline{Madeira2004}:
+ \begin{itemize}
+  \item \textit{Biclusters com valores constantes}, se trata de biclusters em que todos os valores de $A_{IJ}$ são constantes: $a_{ij} = \mu, \forall i,j \in I,J$, onde $\mu$ é um valor constante dentro de $A_{IJ}$. Porém, em conjuntos de dados reais, esses biclusters estão presentes com algum tipo de ruído $\mu + \eta_{ij}$, onde $\eta_{ij}$ é o ruído associado com os valures de $\mu$ e $a_{ij}$ \cite{Madeira2004}.
+  \item \textit{Biclusters com valores constantes nas linhas ou colunas}, se trata de biclusters com valores constantes nas linhas: $a_{ij} = \mu + \alpha_i, \forall i,j \in I,J$ ou $a_{ij} = \mu \cdot \alpha_i, \forall i,j \in I,J$, onde $\alpha_i$ é um fator aditivo ou multiplicativo para cada linha; ou ainda biclusters com valores constantes nas colunas: $a_{ij} = \mu + \beta_j, \forall i,j \in I,J$ ou $a_{ij} = \mu \cdot \beta_j, \forall i,j \in I,J$, onde $\beta_j$ é um fator aditivo ou multiplicativo para cada coluna \cite{Madeira2004}.
+  \item \textit{Biclusters com valores coerentes}, em que são considerados valores próximos entre si (coerentes) para definição de um bicluster: $a_{ij} = \mu + \alpha_i + \beta_j, \forall i,j \in I,J$, ou $a_{ij} = \mu' \cdot \alpha_i' \cdot \beta_j', \forall i,j \in I,J$, sendo que se $\mu = \log \mu'\implies \alpha_i = \alpha_i', \beta_j = \beta_j'$ \cite{Madeira2004}.
+  \item \textit{Biclusters com evoluções coerentes}, têm seus valores com evoluções coerentes, por exemplo, um bicluster com $a_{i4} \leq a_{i3} \leq a_{i2} \leq a_{i1}$ tem valores com evolução coerente na coluna \cite{Madeira2004}. Seus valores podem ser gerados por uma função geradora de valores com evolução coerente $a_{ij} = g(a_{ij}), \forall i,j \in I,J$, sendo $g(\cdot)$ não linear e não constante, para que o tipo de bicluster não seja classificado nos casos anteriores.
+ \end{itemize}
 
-    \begin{figure}[h]
-        % \captionsetup[subfigure]{labelformat=simple}
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/a-bic-struct.png}
-                \caption{Bicluster único}
-                \label{fig:bicstruct-a}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/b-bic-struct.png}
-                \caption{Biclusters com linhas e colunas exclusivas}
-                \label{fig:bicstruct-b}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/c-bic-struct.png}
-                \caption{Biclusters com estrutura de tabuleiro de xadrez}
-                \label{fig:bicstruct-c}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/d-bic-struct.png}
-                \caption{Biclusters com linhas exclusivas}
-                \label{fig:bicstruct-d}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/e-bic-struct.png}
-                \caption{Biclusters com colunas exclusivas}
-                \label{fig:bicstruct-e}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/f-bic-struct.png}
-                \caption{Biclusters sem sobreposição com estrutura em árvore}
-                \label{fig:bicstruct-f}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/g-bic-struct.png}
-                \caption{Biclusters sem sobreposição e não exclusivos}
-                \label{fig:bicstruct-g}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/h-bic-struct.png}
-                \caption{Biclusters com sobreposição com estrutura hierarquica}
-                \label{fig:bicstruct-h}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/i-bic-struct.png}
-                \caption{Biclusters com sobreposição arbitrariamente posicionados}
-                \label{fig:bicstruct-i}
-        \end{subfigure}
-        \caption{Diferentes estruturas de biclusters, quadrados com cores sólidas representam biclusters (Adaptado de \cite{Madeira2004})}
-        \label{fig:bicstruct}
-    \end{figure}
-    
-    \subsection{Algoritmos para biclusterização}
+Os biclusters também se diferem quanto a sua estrutura, cada algoritmo faz uma suposição da estrutura de biclusters que é capaz de encontrar. A Figura~\ref{fig:bicstruct} sumariza as diferentes estruturas de biclusters, com as linhas e colunas ordenadas, para permitir a visualização dos biclusters por meio do mapa de calor dos valores de $A$.
 
-    Diversos algoritmos para encontrar biclusters, de diferentes tipos e estruturas, foram propostos na literatura \cite{Tanay2005,Madeira2004}.
-    
-    Um dos mais comuns e simples algoritmos de biclusterização, que encontra biclusters com valores coerentes e estrutura com sobreposição e arbitrariamente posicionados, é o \textit{Coupled Two-way Clustering} (CTWC) \cite{Getz2000}, pois encontra biclusters através da clusterização de características e exemplos (linhas e colunas), separadamente.
-    O algoritmo de clusterização usado por \cite{Getz2000} foi o \textit{Superparamagnetic Clustering} (SPC), pois é capaz de determinar o número de clusters automaticamente e com uma estratégia de clusterização hierárquica \textit{top-down} é capaz de gerar clusters estáveis \cite{Getz2000}.
-    O SPC tem como entrada uma matriz de similaridade e um parâmetro temperatura, que controla o quão estáveis serão os clusters que o algoritmo irá gerar.
-    Assim, o CTWC encontra clusters estáveis de linhas e colunas através do SPC, e iterativamente, performa o SPC novamente nos clusters de linhas e colunas encontrados, mantendo na memória um par do subconjunto de linhas e do subconjunto de colunas (biclusters), assim como os clusters estáveis de linhas e colunas, separadamente.
-    % O algoritmo se inicia com dois subconjuntos: um para exemplos (linhas) $I = \{ X \}$ e um para características (colunas) $J = \{ Y \}$, então, através do algoritmo de SPC
+\begin{figure}[h]
+    % \captionsetup[subfigure]{labelformat=simple}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+            \includegraphics[width=30mm]{img/a-bic-struct.png}
+            \caption{Bicluster único}
+            \label{fig:bicstruct-a}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+            \includegraphics[width=30mm]{img/b-bic-struct.png}
+            \caption{Biclusters com linhas e colunas exclusivas}
+            \label{fig:bicstruct-b}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+            \includegraphics[width=30mm]{img/c-bic-struct.png}
+            \caption{Biclusters com estrutura de tabuleiro de xadrez}
+            \label{fig:bicstruct-c}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+            \includegraphics[width=30mm]{img/d-bic-struct.png}
+            \caption{Biclusters com linhas exclusivas}
+            \label{fig:bicstruct-d}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+            \includegraphics[width=30mm]{img/e-bic-struct.png}
+            \caption{Biclusters com colunas exclusivas}
+            \label{fig:bicstruct-e}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+            \includegraphics[width=30mm]{img/f-bic-struct.png}
+            \caption{Biclusters sem sobreposição com estrutura em árvore}
+            \label{fig:bicstruct-f}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+            \includegraphics[width=30mm]{img/g-bic-struct.png}
+            \caption{Biclusters sem sobreposição e não exclusivos}
+            \label{fig:bicstruct-g}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+            \includegraphics[width=30mm]{img/h-bic-struct.png}
+            \caption{Biclusters com sobreposição com estrutura hierarquica}
+            \label{fig:bicstruct-h}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+            \includegraphics[width=30mm]{img/i-bic-struct.png}
+            \caption{Biclusters com sobreposição arbitrariamente posicionados}
+            \label{fig:bicstruct-i}
+    \end{subfigure}
+    \caption{Diferentes estruturas de biclusters, quadrados com cores sólidas representam biclusters (Adaptado de \cite{Madeira2004})}
+    \label{fig:bicstruct}
+\end{figure}
 
-    O algoritmo Cheng e Church \cite{Cheng2000}, é capaz de encontrar o mesmo tipo de bicluster que o algoritmo CTWC, de forma gulosa: biclusters com valores coerentes e estrutura com sobreposição e arbitrariamente posicionados. Este algoritmo esta sendo objeto de estudo desse projeto de mestrado para aplicação em dados textuais.
-    \citeonline{Cheng2000} introduz o conceito de bicluster no domínio de expressões genéticas. Além disso, para encontrar biclusters, ou $\delta$-biclusters, na matriz $A$, os autores definem o \textit{Resíduo Quadrático Médio} (RQM):
-    \begin{equation}
-    \begin{split}
-        H_{IJ} = \frac{1}{|I||J|} \displaystyle\sum_{i,j \in I,J} (a_{ij} - a_{iJ} - a_{Ij} + a_{IJ})^2 \\
-        H_{iJ} = \frac{1}{|J|} \displaystyle\sum_{j \in J} (a_{ij} - a_{iJ} - a_{Ij} + a_{IJ})^2 \\
-        H_{Ij} = \frac{1}{|I|} \displaystyle\sum_{i \in I} (a_{ij} - a_{iJ} - a_{Ij} + a_{IJ})^2
-    \end{split}
-    \end{equation}
-    em que
-    \begin{equation}
-        a_{iJ} = \frac{1}{|J|} \displaystyle\sum_{j \in J} a_{ij},\quad a_{Ij} = \frac{1}{|I|} \displaystyle\sum_{i \in I} a_{ij},\quad a_{IJ} = \frac{1}{|I||J|} \displaystyle\sum_{i,j \in I,J} a_{ij}
-    \end{equation}
-    onde $H_{IJ}$ é o RQM de uma submatriz $A_{IJ}$, $H_{iJ}$ o RQM da linha $i$, $H_{Ij}$ o RQM da coluna $j$, $a_{iJ}$ a média dos valores da linha $i$, $a_{Ij}$ a média dos valores da coluna $j$ e $a_{IJ}$ a média dos valores da submatriz $A_{IJ}$, definida pelos subconjuntos $I$ e $J$.
+\subsection{Algoritmos para biclusterização}
 
-    Então, um bicluster um perfeito $A_{IJ}$ teria o RQM $H_{IJ} = 0$, pois $a_{ij} = a_{ij}, \forall i,j \in I,J$, fazendo $a_{iJ} = a_{Ij} = a_{IJ}$. No entanto, se apenas minizar o RQM, um bicluster com apenas um elemento seria perfeito, o que pode não refletir a realidade. Além disso, em conjunto de dados reais existe ruído, podendo esconder o bicluster perfeito.
+Diversos algoritmos para encontrar biclusters, de diferentes tipos e estruturas, foram propostos na literatura \cite{Tanay2005,Madeira2004}.
 
-    Para encontrar biclusters, ou $\delta$-biclusters, \citeonline{Cheng2000} fazem uma estratégia gulosa que retira linhas e colunas, visando a minimização do RQM, respeitando um parâmetro $\delta$, que é calibrado pelo usuário. Então, um bicluster é encontrado quando o RQM de uma submatriz $A_{IJ}$ é $H_{IJ} \leq \delta$, para algum $\delta \geq 0$. As etapas de remoções de elementos da matriz são apresentadas nos algoritmos~\ref{algo:cc1} e~\ref{algo:cc2}.
+Um dos mais comuns e simples algoritmos de biclusterização, que encontra biclusters com valores coerentes e estrutura com sobreposição e arbitrariamente posicionados, é o \textit{Coupled Two-way Clustering} (CTWC) \cite{Getz2000}, pois encontra biclusters através da clusterização de características e exemplos (linhas e colunas), separadamente.
+O algoritmo de clusterização usado por \cite{Getz2000} foi o \textit{Superparamagnetic Clustering} (SPC), pois é capaz de determinar o número de clusters automaticamente e com uma estratégia de clusterização hierárquica \textit{top-down} é capaz de gerar clusters estáveis \cite{Getz2000}.
+O SPC tem como entrada uma matriz de similaridade e um parâmetro temperatura, que controla o quão estáveis serão os clusters que o algoritmo irá gerar.
+Assim, o CTWC encontra clusters estáveis de linhas e colunas através do SPC, e iterativamente, performa o SPC novamente nos clusters de linhas e colunas encontrados, mantendo na memória um par do subconjunto de linhas e do subconjunto de colunas (biclusters), assim como os clusters estáveis de linhas e colunas, separadamente.
+% O algoritmo se inicia com dois subconjuntos: um para exemplos (linhas) $I = \{ X \}$ e um para características (colunas) $J = \{ Y \}$, então, através do algoritmo de SPC
 
-    \begin{algorithm}[H]
-    \label{algo:cc1}
-     \KwIn{$A, I, J, \delta$}
-     \KwOut{$I,J$ onde $H_{IJ} \leq \delta$}
-     \While{$H_{IJ} > \delta$}{
-      encontre a linha $l_{max} = \operatorname*{arg\,max}_{i \in I} H_{iJ}$\;
-      encontre a coluna $c_{max} = \operatorname*{arg\,max}_{j \in J} H_{Ij}$\;
-      \eIf{$l_{max} > c_{max}$}{
-       remova $l_{max}$ do subconjunto $I$\;
-       }{
-       remova $c_{max}$ do subconjunto $J$\;
-      }
-     }
-     \caption{Remove uma linha ou coluna a cada iteração.}
-    \end{algorithm}
+O algoritmo Cheng e Church \cite{Cheng2000}, é capaz de encontrar o mesmo tipo de bicluster que o algoritmo CTWC, de forma gulosa: biclusters com valores coerentes e estrutura com sobreposição e arbitrariamente posicionados. Este algoritmo esta sendo objeto de estudo desse projeto de mestrado para aplicação em dados textuais.
+\citeonline{Cheng2000} introduz o conceito de bicluster no domínio de expressões genéticas. Além disso, para encontrar biclusters, ou $\delta$-biclusters, na matriz $A$, os autores definem o \textit{Resíduo Quadrático Médio} (RQM):
+\begin{equation}
+\begin{split}
+    H_{IJ} = \frac{1}{|I||J|} \displaystyle\sum_{i,j \in I,J} (a_{ij} - a_{iJ} - a_{Ij} + a_{IJ})^2 \\
+    H_{iJ} = \frac{1}{|J|} \displaystyle\sum_{j \in J} (a_{ij} - a_{iJ} - a_{Ij} + a_{IJ})^2 \\
+    H_{Ij} = \frac{1}{|I|} \displaystyle\sum_{i \in I} (a_{ij} - a_{iJ} - a_{Ij} + a_{IJ})^2
+\end{split}
+\end{equation}
+em que
+\begin{equation}
+    a_{iJ} = \frac{1}{|J|} \displaystyle\sum_{j \in J} a_{ij},\quad a_{Ij} = \frac{1}{|I|} \displaystyle\sum_{i \in I} a_{ij},\quad a_{IJ} = \frac{1}{|I||J|} \displaystyle\sum_{i,j \in I,J} a_{ij}
+\end{equation}
+onde $H_{IJ}$ é o RQM de uma submatriz $A_{IJ}$, $H_{iJ}$ o RQM da linha $i$, $H_{Ij}$ o RQM da coluna $j$, $a_{iJ}$ a média dos valores da linha $i$, $a_{Ij}$ a média dos valores da coluna $j$ e $a_{IJ}$ a média dos valores da submatriz $A_{IJ}$, definida pelos subconjuntos $I$ e $J$.
 
-    \begin{algorithm}[H]
-    \label{algo:cc2}
-     \KwIn{$A, I, J, \delta, \alpha$}
-     \KwOut{$I,J$ onde $H_{IJ} \leq \delta$}
-     \While{$H_{IJ} > \delta$}{
-      remova $i \in I$ onde $H_{iJ} > \alpha \cdot H_{IJ}$\;
-      remova $j \in J$ onde $H_{Ij} > \alpha \cdot H_{IJ}$\;
-      encontre a coluna $c_{max} = \operatorname*{arg\,max}_{j \in J} H_{Ij}$\;
-      \If{não houve nenhuma remoção}{
-       chame o algoritmo~\ref{algo:cc1}
-      }
-     }
-     \caption{Remove múltiplas linhas e colunas de $A$ a cada iteração.}
-    \end{algorithm}
+Então, um bicluster um perfeito $A_{IJ}$ teria o RQM $H_{IJ} = 0$, pois $a_{ij} = a_{ij}, \forall i,j \in I,J$, fazendo $a_{iJ} = a_{Ij} = a_{IJ}$. No entanto, se apenas minizar o RQM, um bicluster com apenas um elemento seria perfeito, o que pode não refletir a realidade. Além disso, em conjunto de dados reais existe ruído, podendo esconder o bicluster perfeito.
 
-    O algoritmo~\ref{algo:cc2} é usado para acelerar o processo de busca de um $\delta$-bicluster, convergindo mais rapidamente para uma solução quanto maior for o parâmetro $\alpha$, em que $\alpha \geq 0$. Ainda, para amenização do problema de encontrar $\delta$-biclusters perfeitos com apenas um elemento, ou poucos elemento, é utilizado o algoritmo~\ref{algo:cc3}, que adiciona nós sem aumentar o RQM do bicluster.
+Para encontrar biclusters, ou $\delta$-biclusters, \citeonline{Cheng2000} fazem uma estratégia gulosa que retira linhas e colunas, visando a minimização do RQM, respeitando um parâmetro $\delta$, que é calibrado pelo usuário. Então, um bicluster é encontrado quando o RQM de uma submatriz $A_{IJ}$ é $H_{IJ} \leq \delta$, para algum $\delta \geq 0$. As etapas de remoções de elementos da matriz são apresentadas nos algoritmos~\ref{algo:cc1} e~\ref{algo:cc2}.
 
-    \begin{algorithm}[h]
-    \label{algo:cc3}
-     \KwIn{$A, I, J$}
-     \KwOut{$I',J'$ onde $H_{I'J'} \leq H_{IJ}$}
-     \While{$H_{IJ} > \delta$}{
-      compute $a_{iJ}$ e $a_{Ij}$ para todo $i,j$ e $H_{IJ}$\;
-      remova $j \notin J$ onde $\frac{1}{|I|} \sum_{j \in J} (a_{ij} - a_{iJ} - a_{Ij} + a_{IJ})^2 \leq H_{IJ}$\;
-      recompute $a_{iJ}$ e $H_{IJ}$\;
-      remova $i \notin I$ onde $\frac{1}{|J|} \sum_{i \in I} (a_{ij} - a_{iJ} - a_{Ij} + a_{IJ})^2 \leq H_{IJ}$\;
-      \If{não houve nenhuma adição}{
-       $I' \longleftarrow I$\;
-       $J' \longleftarrow J$\;
-      }
-     }
-     \caption{Adiciona linhas e colunas de $A_{IJ}$ a cada iteração.}
-    \end{algorithm}
+\begin{algorithm}[H]
+\label{algo:cc1}
+ \KwIn{$A, I, J, \delta$}
+ \KwOut{$I,J$ onde $H_{IJ} \leq \delta$}
+ \While{$H_{IJ} > \delta$}{
+  encontre a linha $l_{max} = \operatorname*{arg\,max}_{i \in I} H_{iJ}$\;
+  encontre a coluna $c_{max} = \operatorname*{arg\,max}_{j \in J} H_{Ij}$\;
+  \eIf{$l_{max} > c_{max}$}{
+   remova $l_{max}$ do subconjunto $I$\;
+   }{
+   remova $c_{max}$ do subconjunto $J$\;
+  }
+ }
+ \caption{Remove uma linha ou coluna a cada iteração.}
+\end{algorithm}
 
-    Por fim, o algoritmo~\ref{algo:cc4} é a consolidação dos algoritmos~\ref{algo:cc3},~\ref{algo:cc2} e~\ref{algo:cc1} e a iteração para encontrar $k$ $\delta$-biclusters, um a um, sendo $k$ fornecido pelo usuário.
+\begin{algorithm}[H]
+\label{algo:cc2}
+ \KwIn{$A, I, J, \delta, \alpha$}
+ \KwOut{$I,J$ onde $H_{IJ} \leq \delta$}
+ \While{$H_{IJ} > \delta$}{
+  remova $i \in I$ onde $H_{iJ} > \alpha \cdot H_{IJ}$\;
+  remova $j \in J$ onde $H_{Ij} > \alpha \cdot H_{IJ}$\;
+  encontre a coluna $c_{max} = \operatorname*{arg\,max}_{j \in J} H_{Ij}$\;
+  \If{não houve nenhuma remoção}{
+   chame o algoritmo~\ref{algo:cc1}
+  }
+ }
+ \caption{Remove múltiplas linhas e colunas de $A$ a cada iteração.}
+\end{algorithm}
 
-    \begin{algorithm}[h]
-    \label{algo:cc4}
-     \KwIn{$A, k, \delta, \alpha$}
-     \KwOut{$k$ $\delta$-biclusters}
-     $A' \leftarrow A$\;
-     \For{$1$ \KwTo $k$}{
-       $B \leftarrow$ algoritmo~\ref{algo:cc2} com $A', \delta, \alpha$\;
-       $C \leftarrow$ algoritmo~\ref{algo:cc1} com $B, \delta$\;
-       $D \leftarrow$ algoritmo~\ref{algo:cc3} com $A, C$\;
-       reporte $D$ como uma solução\;
-       adicione ruído em $A'$ para a submatriz $D$\;
-     }
-     \caption{Algoritmo Cheng \& Church, encontra $k$ $\delta$-biclusters.}
-    \end{algorithm}
+O algoritmo~\ref{algo:cc2} é usado para acelerar o processo de busca de um $\delta$-bicluster, convergindo mais rapidamente para uma solução quanto maior for o parâmetro $\alpha$, em que $\alpha \geq 0$. Ainda, para amenização do problema de encontrar $\delta$-biclusters perfeitos com apenas um elemento, ou poucos elemento, é utilizado o algoritmo~\ref{algo:cc3}, que adiciona nós sem aumentar o RQM do bicluster.
 
-    % Algoritmo Spectral (?)
+\begin{algorithm}[h]
+\label{algo:cc3}
+ \KwIn{$A, I, J$}
+ \KwOut{$I',J'$ onde $H_{I'J'} \leq H_{IJ}$}
+ \While{$H_{IJ} > \delta$}{
+  compute $a_{iJ}$ e $a_{Ij}$ para todo $i,j$ e $H_{IJ}$\;
+  remova $j \notin J$ onde $\frac{1}{|I|} \sum_{j \in J} (a_{ij} - a_{iJ} - a_{Ij} + a_{IJ})^2 \leq H_{IJ}$\;
+  recompute $a_{iJ}$ e $H_{IJ}$\;
+  remova $i \notin I$ onde $\frac{1}{|J|} \sum_{i \in I} (a_{ij} - a_{iJ} - a_{Ij} + a_{IJ})^2 \leq H_{IJ}$\;
+  \If{não houve nenhuma adição}{
+   $I' \longleftarrow I$\;
+   $J' \longleftarrow J$\;
+  }
+ }
+ \caption{Adiciona linhas e colunas de $A_{IJ}$ a cada iteração.}
+\end{algorithm}
 
-    Além dos algoritmos apresentados, existem outros algoritmos que são capazes de encontrar outros tipos de biclusters (seção~\ref{sec:tiposbic}), além de serem recentes \cite{Yang2013,Hochreiter2010,Cabanes2012}, mostrando que ainda há interesse na área de pesquisa de biclusterização.
-    
-     \subsection{Avaliação de biclusterização}
+Por fim, o algoritmo~\ref{algo:cc4} é a consolidação dos algoritmos~\ref{algo:cc3},~\ref{algo:cc2} e~\ref{algo:cc1} e a iteração para encontrar $k$ $\delta$-biclusters, um a um, sendo $k$ fornecido pelo usuário.
 
-    Para determinar parâmetros, descobrir a qualidade e/ou estabilidade dos biclusters encontrados por algoritmos, é necessário estabelecer métricas de avaliação. Existem duas maneiras de avaliar biclusters \cite{Hochreiter2010}: \textit{interna}, usa os dados dos resultados dos algoritmos, juntamente com métricas de qualidade e/ou estabilidade, para avaliar as soluções geradas; \textit{externa}, utiliza os dados reais das soluções de biclusters de um conjunto de dados, usando estratégias para comparação, obtendo assim, maior confiança nas soluções.
+\begin{algorithm}[h]
+\label{algo:cc4}
+ \KwIn{$A, k, \delta, \alpha$}
+ \KwOut{$k$ $\delta$-biclusters}
+ $A' \leftarrow A$\;
+ \For{$1$ \KwTo $k$}{
+   $B \leftarrow$ algoritmo~\ref{algo:cc2} com $A', \delta, \alpha$\;
+   $C \leftarrow$ algoritmo~\ref{algo:cc1} com $B, \delta$\;
+   $D \leftarrow$ algoritmo~\ref{algo:cc3} com $A, C$\;
+   reporte $D$ como uma solução\;
+   adicione ruído em $A'$ para a submatriz $D$\;
+ }
+ \caption{Algoritmo Cheng \& Church, encontra $k$ $\delta$-biclusters.}
+\end{algorithm}
 
-    A avaliação interna pode não ser tão precisa quanto a avaliação externa, porém é útil para descobrir parâmetros ótimos. Apesar de \citeonline{Prelic2006} sugerirem não usar avaliações internas, por não estar claro como extender noções de separação e homogeinidade, no entanto, \citeonline{Santamaria2007} descreveu métricas de consistência para verificando se um bicluster é consistente com a sua definição, seja aditiva, multiplicativa e/ou constante, fazendo uma comparação dos elementos do bicluster:
-    \begin{equation}
-    \begin{split}
-    C_l(A_{IJ}) = \frac{1}{|I|} \displaystyle\sum_{i = 1}^{|I| - 1} \displaystyle\sum_{j = i + 1}^{|I|} \sqrt{ \displaystyle\sum_{k = 1}^{|J|} (a_{ik} - a_{jk})^2 } \\
-    C_c(A_{IJ}) = \frac{1}{|J|} \displaystyle\sum_{i = 1}^{|J| - 1} \displaystyle\sum_{j = i + 1}^{|J|} \sqrt{ \displaystyle\sum_{k = 1}^{|I|} (a_{ki} - a_{kj})^2 }
-    \end{split}
-    \end{equation}
-    em que $C_l(A_{IJ})$ é o índice de consistência das linhas do bicluster $A_{IJ}$ e $C_c(A_{IJ})$ é o índice de consistência das colunas do bicluster $A_{IJ}$. Ainda, a consistência do bicluster inteiro $C$ pode ser definida pela média:
-    \begin{equation}
-    C(A_{IJ}) = \frac{|I| \cdot C_l + |J| \cdot C_c}{|I| + |J|}
-    \end{equation}
+% Algoritmo Spectral (?)
 
-    Uma das métricas externas, que são usadas para comparar biclusters encontrados com biclusters reais em um conjunto de dados, é a métrica \textit{concensus score} \cite{Hochreiter2010}. Através da maximização das similaridades entre biclusters encontrados e reais, usando o \textit{índice de Jaccard} como medida de similaridade e o algoritmo Húngaro para solucionar o problema de maximização. Tendo como saída um $\textit{score} \in [0,1]$, em que 0 significa que os biclusters comparados são totalmente diferentes, e 1 o inverso.
+Além dos algoritmos apresentados, existem outros algoritmos que são capazes de encontrar outros tipos de biclusters (seção~\ref{sec:tiposbic}), além de serem recentes \cite{Yang2013,Hochreiter2010,Cabanes2012}, mostrando que ainda há interesse na área de pesquisa de biclusterização.
+
+ \subsection{Avaliação de biclusterização}
+
+Para determinar parâmetros, descobrir a qualidade e/ou estabilidade dos biclusters encontrados por algoritmos, é necessário estabelecer métricas de avaliação. Existem duas maneiras de avaliar biclusters \cite{Hochreiter2010}: \textit{interna}, usa os dados dos resultados dos algoritmos, juntamente com métricas de qualidade e/ou estabilidade, para avaliar as soluções geradas; \textit{externa}, utiliza os dados reais das soluções de biclusters de um conjunto de dados, usando estratégias para comparação, obtendo assim, maior confiança nas soluções.
+
+A avaliação interna pode não ser tão precisa quanto a avaliação externa, porém é útil para descobrir parâmetros ótimos. Apesar de \citeonline{Prelic2006} sugerirem não usar avaliações internas, por não estar claro como extender noções de separação e homogeinidade, no entanto, \citeonline{Santamaria2007} descreveu métricas de consistência para verificando se um bicluster é consistente com a sua definição, seja aditiva, multiplicativa e/ou constante, fazendo uma comparação dos elementos do bicluster:
+\begin{equation}
+\begin{split}
+C_l(A_{IJ}) = \frac{1}{|I|} \displaystyle\sum_{i = 1}^{|I| - 1} \displaystyle\sum_{j = i + 1}^{|I|} \sqrt{ \displaystyle\sum_{k = 1}^{|J|} (a_{ik} - a_{jk})^2 } \\
+C_c(A_{IJ}) = \frac{1}{|J|} \displaystyle\sum_{i = 1}^{|J| - 1} \displaystyle\sum_{j = i + 1}^{|J|} \sqrt{ \displaystyle\sum_{k = 1}^{|I|} (a_{ki} - a_{kj})^2 }
+\end{split}
+\end{equation}
+em que $C_l(A_{IJ})$ é o índice de consistência das linhas do bicluster $A_{IJ}$ e $C_c(A_{IJ})$ é o índice de consistência das colunas do bicluster $A_{IJ}$. Ainda, a consistência do bicluster inteiro $C$ pode ser definida pela média:
+\begin{equation}
+C(A_{IJ}) = \frac{|I| \cdot C_l + |J| \cdot C_c}{|I| + |J|}
+\end{equation}
+
+Uma das métricas externas, que são usadas para comparar biclusters encontrados com biclusters reais em um conjunto de dados, é a métrica \textit{concensus score} \cite{Hochreiter2010}. Através da maximização das similaridades entre biclusters encontrados e reais, usando o \textit{índice de Jaccard} como medida de similaridade e o algoritmo Húngaro para solucionar o problema de maximização. Tendo como saída um $\textit{score} \in [0,1]$, em que 0 significa que os biclusters comparados são totalmente diferentes, e 1 o inverso.
 
 %    \subsection{Essembles para clusterização}
 
@@ -870,56 +870,57 @@ Além disso, a área de Mineração de Texto utiliza de técnicas das áreas de 
 
 \citeonline{Feldman2006}, apresentam uma arquitetura geral para aplicações de Mineração de Textos composta por quatro etapas: tarefas de pré-processamento, que preparam os dados para a central de operações de mineração; central de operações de mineração, incluem algoritmos para a descoberta de padrões, tendências e conhecimentos através de técnicas e algoritmos; componentes de apresentação, incluem interfaces para o usuário apresentando visualizações dos conhecimentos gerados na etapa anterior; e técnicas de refinamento, também descrito como uma fase de pós-processamento, que inclui métodos para filtrar informações redundantes.
 
-    \subsection{Tarefas de pré-processamento}
+\subsection{Tarefas de pré-processamento}
+\label{subsec:preprocessamento}
 
-    As tarefas de pré-processamento incluem rotinas, processos e métodos para a estruturação dos textos presentes nos documentos.
-    A estruturação se faz necessária para a extração de informações e descoberta de conhecimento por meio de técnicas e algoritmos \cite{Hotho2005}.
+As tarefas de pré-processamento incluem rotinas, processos e métodos para a estruturação dos textos presentes nos documentos.
+A estruturação se faz necessária para a extração de informações e descoberta de conhecimento por meio de técnicas e algoritmos \cite{Hotho2005}.
 
-    \subsubsection{Representação textual}
+\subsubsection{Representação textual}
 
-    Para a estruturação dos textos é necessário a definição da representação textual dos documentos.
-    O vetor de palavras, ou \textit{Vector Space Model} \cite{Salton1975}, é a representação clássica usada para representar documentos textuais (referencia). Cada dimensão desse vetor esta associado à palavra, sendo que todas as dimensões representam todas as palavras do conjunto de documentos.
-    Formalmente, temos um conjunto de documentos $D = \{ d_1, d_2, \dots, d_n \}$, em que $d_i$ representa um documento e $n$ o número total de documentos, e um conjunto de palavras $P = \{ p_1, p_2, \dots, p_m \}$, em que $p_j$ representa uma palavra e $m$ o número de palavras presentes em todos os documentos.
-    Representando a frequência de uma palavra, o número de vezes que $p_j$ aparece em um documento $d_i$, por $fp(p_j, d_i)$, o vetor de palavras pode ser construído e representado da seguinte forma: $\vec{vp}_{d_i} = ( fp(p_1, d_i), fp(p_2, d_i), \dots, fp(p_m, d_i) )$.
-    \citeonline{Salton1975} argumentam que a representação textual de documentos em vetor de palavras é suficiente para separar documentos.
-    Ao invés de frequência de palavra, também é comumente usado, a representação binária (referencia), ou seja, $p_j$ aparecendo em $d_i$ corresponde à entrada $1$ na dimensão $j$ em $\vec{vp}_{d_i}$.
-    Há também outros métodos para representação textual, como \textit{n-gramas} e \textit{ontologias}.
+Para a estruturação dos textos é necessário a definição da representação textual dos documentos.
+O vetor de termos, ou \textit{Vector Space Model} \cite{Salton1975}, é a representação clássica usada para representar documentos textuais (referencia). Cada dimensão desse vetor esta associado à um termo, sendo que todas as dimensões representam todos os termos do conjunto de documentos.
+Formalmente, temos um conjunto de documentos $D = \{ d_1, d_2, \dots, d_n \}$, em que $d_i$ representa um documento e $n$ o número total de documentos, e um conjunto de termos ${\cal T} = \{ t_1, t_2, \dots, t_m \}$, em que $t_j$ representa um termo e $m$ o número de termos presentes em todos os documentos.
+Representando a frequência de um termo pelo número de vezes que $t_j$ aparece em um documento $d_i$, denotado por $ft(p_j, d_i)$, o vetor de termos pode ser construído e representado da seguinte forma: $\vec{vt}_{d_i} = ( ft(p_1, d_i), ft(p_2, d_i), \dots, fp(t_m, d_i) )$.
+\citeonline{Salton1975} argumentam que a representação textual de documentos em vetor de termos é suficiente para separar documentos.
+Ao invés de frequência de termos, também é comumente usado, a representação binária (referencia), ou seja, $t_j$ aparecendo em $d_i$ corresponde à entrada $1$ na dimensão $j$ em $\vec{vt}_{d_i}$.
+Há também outros métodos para representação textual, como \textit{n-gramas} e \textit{ontologias} (referencia).
 
-    Ainda sobre o vetor de palavras, \citeonline{Salton1975} mostra com experimentos em diversos conjuntos de dados, que o uso da normalização nos vetores usando a técnica de Frequência de Palavras-Frequência de Documentos Inversa (\textit{Term Frequency-Inversed Document Frequency} - TFIDF) é capaz de melhorar a separação de documentos:
-    \begin{equation}
-    \begin{split}
-        \text{\textit{fp-fdi}}(p_j, d_i) = fp(p_j, d_i) \cdot fdi(p_j) \\
-        \text{\textit{fp-fdi}}(p_j, d_i) = fp(p_j, d_i) \cdot \left( log_{2} \frac{n}{fd(p_j) + 1} \right)
-    \end{split}
-    \end{equation}
-    em que $fdi(p_j)$ representa a Frequência de Documentos Inversa da palavra $p_j$ e $fd(p_j)$ a frequência de documentos que contém $p_j$. Essa normalização faz com que a frequência das palavras que aparecem em muitos documentos seja reduzida, e a frequência das palavras que aparecem em alguns raros documentos seja aumentada, com um fator de $\log_{2}$.
+Ainda sobre o vetor de termos, \citeonline{Salton1975} mostram com experimentos em diversos conjuntos de dados, que o uso da normalização nos vetores usando a técnica de Frequência de Termos-Frequência de Documentos Inversa (\textit{Term Frequency-Inversed Document Frequency} - TF-IDF) é capaz de melhorar a separação de documentos:
+\begin{equation}
+\begin{split}
+    \text{\textit{ft-fdi}}(t_j, d_i) = ft(t_j, d_i) \cdot fdi(t_j) \\
+    \text{\textit{ft-fdi}}(t_j, d_i) = ft(t_j, d_i) \cdot \left( log_{2} \frac{n}{ft(t_j) + 1} \right)
+\end{split}
+\end{equation}
+em que $fdi(t_j)$ representa a Frequência de Documentos Inversa do termo $t_j$, e $fd(t_j)$ a frequência de documentos que contém $t_j$. Essa normalização faz com que a frequência dos termos que aparecem em muitos documentos seja reduzida, e a frequência das termos que aparecem em alguns raros documentos seja aumentada, com um fator de $\log_{2}$.
 
-    \subsubsection{Tokenização}
+\subsubsection{Tokenização}
 
-    Para realizar a estruturação de textos e representar os textos dos documentos em vetores de palavras, o primeiro processo a ser realizado é a \textit{tokenização}, que cria um dicionário de palavras para cada documento através da quebra dos textos desses documentos.
-    A quebra do texto pode ser feita através de caracteres delimitadores de termos, como espaços em branco, pontuações e etc. No entanto, existem casos que esses caracteres podem não ser delimitadores de termos, como por exemplo os termos \textit{Prof.} e \textit{Sr.}.
-    Este problema é chamado de determinação de fim de sentença, e pode ser resolvido por métodos estáticos (\textit{hard-coded}), baseados em regras e métodos de Aprendizado de Máquina \cite{Weiss2010}.
+Para realizar a estruturação de textos e representar os textos dos documentos em vetores de termos, o primeiro processo a ser realizado é a \textit{tokenização}, que cria um dicionário de termos para cada documento através da quebra dos textos desses documentos.
+A quebra do texto pode ser feita através de caracteres delimitadores de termos, como espaços em branco, pontuações e etc. No entanto, existem casos que esses caracteres podem não ser delimitadores de termos, como por exemplo os termos \textit{Prof.} e \textit{Sr.}.
+Este problema é chamado de determinação de fim de sentença, e pode ser resolvido por métodos estáticos (\textit{hard-coded}), baseados em regras e métodos de Aprendizado de Máquina \cite{Weiss2010}.
 
-    \subsubsection{Filtragem}
+\subsubsection{Filtragem}
 
-    Métodos de filtragem têm a função de retirar palavras do conjunto $P$ que não contribuem para distinguir ou identificar documentos, como exemplo, conjunções (\textit{e}, \textit{pois}, \textit{que}), artigos (\textit{um}, \textit{o}, \textit{a}), preposições (\textit{de}, \textit{para}) e etc.
-    A técnica de retirar determinadas palavras de $P$ a partir de uma lista, é chamada de \textit{stopwords}.
-    Também são usadas outras técnicas, como a eliminação de palavras com a frequência muito alta ou muito baixa.
+Métodos de filtragem têm a função de retirar termos do conjunto ${\cal T}$ que não contribuem para distinguir ou identificar documentos, como exemplo, conjunções (\textit{e}, \textit{pois}, \textit{que}), artigos (\textit{um}, \textit{o}, \textit{a}), preposições (\textit{de}, \textit{para}) e etc.
+A técnica de retirar determinados termos de ${\cal T}$ a partir de uma lista, é chamada de \textit{stopwords}.
+Também são usadas outras técnicas, como a eliminação de termos com a frequência muito alta ou muito baixa.
 
-    % \subsubsection{Lematização} (?)
+% \subsubsection{Lematização} (?)
 
-    \subsubsection{Stemming}
+\subsubsection{Stemming}
 
-    A fim de reduzir a ambiguidade de palavras, o método de \textit{stemming} é capaz de juntar em uma única forma palavras relacionadas \cite{Miner2012}, como exemplo o verbo \textit{fazer}, que pode se apresentar em diversas formas, como \textit{fazendo}, \textit{fez}, etc. Esse processo pode ser capaz de aumentar a capacidade da representação em distinguir ou identificar documentos, além de reduzir a dimensionalidade, reduzindo também a esparsidade.
+A fim de reduzir a ambiguidade de termos, o método de \textit{stemming} é capaz de juntar em uma única forma termos relacionadas \cite{Miner2012}, como exemplo o verbo \textit{fazer}, que pode se apresentar em diversas formas, como \textit{fazendo}, \textit{fez}, etc. Esse processo pode ser capaz de aumentar a capacidade da representação em distinguir ou identificar documentos, além de reduzir a dimensionalidade, reduzindo também a esparsidade.
 
-    \subsubsection{Redução de Dimensionalidade}
+\subsubsection{Redução de Dimensionalidade}
 
-    A representação em vetor de palavras pode resultar em vetores esparsos num espaço de alta dimensão, que pode fazer com que algoritmos sofram do problema de \textit{Maldição de Dimensionalidade} (footnote haykin).
-    Para amenização desse problema, são usados métodos de \textit{redução de dimensionalidade}.
-    A técnica mais comum de \textit{redução de dimensionalidade} é chamada \textit{Análise dos Componentes Principais} (\textit{Principal Component Analysis - PCA}) \cite{Murphy2012}.
-    Esta técnica tem o objetivo de encontrar uma representação compacta através da descoberta de $k$ vetores n-dimensionais ortogonais aos dados ($\vec{v}$), em que $k \leq m$. Os vetores são encontrados a partir da minimização da projeção dos dados em $\vec{v}$.
-    Depois de encontrados os vetores $\vec{v}$, é feita a projeção dos dados nesses vetores, resultando em uma representação num espaço mais compacto \cite{Kamber2011}.
-    É possível aplicar o algoritmo \textit{PCA}, no vetor de palavras, diminuindo a dimensionalidade e esparsidade, superando o problema de \textit{Maldição de Dimensionalidade}.
+A representação em vetor de termos pode resultar em vetores esparsos num espaço de alta dimensão, que pode fazer com que algoritmos sofram do problema de \textit{Maldição de Dimensionalidade} (footnote haykin).
+Para amenização desse problema, são usados métodos de \textit{redução de dimensionalidade}.
+A técnica mais comum de \textit{redução de dimensionalidade} é chamada \textit{Análise dos Componentes Principais} (\textit{Principal Component Analysis - PCA}) \cite{Murphy2012}.
+Esta técnica tem o objetivo de encontrar uma representação compacta através da descoberta de $k$ vetores n-dimensionais ortogonais aos dados ($\vec{v}$), em que $k \leq m$. Os vetores são encontrados a partir da minimização da projeção dos dados em $\vec{v}$.
+Depois de encontrados os vetores $\vec{v}$, é feita a projeção dos dados nesses vetores, resultando em uma representação num espaço mais compacto \cite{Kamber2011}.
+É possível aplicar o algoritmo \textit{PCA}, no vetor de termos, diminuindo a dimensionalidade e esparsidade, superando o problema de \textit{Maldição de Dimensionalidade}.
 
 
 \chapter{Sistemas de Recomendação baseados em Conteúdo e Aprendizado de Máquina}
@@ -927,43 +928,90 @@ Além disso, a área de Mineração de Texto utiliza de técnicas das áreas de 
 %  TODO instanciação do framework de text mining
 %  TODO falar sobre artigos de clustering (email)
 
-Os CBRSs têm fortes relações com a área de Recuperação de Informação \cite{Adomavicius2005,Jannach2011} e Aprendizado de Máquina \cite{Adomavicius2005,Lops2011} para representação de itens e perfis de usuários, e aprendizado do perfil do usuário. Basicamente, este tipo de sistema analisa o conteúdo de diversos itens, extraindo atributos para representação, com esses mesmos atributos (ou às vezes até mais \cite{Capelle2012}) representa-se o perfil do usuário. Sabendo os interesses dos usuários, através do perfil construído, o sistema seleciona itens que o usuário ainda não consumiu e que sejam relacionados com os seus interesses.
+Os Sistemas de Recomendação baseados em Conteúdo (SRbC) têm fortes relações com a área de Recuperação de Informação \cite{Adomavicius2005,Jannach2011} e Aprendizado de Máquina \cite{Adomavicius2005,Lops2011}, para representação de itens e perfis de usuários, e aprendizado do perfil do usuário.
+Basicamente, este tipo de sistema analisa o conteúdo de diversos itens, extraindo atributos para representação, com esses mesmos atributos (ou às vezes até mais \cite{Capelle2012}) representa-se o perfil do usuário.
+Sabendo os interesses dos usuários, através do perfil construído, o sistema seleciona itens que o usuário ainda não consumiu e que sejam relacionados com os seus interesses.
 
 \section{Arquitetura de Sistemas de Recomendação baseados em Conteúdo}
 \label{sec:arquitetura}
 
-Em \cite{Lops2011} é proposta uma arquitetura para o desenvolvimento de CBRSs, a qual separa o processo de recomendação em três fases (Figura ~\ref{fig:approach}). O analisador de conteúdo tem como entrada os itens não estruturados, assim, através de técnicas de representação e pré-processamento, são obtidos os itens representados. Uma das representações mais comuns \cite{Adomavicius2005,Lops2011,Jannach2011} para representação textual é o Modelo do Espaço Vetorial \cite{Salton1975}, aonde cada item ou documento $d_i \in D$, sendo $D$ um conjunto de documentos de tamanho $n$, é representado por um vetor de termos $d_i = \{t_1, t_2, \dots, t_m\}$, em que $m$ é o número de termos. Assim, calcula-se o \textit{$TFIDF^{d_i}_{t_k}$ (Term-Frequency Index-Frequency)} do documento $d_i$ e o termo $t_k$ \cite{Salton1975}:
+\citeonline{Lops2011} propõem uma arquitetura para o desenvolvimento de SRbC, a qual separa o processo de recomendação em três fases (Figura ~\ref{fig:approach}). O analisador de conteúdo tem como entrada os itens não estruturados, assim, através de técnicas de Mineração de Dados, os itens são representados de forma estruturada.
+Uma representão comum, no contexto de conteúdo textual, é o \textit{Vector Space Model} \cite{Adomavicius2005,Lops2011,Jannach2011} (Seção~\ref{subsec:preprocessamento}).
+Onde representa-se o vetor de termos do documento $d_i$ por $\vec{vt}_{d_i} = ( ft(t_1, d_i),\\ ft(t_2, d_i), \dots, ft(t_m, d_i) )$, em que $t_i$ é um termo, para então usar a representação de TF-IDF.
+% Uma das representações mais comuns \cite{Adomavicius2005,Lops2011,Jannach2011} para representação textual é o Modelo do Espaço Vetorial \cite{Salton1975}, aonde cada item ou documento $d_i \in D$, sendo $D$ um conjunto de documentos de tamanho $n$, é representado por um vetor de termos $d_i = \{t_1, t_2, \dots, t_m\}$, em que $m$ é o número de termos. Assim, calcula-se o \textit{$TFIDF^{d_i}_{t_k}$ (Term-Frequency Index-Frequency)} do documento $d_i$ e o termo $t_k$ \cite{Salton1975}:
 
-Em que $f^{d_i}_{t_k}$ é a frequência do termo $t_k$ no documento $d_i$ e $f^{t_k}_{d_i}$ é a número de documentos $d_i$ que possuem $t_k$. Fazendo com que o peso de termos que aparecem em muitos documentos seja reduzido. Há também outros métodos de representação, como \textit{n-grams} e semântica \cite{Lops2011,Jannach2011}.
+% Em que $f^{d_i}_{t_k}$ é a frequência do termo $t_k$ no documento $d_i$ e $f^{t_k}_{d_i}$ é a número de documentos $d_i$ que possuem $t_k$. Fazendo com que o peso de termos que aparecem em muitos documentos seja reduzido. Há também outros métodos de representação, como \textit{n-grams} e semântica \cite{Lops2011,Jannach2011}.
 
-% Além da forma de representar os itens, há o pré-processamento, que é comum a utilização de \textit{stopwords}, steeming, descarte de termos com baixa frequência. Também, o uso de técnicas de redução de dimensionalidade como variáveis latentes, e outros algoritmos como \textit{Latent Semantic Analysis (LSA)}, \textit{Latent Semantic Indexing (LSI)}, \textit{Latent Dirichlet Allocation (LSA)} que têm como objetivo, basicamente, agrupar termos em tópicos \cite{Qu80861, Taraghi2013672, Saaya2013}.
+% Além da forma de representar os itens, há o pré-processamento, que é comum a utilização de \textit{stopwords}, steeming, descarte de termos com baixa frequência. Também, o uso de técnicas de redução de dimensionalidade como variáveis latentes, e outros algoritmos como \textit{Latent Semantic Analysis (LSA)}, \textit{Latent Semantic Indexing (LSI)}, \textit{Latent Dirichlet Allocation (LSA)} que têm como objetivo, basicamente, agrupar termos em tópicos \cite{Qu2012, Taraghi2013672, Saaya2013}.
 
-Com a representação dos itens estruturada realizada, ocorre a representação dos perfis, que geralmente é baseado na representação dos itens, ou seja, o perfil do usuário $u_j$ é dado por $\{<d_1, r_1>, \dots, <d_j, r_J>\}$, sendo $r_j$ o quão o usuário gostou do item, seja pela manifestação explícita, por exemplo em que o usuário avaliou o item, ou pela manifestação implícita, tendo como exemplo quando o usuário lê uma notícia, fica muito tempo na página, etc. Finalmente, é possível aprender os perfis dos usuários com Aprendizado de Máquina \cite{Adomavicius2005,Lops2011,Jannach2011}, por exemplo, para prever se o usuário gosta ou não de um determinado item (classificação).
+Com a representação dos itens estruturada realizada, ocorre a representação dos perfis, que geralmente é baseado na representação dos itens, ou seja, o perfil do usuário $u$ é dado por $\{ (d_1, r_{u,d_1}), \dots, (d_j, r_{u,d_n}) \}$, sendo $r_{u,d_n}$ o quão o usuário $u$ gostou do documento $d_n$, seja pela manifestação explícita, por exemplo em que o usuário avaliou o documento, ou pela manifestação implícita, tendo como exemplo quando o usuário lê uma notícia, fica muito tempo na página, etc.
+Finalmente, é possível aprender os perfis dos usuários utilizando de técnicas e algoritmos de Aprendizado de Máquina \cite{Adomavicius2005,Lops2011,Jannach2011}, por exemplo, para prever se o usuário gosta ou não de um determinado item (classificação).
 
-A terceira fase é o Componente de Filtragem, que basicamente pega a saída do classificador, seleciona os itens mais relevantes para os usuários, e apresenta uma lista de recomendações. Geralmente, essa lista é ordenada e apresentada os top $N$ itens mais relevantes (ver Seção ~\ref{sec:resultados}).
+A terceira fase é o Componente de Filtragem, que basicamente recebe a saída do classificador, seleciona os itens mais relevantes para os usuários, e apresenta uma lista de recomendações. Geralmente, essa lista é ordenada e apresentada os top $N$ itens mais relevantes.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=100mm]{img/approach.png}
-\caption{Arquitetura de um CBRS (Adaptado de \cite{Lops2011}).}
+\includegraphics[width=110mm]{img/approach.png}
+\caption{Arquitetura de um SRbC (Adaptado de \citeonline{Lops2011}).}
 \label{fig:approach}
 \end{figure}
 
-Essa arquitetura apresentada foi adaptada de \cite{Lops2011}, para maior compreendimento e melhor extração de informações nos trabalhos revisados (ver Seção ~\ref{sec:metodologia}).
+Essa arquitetura apresentada foi adaptada de \cite{Lops2011}, para maior compreendimento e maior adequação com esse trabalho.
+As subseções~\ref{subsec:analisadorcontexto},~\ref{subsec:perfil} e~\ref{subsec:filtragem} fazem uma revisão da literatura das técnicas de Aprendizado de Máquina aplicadas aos módulos de um SRbC. 
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+\subsection{Analisador de Contexto}
+\label{subsec:analisadorcontexto}
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+O Analisador de Contexto tem como função representar o item de uma maneira estruturada, a Figura~\ref{fig:analisador} explica como é construída essa etapa. A entrada são os itens, que são pré-processados, para então aplicar técnicas de Aprendizado de Máquina (Redução de Dimensionalidade ou Tarefas de Aprendizado de Máquina).
+Esta etapa compreende o foco deste trabalho.
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{img/analisador}
+\caption{Analisador de Contexto.}
+\label{fig:analisador}
+\end{figure}
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+Na etapa de pré-processamento, é comum o uso da representação TF-IDF, sendo que existem estudos que propõem outros métodos de representação \cite{Capelle2012, Moerland2013}: SF-IDF (\textit{Semantics Frequency-Inverse Document Frequency}) e SF-IDF+, que obtiveram melhores resultados nos testes apresentados, além disso, \citeonline{Cleger2012} considerou o uso do TF-IDF, mas não resultou em melhores performances.
+No entanto, em um SR no contexto de artigos científicos \cite{Beel2013}, foram realizados diversos testes considerando diversos parâmetros e configurações diferentes de representação, resultados mostraram que a configuração com TF-IDF performou melhor que outras.
+Outras técnicas de Mineração de Dados também são utilizadas, como \textit{stopwords}, lematização e descarte de termos com frequência abaixo de um limiar.
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+Na etapa de Redução de Dimensionalidade/Tarefa de Aprendizado de Máquina faz-se o uso extensivo dos algoritmos: LSA (\textit{Latent Semantic Analysis}) \cite{Taraghi2013, Domingues2012, Spaeth2013}, LSI (\textit{Latent Semantic Indexing}) \cite{Saaya2013}, LDA (\textit{Latent Dirichlet Allocation}) \cite{Tantanasiriwong2012, Qu2012, Wang2012, Vaz2012}, que pode ser visto como uma extensão de biclusterização \cite{Skillicorn2012}, e Variáveis Latentes \cite{Cleger2012}, que podem ser vistos por resolver uma tarefa de agrupamento, que é agrupar termos em grupos que são chamados de tópicos \cite{Wang2012}.
+O desafio é escolher o número de tópicos, por isso, grande parte dos trabalhos que fazem o uso dessas técnicas, realizam testes variando o número de tópicos.
+Esses testes geralmente mostram que esses algoritmos ajudam na performance da recomendação \cite{Cleger2012, Tantanasiriwong2012, Saaya2013, Spaeth2013,Vaz2012}.
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+Na representação estruturada dos itens, alguns estudos propõem representações no contexto de notícias e artigos científicos \cite{Bielikova2012, Lops2013}: são diferenciadas as relevâncias de cada um dos atributos textuais (exemplo título, conteúdo, categoria e etc.), por meio de pesagem.
+Estudos mostraram que com os pesos apropriados é possível melhorar a qualidade da recomendação.
+Atributos que não são textuais também são usados no contexto de notícias, como no SR de notícias para celular em \cite{Yeung2012}, que o tempo da notícia modifica o vetor que representa o item, fazendo a multiplicação por um fator $\alpha$. o SR de livros \cite{Vaz2012} que tem como objetivo representar o estilo de escrita de cada autor, faz o uso de atributos como: o tamanho do documento, n-gramas e \textit{vocabulary richness}.
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+\subsection{Aprendizado do Perfil}
+\label{subsec:perfil}
+
+Nesta etapa é onde o perfil do usuário é representado e aprendido pelo SR. Na maioria das vezes o perfil é representado por um vetor de documentos de tamanho $k$, que o usuário visitou ou apresentou um feedback positivo $d_{prefs} = \{d_{pref_1}, d_{pref_2}, \dots, d_{pref_k}\}$.
+Há outras formas de representação, como em \citeonline{Yeung2012}, que além da anterior, incorpora informações demográficas, tratando o problema de \textit{user cold-start} em SRsbC.
+\citeonline{Vaz2012} propõem uma representação para o perfil do usuário usando um método da área de Recuperação de Informação: algoritmo de \textit{Rocchio}, onde cada documento $d_{pref_i}$ é classificado pelo usuário em positivo ou negativo (como exemplo, gostou ou não gostou), assim o algoritmo faz uma mistura dos exemplos positivos e negativos, com um peso diferente para cada tipo de exemplo, obtendo um vetor.
+Então, esse vetor é comparado com vetores de itens (usando similaridade dos cossenos), para obter itens semelhantes.
+Variando os parâmetros, os autores chegaram na conclusão que, incorporando exemplos negativos na representação do perfil para treinamento do algoritmo, piora a qualidade das recomendações.
+
+O aprendizado do perfil do usuário é como um problema de classificação, onde o vetor de exemplos é dado por $X = \{d_{pref_i}, y^{+-}_i\}$, sendo que $y^{+-}_i$ representa o rótulo, ou seja, se $d_{pref_i}$ é um item que o usuário gostou($+$) ou não($-$).
+Então, é treinado um classificador que irá classificar itens que o usuário ainda não consumiu, para saber se é um item que o usuário irá consumir/gostar.
+Diversos algoritmos são usados para resolver esse tipo de problema: Redes Bayesianas (\cite{Yeung2012, Cleger2012}), Naïve Bayes (\cite{Lee2012, Semeraro2012}), SVM (\textit{Support Vector Machine}) \cite{Tantanasiriwong2012, Lee2012}.
+
+Existem trabalhos que tratam o aprendizado do perfil com técnicas de Aprendizado Semi-Supervisionado, \citeonline{YenHsien2012} faz uso de comitê de máquinas para construir um modelo de Aprendizado de Máquina que classifica apenas classes positivas, visando classificar se o usuário de um e-commerce irá gostar ou não de um produto. Primeiramente, classifica exemplos sem rótulo, para depois entrarem no modelo final que agrega todos os exemplos (SVM ou Naïve Bayes).
+Foi verificado que o SR proposto trata o problema de poucos dados para a identificação do perfil do usuário, pois não necessita apenas de dados rotulados.
+
+É possível tratar o problema de aprendizado do perfil como um problema de clusterização (\cite{Davoodi2012, Bielikova2012}).
+\citeonline{Davoodi2012} apresentam um SR de especialistas, que representa o perfil dos usuários com semântica e constrói uma \textit{Rede Social}, para então, usar o algoritmo de clusterização (\textit{k-means}) para encontrar perfis de usuário.
+Além desse, \cite{Bielikova2012} apresenta um SR de notícias que faz o uso de clusterização hierárquica, tendo como medidade de similaridade a similaridade dos cossenos e índice de jaccard.
+Com uma abordagem \textit{bottom-up} de agrupamento e uma estrutura de árvore binária, é realizado a clusterização das notícias: as folhas representam as notícias e os nós pais, clusters que representam temas das notícias.
+O usuário desse sistema é representado por caminhos nesta árvore construída, podendo ser recomendados diversas notícias dentro de diversos tópicos, que podem surpreender o usuário, amenizando o problema de serendipidade em SRsbC. 
+
+\subsection{Componente de Filtragem}
+\label{subsec:filtragem}
+
+Essa é a etapa mais simples, por ser na maioria das vezes, apenas uma filtragem das recomendações já calculadas na etapa de Aprendizagem do Perfil, essa estratégia é apresentada em \cite{Cleger2012, Qu2012, Wang2012, Davoodi2012, Mannens2011, Semeraro2012}. Outra estratégia simples é a determinação de um limiar \cite{Capelle2012, Lops2013}, ou seja, os valores da lista de recomendação gerada são filtradas pelo limiar estabelecido. Nos estudos apresentados, foram encontrados muitos SRs Híbridos, que faziam uma outra abordagem para a filtragem, usando uma combinação dos métodos de Filtro Colaborativo e baseados em conteúdo \cite{Lops2013, Qu2012, Domingues2012, Spaeth2013, Vaz2012}.
+
+O trabalho desenvolvido por \citeonline{Bielikova2012} foi o único que apresentou uma estratégia diferente para o Componente de Filtragem, com a árvore binária montada, todas as notícias dos menores para os maiores grupos, que não foram lidas pelo usuário, foram separadas para a recomendação. Então, é construída uma matriz com as recomendações, sendo as linhas ordenadas pelos grupos menores para os grupos maiores, e as colunas ordenadas pelas notícias mais recentes. Assim, cada coluna é transformada em um vetor, concatenando-os e formando uma lista que é apresentada para o usuário.
 
 \chapter{Proposta}
 
@@ -1016,7 +1064,7 @@ $\text{\textit{luxo}}$          & 71  \\
 \end{table}
 
 Analisando a distribuição de notícias por ano foi possível verificar que os links escolhidos como partida para o \textit{web crawler} realizar a extração de notícias foram efetivos para deixar a distribuição perto de uniforme, com média e desvio padrão de aproximadamente $1531 \pm 337$ notícias.
-Contrariamente, a distribuição de notícias por canal não ficou perto do uniforme, com média e desvio padrão de aproximadamente $353 \pm 225$ notícias.
+Contrariamente, a distribuição de notícias por canal não ficou perto do uniforme, com média e desvio padrão de aproximadamente $353 \pm 225$ notícias, uma hipótese é que isso se deve à idade e popularidade do canal, por exemplo, os canais $\text{\textit{luxo}}$ e $\text{\textit{deles}}$ são muito mais recentes e menos populares que o $\text{\textit{ultimosegundo}}$.
 
 \subsection{Base de cliques iG}
 \label{subsec:basecliquesig}
