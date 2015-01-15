@@ -1,4 +1,4 @@
-\documentclass[normaltoc, espacoumemeio, pnumromarab,ruledheader]{abnt}     
+\documentclass[normaltoc, espacoumemeio, pnumromarab,ruledheader]{abnt}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -19,7 +19,7 @@
 % \usepackage{subfigure}
 \usepackage[linesnumbered,boxed,vlined,portuguese]{algorithm2e}
 %\usepackage[Conny]{fncychap}
-%\usepackage{hyperref}
+% \usepackage{hyperref}
 %\usepackage[all]{hypcap} 
 %\hypersetup{urlcolor=cyan}
 %\usepackage{acronym} 
@@ -524,13 +524,13 @@ A Revisão Sistemática (RS) é um tipo de revisão bibliográfica documentada, 
 Segundo \citeonline{Kitchenham2004}, a RS é um meio de avaliar, identificar e interpretar todas as pesquisas relevantes disponíveis em uma determinada área com base em questões de pesquisa.
 Também foi realizado um levantamento do referencial teórico, através da análise exploratória de livros e artigos do tipo revisão bibliográfica, na área de Mineração de Dados \cite{Berry2010,Feldman2006,Miner2012,Hotho2005,Weiss2010}, para que fosse possível realizar a análise e estruturação do conteúdo não-estruturado, presentes nas notícias.
 
-Sendo assim, com a extração das notícias do portal iG\footnote{http://ig.com.br/} através de um \textit{web crawler} utilizando a linguagem python\footnote{https://www.python.org/} e do banco de dados postgreSQL\footnote{http://www.postgresql.org/} para guardar as notícias, foi possível construir o corpus iG (Subseção~\ref{subsec:corpusig}) de notícias.
+Sendo assim, com a extração das notícias do portal iG\footnote{\textit{http://ig.com.br/}} através de um \textit{web crawler} utilizando a linguagem python\footnote{\textit{https://www.python.org/}} e do banco de dados postgreSQL\footnote{\textit{http://www.postgresql.org/}} para guardar as notícias, foi possível construir o corpus iG (Subseção~\ref{subsec:corpusig}) de notícias.
 As notícias foram capturadas a partir de uma página de início, fornecida para o \textit{web crawler}, que era selecionada a fim de equalizar a distribuição de notícias por ano e por assunto. Este trabalho também conta com uma base de cliques em notícias (Subseção~\ref{subsec:basecliquesig}), doada pelo portal de notícias iG.
 
 Para aplicação dos algoritmos de biclusterização, foi realizado um levantamento do referencial teórico, através da análise exploratória de livros, artigos do tipo revisão bibliográfica e artigos que se referem à criação dos algoritmos \cite{Cheng2000,Tanay2005,Madeira2004,Santamaria2007,Kluger2003,Prelic2006}.
 
 % Explicar que as técnica de biclusterização e essemble serão aplicadas aos textos processados e que uma avaliação será feita com base nas informações de cliques.
-Para gerar conhecimento do corpus iG, serão aplicados algoritmos de Biclusterização que estão sendo implementados\footnote{https://github.com/lucasbrunialti/biclustering-experiments} nos textos das notícias processados e representados por diversas estratégias (TF-IDF, TF-IDF normalizado e n-gramas). Assim, será possível avaliar o resultado dos algoritmos utilizando a base de dados de cliques iG.
+Para gerar conhecimento do corpus iG, serão aplicados algoritmos de Biclusterização que estão sendo implementados\footnote{\textit{https://github.com/lucasbrunialti/biclustering-experiments}} nos textos das notícias processados e representados por diversas estratégias (TF-IDF, TF-IDF normalizado e n-gramas). Assim, será possível avaliar o resultado dos algoritmos utilizando a base de dados de cliques iG.
 
 \section{Organização do documento}
 
@@ -624,7 +624,7 @@ Para simular o comportamento do usuário em um SR usando um conjunto de dados, s
 Assim é possível adotar estratégias semelhantemente com às adotadas em Aprendizado de Máquina, como \textit{matriz de confusão}, \textit{precisão}, \textit{revocação}, \textit{f1-score}, \textit{cross-validation} e etc.
 A técnica de \textit{matriz de confusão} é possível ser usada em \textit{experimentos online} e \textit{offline}, da seguinte maneira: se o usuário gostar do item sugerido à ele, é considerada uma predição correta (verdadeiro positivo); se o usuário não solicita preferência pela sugestão ou se não existe informações da preferência do usuário para esta sugestão, será considerada uma predição errada (falso positivo); contrariamente, se o SR não fazer essas sugestões, é considerada uma emissão correta (verdadeiro negativo); por fim, se o SR não sugerir itens que o usuário tem preferência, é consuderada uma predição errada (falso negativo).
 
-Uma das métricas mais comuns usadas para \textit{experimentos offline} é o \textit{erro absoluto médio} (\textit{Mean Absolute Error} - MAE) e \textit{raiz do erro quadrático médio} (\textit{Root Mean Squared Error} - RMSE) \cite{Jannach2011}, o qual foi usado como métrica para a competição Netflix Prize\footnote{http://www.netflixprize.com/}, que teve grande repercursão na academia e na indústria. A defição formal das métricas MAE e RMSE são descritas nas equações~\ref{eq:mae} e~\ref{eq:rmse}, respectivamente.
+Uma das métricas mais comuns usadas para \textit{experimentos offline} é o \textit{erro absoluto médio} (\textit{Mean Absolute Error} - MAE) e \textit{raiz do erro quadrático médio} (\textit{Root Mean Squared Error} - RMSE) \cite{Jannach2011}, o qual foi usado como métrica para a competição Netflix Prize\footnote{\textit{http://www.netflixprize.com/}}, que teve grande repercursão na academia e na indústria. A defição formal das métricas MAE e RMSE são descritas nas equações~\ref{eq:mae} e~\ref{eq:rmse}, respectivamente.
 
 \begin{equation}
 \label{eq:mae}
@@ -1060,6 +1060,39 @@ Foi criado um \textit{pipeline} para o pré-processamento das notícias que cont
 
 \section{Próximos passos - cronograma}
 
+O cronograma apresentado no Gráfico~\ref{misc:cronograma} se refere às atividades a serem desenvolvidas, o progresso indica o que já foi realizado, sendo que as subtarefas já realizadas podem já ter sido completas e não estão indicadas neste cronograma. As tarefas e subtarefas são descritas:
+\begin{enumerate}
+  \item[{\texttt{[1]}}] Revisão Sistemática de Sistemas de Recomendação baseados em Conteúdo, compreende ao andamento da RS, restando analisar os trabalhos encontrados de 2005 à 2011. Como a RS está sendo feita por 3 pesquisadores, é demandado mais trabalho e, portanto, mais tempo, no entanto, a concentração de trabalhos nos anos mais recentes é maior, significando que a quantidade de trabalho para a realização dessa tarefa não é proporcinal aos anos de abrangência da revisão.
+  \begin{enumerate}
+    \item[{\texttt{[1.1]}}] Aplicação dos critérios de inclusão e exclusão.
+    \item[{\texttt{[1.2]}}] Extração dos resultados.
+    \item[{\texttt{[1.3]}}] Elaboração de um artigo, com o intuito de publicação na revista \textit{User Modeling and User-Adapted Interaction}\footnote{\textit{http://www.umuai.org/}} (UMUAI).
+  \end{enumerate}
+  \item[{\texttt{[2]}}] Estudo de técnicas de Mineração de Texto, como foi necessário o uso de conceitos desta área para a construção do corpus iG, grande parte da literatura necessária já foi levantada e estudada.
+  \begin{enumerate}
+    \item[{\texttt{[2.1]}}] Estudo de técnicas de pré-processamento de texto.
+    \item[{\texttt{[2.2]}}] Estudo de técnicas de redução de dimensionalidade para texto, esta questão foi pouco estudada, e dada a sua importância, será desprendido mais estudos para a mesma.
+  \end{enumerate}
+  \item[{\texttt{[4]}}] Construção de um corpus de notícias e estruturação do mesmo, como o corpus já foi construído, esta tarefa já esta $95\%$ completa.
+  \begin{enumerate}
+    \item[{\texttt{[3.1]}}] Implementação de técnicas de pré-processamento de texto.
+    \item[{\texttt{[3.2]}}] Implementação de técnicas de representação de texto.
+  \end{enumerate}
+  \item[{\texttt{[4]}}] Estudo e aplicação de técnicas de Biclusterização.
+  \begin{enumerate}
+    \item[{\texttt{[3.1]}}] Estudo das técnicas de Biclusterização, incluindo algoritmos e formas de avaliação.
+    \item[{\texttt{[3.2]}}] Implementação das técnicas e algoritmos de Biclusterização, um dos algoritmos estudados já foi implementado (\cite{Cheng2000}) e esta disponibilizado em \textit{https://github.com/lucasbrunialti/biclustering-experiments}.
+    \item[{\texttt{[3.3]}}] Validação das técnicas implementadas em conjuntos de dados sintéticos, o algoritmo implementado já foi testado em conjuntos de dados sintéticos, possibilitando a aprendizagem do seu comportamento.
+    \item[{\texttt{[3.4]}}] Aplicação dos algoritmos no corpus iG.
+  \end{enumerate}
+  \item[{\texttt{[5]}}] Análise dos resultados obtidos pelas estratégias propostas e implementadas.
+  \begin{enumerate}
+    \item[{\texttt{[5.1]}}] Avaliação através de medidas internas de biclusterização.
+    \item[{\texttt{[5.2]}}] Avaliação através de medidas externas de biclusterização, como a informação dos canais presentes no corpus iG e a base de dados de cliques iG.
+  \end{enumerate}
+  \item[{\texttt{[6]}}] Escrita da dissertação.
+\end{enumerate}
+
 \noindent
 \begin{ganttchart}[
     vgrid,
@@ -1104,39 +1137,6 @@ Foi criado um \textit{pipeline} para o pré-processamento das notícias que cont
 
   \ganttgroup[progress=0]{[6]}{4}{33}
 \end{ganttchart}
-
-O cronograma apresentado se refere às atividades a serem desenvolvidas, o progresso indica o que já foi realizado, sendo que as subtarefas já realizadas podem já ter sido completas e não estão indicadas neste cronograma. As tarefas e subtarefas são descritas:
-\begin{enumerate}
-  \item[{\texttt{[1]}}] Revisão Sistemática de Sistemas de Recomendação baseados em Conteúdo, compreende ao andamento da RS, restando analisar os trabalhos encontrados de 2005 à 2011. Como a RS está sendo feita por 3 pesquisadores, é demandado mais trabalho e, portanto, mais tempo, no entanto, a concentração de trabalhos nos anos mais recentes é maior, significando que a quantidade de trabalho para a realização dessa tarefa não é proporcinal aos anos de abrangência da revisão.
-  \begin{enumerate}
-    \item[{\texttt{[1.1]}}] Aplicação dos critérios de inclusão e exclusão.
-    \item[{\texttt{[1.2]}}] Extração dos resultados.
-    \item[{\texttt{[1.3]}}] Elaboração de um artigo, com o intuito de publicação na revista \textit{User Modeling and User-Adapted Interaction}\footnote{http://www.umuai.org/} (UMUAI).
-  \end{enumerate}
-  \item[{\texttt{[2]}}] Estudo de técnicas de Mineração de Texto, como foi necessário o uso de conceitos desta área para a construção do corpus iG, grande parte da literatura necessária já foi levantada e estudada.
-  \begin{enumerate}
-    \item[{\texttt{[2.1]}}] Estudo de técnicas de pré-processamento de texto.
-    \item[{\texttt{[2.2]}}] Estudo de técnicas de redução de dimensionalidade para texto, esta questão foi pouco estudada, e dada a sua importância, será desprendido mais estudos para a mesma.
-  \end{enumerate}
-  \item[{\texttt{[4]}}] Construção de um corpus de notícias e estruturação do mesmo, como o corpus já foi construído, esta tarefa já esta $95\%$ completa.
-  \begin{enumerate}
-    \item[{\texttt{[3.1]}}] Implementação de técnicas de pré-processamento de texto.
-    \item[{\texttt{[3.2]}}] Implementação de técnicas de representação de texto.
-  \end{enumerate}
-  \item[{\texttt{[4]}}] Estudo e aplicação de técnicas de Biclusterização.
-  \begin{enumerate}
-    \item[{\texttt{[3.1]}}] Estudo das técnicas de Biclusterização, incluindo algoritmos e formas de avaliação.
-    \item[{\texttt{[3.2]}}] Implementação das técnicas e algoritmos de Biclusterização.
-    \item[{\texttt{[3.3]}}] Validação das técnicas implementadas em conjuntos de dados sintéticos.
-    \item[{\texttt{[3.4]}}] Aplicação dos algoritmos no corpus iG.
-  \end{enumerate}
-  \item[{\texttt{[5]}}] Análise dos resultados obtidos pelas estratégias propostas e implementadas.
-  \begin{enumerate}
-    \item[{\texttt{[5.1]}}] Avaliação através de medidas internas de biclusterização.
-    \item[{\texttt{[5.2]}}] Avaliação através de medidas externas de biclusterização, como a informação dos canais presentes no corpus iG e a base de dados de cliques iG.
-  \end{enumerate}
-  \item[{\texttt{[6]}}] Escrita da dissertação.
-\end{enumerate}
 
 %  \item Análise dos resultados obtidos pelas estratégias propostas.
 %      medidas internas de bicluster
