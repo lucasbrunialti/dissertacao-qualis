@@ -15,6 +15,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{pgfgantt}
+\usepackage{enumitem}
 % \usepackage{subfigure}
 \usepackage[linesnumbered,boxed,vlined,portuguese]{algorithm2e}
 %\usepackage[Conny]{fncychap}
@@ -523,7 +524,7 @@ A Revisão Sistemática (RS) é um tipo de revisão bibliográfica documentada, 
 Segundo \citeonline{Kitchenham2004}, a RS é um meio de avaliar, identificar e interpretar todas as pesquisas relevantes disponíveis em uma determinada área com base em questões de pesquisa.
 Também foi realizado um levantamento do referencial teórico, através da análise exploratória de livros e artigos do tipo revisão bibliográfica, na área de Mineração de Dados \cite{Berry2010,Feldman2006,Miner2012,Hotho2005,Weiss2010}, para que fosse possível realizar a análise e estruturação do conteúdo não-estruturado, presentes nas notícias.
 
-Sendo assim, com a extração das notícias do portal iG\footnote{http://ig.com.br/} através de um \textit{web crawler} utilizando a linguagem python\footnote{https://www.python.org/}, foi possível construir o corpus iG (Subseção~\ref{subsec:corpusig}) de notícias.
+Sendo assim, com a extração das notícias do portal iG\footnote{http://ig.com.br/} através de um \textit{web crawler} utilizando a linguagem python\footnote{https://www.python.org/} e do banco de dados postgreSQL\footnote{http://www.postgresql.org/} para guardar as notícias, foi possível construir o corpus iG (Subseção~\ref{subsec:corpusig}) de notícias.
 As notícias foram capturadas a partir de uma página de início, fornecida para o \textit{web crawler}, que era selecionada a fim de equalizar a distribuição de notícias por ano e por assunto. Este trabalho também conta com uma base de cliques em notícias (Subseção~\ref{subsec:basecliquesig}), doada pelo portal de notícias iG.
 
 Para aplicação dos algoritmos de biclusterização, foi realizado um levantamento do referencial teórico, através da análise exploratória de livros, artigos do tipo revisão bibliográfica e artigos que se referem à criação dos algoritmos \cite{Cheng2000,Tanay2005,Madeira2004,Santamaria2007,Kluger2003,Prelic2006}.
@@ -909,7 +910,7 @@ Além disso, a área de Mineração de Texto utiliza de técnicas das áreas de 
 
     \subsubsection{Stemming}
 
-    A fim de reduzir a ambiguidade de palavras, o método de \textit{stemming} é capaz de juntar em uma única forma palavras relacionadas \cite{Miner2012}, como exemplo o verbo \textit{fazer}, que pode se apresentar em diversas formas, como \textit{fazendo}, \textit{fez}, etc. Esse processo pode ser capaz de aumentar a capacidade da representação em distinguir ou identificar documentos.
+    A fim de reduzir a ambiguidade de palavras, o método de \textit{stemming} é capaz de juntar em uma única forma palavras relacionadas \cite{Miner2012}, como exemplo o verbo \textit{fazer}, que pode se apresentar em diversas formas, como \textit{fazendo}, \textit{fez}, etc. Esse processo pode ser capaz de aumentar a capacidade da representação em distinguir ou identificar documentos, além de reduzir a dimensionalidade, reduzindo também a esparsidade.
 
     \subsubsection{Redução de Dimensionalidade}
 
@@ -921,9 +922,11 @@ Além disso, a área de Mineração de Texto utiliza de técnicas das áreas de 
     É possível aplicar o algoritmo \textit{PCA}, no vetor de palavras, diminuindo a dimensionalidade e esparsidade, superando o problema de \textit{Maldição de Dimensionalidade}.
 
 
-\chapter{Sistemas de Recomendação baseado em Conteúdo e Aprendizado de Máquina}
+\chapter{Sistemas de Recomendação baseados em Conteúdo e Aprendizado de Máquina}
 
-%  - instanciação do framework de text mining aqui
+%  TODO instanciação do framework de text mining
+%  TODO falar sobre artigos de clustering (email)
+
 Os CBRSs têm fortes relações com a área de Recuperação de Informação \cite{Adomavicius2005,Jannach2011} e Aprendizado de Máquina \cite{Adomavicius2005,Lops2011} para representação de itens e perfis de usuários, e aprendizado do perfil do usuário. Basicamente, este tipo de sistema analisa o conteúdo de diversos itens, extraindo atributos para representação, com esses mesmos atributos (ou às vezes até mais \cite{Capelle2012}) representa-se o perfil do usuário. Sabendo os interesses dos usuários, através do perfil construído, o sistema seleciona itens que o usuário ainda não consumiu e que sejam relacionados com os seus interesses.
 
 \section{Arquitetura de Sistemas de Recomendação baseados em Conteúdo}
@@ -966,7 +969,7 @@ Essa arquitetura apresentada foi adaptada de \cite{Lops2011}, para maior compree
 
 A proposta desse projeto de mestrado envolve a aplicação de algoritmos de biclusterização para o problema de recomendação baseada em conteúdo textual, a qual, segundo a revisão sistemática que esta sendo realizada, foi muito pouco explorada: apenas um entre $1\;943$ estudos primários relevantes nas bases de dados (não publicado) se refere à aplicação de biclusterização em conteúdo textual.
 
-Com maior especificidade, a proposta desse projeto é definida pela utilização de técnicas de mineração de texto para o processamento das notícias presentes no corpus iG (Subseção~\ref{subsec:corpusig}), após a estruturação do texto, serão realizadas diversas representações (TF-IDF, TF-IDF normalizado e n-gramas) para a criação de biclusters com algoritmos de biclusterização, realizando experimentos para verificar a consistência dos biclusters criados pelos diferentes algoritmos aplicados.
+Com maior especificidade, a proposta desse projeto (Figura~\ref{fig:proposta}) é definida pela utilização de técnicas de mineração de texto para o processamento das notícias presentes no corpus iG (Subseção~\ref{subsec:corpusig}), após a estruturação do texto, serão realizadas diversas representações (TF-IDF, TF-IDF normalizado e n-gramas) para a criação de biclusters com algoritmos de biclusterização, realizando experimentos para verificar a consistência dos biclusters criados pelos diferentes algoritmos aplicados.
 Assim, será definida uma estratégia para gerar uma lista de recomendações e comparar com a base de cliques iG (Subseção~\ref{subsec:basecliquesig}), utilizando métricas de SRs para gerar experimentos e avaliar as recomendações geradas. Além disso, será feita uma comparação com um SR do tipo filtro colaborativo, para comparar a \textit{serendipidade} entre o método proposto e o filtro colaborativo.
 
 % redesenhar imagem
@@ -974,7 +977,7 @@ Assim, será definida uma estratégia para gerar uma lista de recomendações e 
 \centering
 \includegraphics[width=120mm]{img/proposal.png}
 \caption{Ilustração da proposta desse mestrado.}
-\label{fig:story}
+\label{fig:proposta}
 \end{figure}
 
 \section{Bases de dados iG}
@@ -988,12 +991,32 @@ O corpus iG, construído neste projeto, é composto por um conjunto de notícias
 O número total de notícias do corpus é $m = 4\;593$, com mais de 250 caracteres no corpo, no perído de 02 de Janeiro de 2012 até 11 de Outubro de 2014. As notícias estão bem distribuídas por ano: $1\;551$ notícias em 2012, $1\;933$ notícias em 2013 e $1\;109$ em 2014. Como cada notícia esta associada com um canal, foi coletada a distribuição de notícias por canal (Tabela~\ref{tab:distcanais}).
 
 \begin{table}[h]
-\begin{tabular}{l|llllllllllllll}
+\centering
 \label{tab:distcanais}
-\textbf{canal ($c_i$)}  & \text{\textit{gente}} & \text{\textit{us}} (\text{\textit{ultimosegundo}}) & \text{\textit{delas}} & \text{\textit{economia}} & \text{\textit{esporte}} & \text{\textit{saude}} & \text{\textit{igay}} & \text{\textit{deles}} & \text{\textit{tecnologia}} & \text{\textit{igirl}} & \text{\textit{jovem}} & \text{\textit{arena}} & \text{\textit{luxo}} \\ \hline
-\textbf{num. notícias} & $196$ & $555$ & $252$ & $907$ & $342$ & $88$ & $210$ & $141$ & $359$ & $527$ & $524$ & $71$ & 
+\caption{Distribuição de notícias por canal ($ci$) do corpus iG.}
+\begin{tabular}{c|c}
+\hline
+canal ($ci$)                    & número de notícias \\
+\hline
+$\text{\textit{gente}}$         & 196 \\
+$\text{\textit{ultimosegundo}}$ & 555 \\
+$\text{\textit{delas}}$         & 252 \\
+$\text{\textit{economia}}$      & 907 \\
+$\text{\textit{esporte}}$       & 342 \\
+$\text{\textit{saude}}$         & 88  \\
+$\text{\textit{igay}}$          & 210 \\
+$\text{\textit{deles}}$         & 141 \\
+$\text{\textit{tecnologia}}$    & 359 \\
+$\text{\textit{igirl}}$         & 527 \\
+$\text{\textit{jovem}}$         & 524 \\
+$\text{\textit{arena}}$         & 421 \\
+$\text{\textit{luxo}}$          & 71  \\
+\hline
 \end{tabular}
 \end{table}
+
+Analisando a distribuição de notícias por ano foi possível verificar que os links escolhidos como partida para o \textit{web crawler} realizar a extração de notícias foram efetivos para deixar a distribuição perto de uniforme, com média e desvio padrão de aproximadamente $1531 \pm 337$ notícias.
+Contrariamente, a distribuição de notícias por canal não ficou perto do uniforme, com média e desvio padrão de aproximadamente $353 \pm 225$ notícias.
 
 \subsection{Base de cliques iG}
 \label{subsec:basecliquesig}
@@ -1001,17 +1024,30 @@ O número total de notícias do corpus é $m = 4\;593$, com mais de 250 caracter
 A base de dados de cliques iG, doada para a realização desta pesquisa, é composta por um conjunto usuários anônimos $U = \{ u_1, \dots, u_l \}$ que foram capturados através do controle de cookies dos navegadores do portal, assim, cada usuário $u \in U$ interage com o conjunto de notícias ${\cal N}$ através de cliques, representados por $q_{u,n}^t$, um clique em uma notícia $n$ que foi dado por $u$ em um dado mometo do tempo $t$.
 Assim, se considerar cada clique $q_{u,n}^t$ como uma preferência do usuário $u$ por $n$, é possível construir a matriz de preferências $U \times I$ (Seção~\ref{sec:sr}), no contexto, $I = {\cal N}$.
 
-Originalmente a base de cliques iG é composta de $487\;487\;395$ cliques, com $m = 487487\;395$ notícias
+Originalmente a base de cliques iG é composta de $487\;487\;395$ cliques, com $m = xxx$ notícias, coletadas, aproximadamente, do período de abril de 2013 à novembro de 2014. Essa base de dados tem tamanho total, sem compressão, de $1TB$, o que dificulta a sua mineração. No entanto, pretende-se usar apenas as notícias que compõem o corpus iG.
 
 \subsection{Pré-processamento do corpus iG}
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-
 O corpus iG, para representar as notícicas de maneira estruturada, foi pré-processado usando algumas técnicas de Mineração de Texto (Seção~\ref{sec:mintexto}).
-Foi criado um \textit{pipeline} para o pré-processamento das notícias: concatenação das características textuais (título, subtítulo e corpo da notícia) da notícia; normalização do texto, convertendo para minúsculo; filtragem de trechos do texto que correspondem com uma lista de expressões regulares definidas através da análise do corpus; \textit{tokenização}, usando espaços, pontuações e expressões regulares como delimitadores; definição de uma lista de \textit{stopwords}, a partir de uma lista já definida pela biblioteca nltk\footnote{http://www.nltk.org/} (\textit{Natural Language Processing Toolkit}) da linguagem python, foram adicionadas mais \textit{stopwords} à essa lista (por exemplo: \textit{leia mais}, \textit{veja aqui} e etc.), através de uma análise empírica das notícias do corpus; 
+Foi criado um \textit{pipeline} para o pré-processamento das notícias que contou com as seguintes etapas:
+\begin{enumerate}[label*=\arabic*.]
+  \item Concatenação das características textuais (título, subtítulo e corpo da notícia) da notícia; normalização do texto, convertendo para minúsculo.
+  \item Filtragem de trechos do texto que correspondem com uma lista de expressões regulares definidas através da análise do corpus.
+  \item \textit{Tokenização}, usando espaços, pontuações e expressões regulares como delimitadores.
+  \item Definição de uma lista de \textit{stopwords}, a partir de uma lista já definida pela biblioteca nltk\footnote{http://www.nltk.org/} (\textit{Natural Language Processing Toolkit}) da linguagem python, foram adicionadas mais \textit{stopwords} à essa lista (por exemplo: \textit{leia mais}, \textit{veja aqui} e etc.), através de uma análise empírica das notícias do corpus.
+  \item \textit{Stemming}, para reduzir ambiguidade e a dimensionalidade das notícias, foi aplicado o algoritmo Removedor de Sufixos da Língua Portuguesa (RSLP) Stemmer \cite{Alvares2005}, que leva em consideração a teoria da língua portuguesa para criar 8 etapas, em que, cada etapa é composta por um conjunto de regras e então aplicada uma regra por vez. Este algoritmo é capaz de tratar e remover formas plurais, femininas/masculinas, adverbiais, aumentativas e diminutivas, substantivas, verbais e acentos.
+  \item Representação estruturada dos termos em:
+  \begin{enumerate}[label*=\arabic*.]
+    % \item TF
+    \item TF-IDF, realiza a contagem dos termos e aplica a fórmula de TF-IDF.
+    \item TF-IDF normalizado, realiza a contagem dos termos, aplica a fórmula de TF-IDF e faz a normalização para que todos os valores fiquem no intervalo de 0 à 1.
+    \item \textit{2-grams}, realiza a contagem dos termos concatenando 2 a 2.
+    % \item \textit{2-grams TF-IDF}, realiza a contagem dos termos concatenando 2 a 2.
+    \item \textit{3-grams}, realiza a contagem dos termos concatenando 3 a 3.
+  \end{enumerate}
+\end{enumerate}
 
-\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-
+% \section{Estudos iniciais de biclusterização em conjunto de dados sintéticos} (?)
 % \section{Estudos iniciais de biclusterização no corpus IG}
 
 % \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
@@ -1024,78 +1060,87 @@ Foi criado um \textit{pipeline} para o pré-processamento das notícias: concate
 
 \section{Próximos passos - cronograma}
 
-\definecolor{barblue}{RGB}{153,204,254}
-\definecolor{groupblue}{RGB}{51,102,254}
-\definecolor{linkred}{RGB}{165,0,33}
-\renewcommand\sfdefault{phv}
-\renewcommand\mddefault{mc}
-\renewcommand\bfdefault{bc}
-% \setganttlinklabel{s-s}{START-TO-START}
-% \setganttlinklabel{f-s}{FINISH-TO-START}
-% \setganttlinklabel{f-f}{FINISH-TO-FINISH}
-\sffamily
+\noindent
 \begin{ganttchart}[
-canvas/.append style={fill=none, draw=black!5, line width=.75pt},
-hgrid style/.style={draw=black!5, line width=.75pt},
-vgrid={*1{draw=black!5, line width=.75pt}},
-title/.style={draw=none, fill=none},
-title label font=\bfseries\footnotesize,
-title label node/.append style={below=7pt},
-include title in canvas=false,
-bar label font=\mdseries\small\color{black!70},
-bar label node/.append style={left=2cm},
-bar/.append style={draw=none, fill=black!63},
-bar incomplete/.append style={fill=barblue},
-bar progress label font=\mdseries\footnotesize\color{black!70},
-group incomplete/.append style={fill=groupblue},
-group left shift=0,
-group right shift=0,
-group height=.5,
-group peaks tip position=0,
-group label node/.append style={left=.6cm},
-group progress label font=\bfseries\small,
-link/.style={-latex, line width=1.5pt, linkred},
-link label font=\scriptsize\bfseries,
-link label node/.append style={below left=-2pt and 0pt}
-]{1}{13}
-\gantttitle[
-title label node/.append style={below left=7pt and -3pt}
-]{WEEKS:\quad1}{1}
-\gantttitlelist{2,...,13}{1} \\
-\ganttgroup[progress=57]{WBS 1 Summary Element 1}{1}{10} \\
-\ganttbar[
-progress=75,
-name=WBS1A
-]{\textbf{WBS 1.1} Activity A}{1}{8} \\
-\ganttbar[
-progress=67,
-name=WBS1B
-]{\textbf{WBS 1.2} Activity B}{1}{3} \\
-\ganttbar[
-progress=50,
-name=WBS1C
-]{\textbf{WBS 1.3} Activity C}{4}{10} \\
-\ganttbar[
-progress=0,
-name=WBS1D
-]{\textbf{WBS 1.4} Activity D}{4}{10} \\[grid]
-\ganttgroup[progress=0]{WBS 2 Summary Element 2}{4}{10} \\
-\ganttbar[progress=0]{\textbf{WBS 2.1} Activity E}{4}{5} \\
-\ganttbar[progress=0]{\textbf{WBS 2.2} Activity F}{6}{8} \\
-\ganttbar[progress=0]{\textbf{WBS 2.3} Activity G}{9}{10}
-\ganttlink[link type=s-s]{WBS1A}{WBS1B}
-\ganttlink[link type=f-s]{WBS1B}{WBS1C}
-\ganttlink[
-link type=f-f,
-link label node/.append style=left
-]{WBS1C}{WBS1D}
+    vgrid,
+    hgrid,
+    x unit=4.5mm,
+  ]{1}{33}
+  \label{misc:cronograma}
+  \gantttitle{Jan}{3}
+  \gantttitle{Fev}{3}
+  \gantttitle{Mar}{3}
+  \gantttitle{Abr}{3}
+  \gantttitle{Mai}{3}
+  \gantttitle{Jun}{3}
+  \gantttitle{Jul}{3}
+  \gantttitle{Ago}{3}
+  \gantttitle{Set}{3}
+  \gantttitle{Out}{3}
+  \gantttitle{Nov}{3} \\
+
+  \ganttgroup[progress=40]{[1]}{1}{9} \\
+  \ganttbar[progress=30]{[1.1]}{1}{6} \\
+  \ganttbar[progress=10]{[1.2]}{3}{8} \\
+  \ganttbar[progress=5]{[1.3]}{1}{9} \\
+
+  \ganttgroup[progress=80]{[2]}{1}{7.5} \\
+  \ganttbar[progress=95]{[2.1]}{1}{1.5} \\
+  \ganttbar[progress=20]{[2.2]}{2}{4} \\
+
+  \ganttgroup[progress=95]{[3]}{1}{3} \\
+  \ganttbar[progress=100]{[3.1]}{1}{3} \\
+  \ganttbar[progress=80]{[3.2]}{2}{3} \\
+
+  \ganttgroup[progress=15]{[4]}{1}{27} \\
+  \ganttbar[progress=45]{[4.1]}{1}{24} \\
+  \ganttbar[progress=20]{[4.2]}{1}{21} \\
+  \ganttbar[progress=20]{[4.3]}{2}{24} \\
+  \ganttbar[progress=00]{[4.4]}{6}{27} \\
+
+  \ganttgroup[progress=0]{[5]}{19}{27} \\
+  \ganttbar[progress=00]{[5.1]}{19}{27} \\
+  \ganttbar[progress=00]{[5.2]}{19}{27} \\
+
+  \ganttgroup[progress=0]{[6]}{4}{33}
 \end{ganttchart}
 
-\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+O cronograma apresentado se refere às atividades a serem desenvolvidas, o progresso indica o que já foi realizado, sendo que as subtarefas já realizadas podem já ter sido completas e não estão indicadas neste cronograma. As tarefas e subtarefas são descritas:
+\begin{enumerate}
+  \item[{\texttt{[1]}}] Revisão Sistemática de Sistemas de Recomendação baseados em Conteúdo, compreende ao andamento da RS, restando analisar os trabalhos encontrados de 2005 à 2011. Como a RS está sendo feita por 3 pesquisadores, é demandado mais trabalho e, portanto, mais tempo, no entanto, a concentração de trabalhos nos anos mais recentes é maior, significando que a quantidade de trabalho para a realização dessa tarefa não é proporcinal aos anos de abrangência da revisão.
+  \begin{enumerate}
+    \item[{\texttt{[1.1]}}] Aplicação dos critérios de inclusão e exclusão.
+    \item[{\texttt{[1.2]}}] Extração dos resultados.
+    \item[{\texttt{[1.3]}}] Elaboração de um artigo, com o intuito de publicação na revista \textit{User Modeling and User-Adapted Interaction}\footnote{http://www.umuai.org/} (UMUAI).
+  \end{enumerate}
+  \item[{\texttt{[2]}}] Estudo de técnicas de Mineração de Texto, como foi necessário o uso de conceitos desta área para a construção do corpus iG, grande parte da literatura necessária já foi levantada e estudada.
+  \begin{enumerate}
+    \item[{\texttt{[2.1]}}] Estudo de técnicas de pré-processamento de texto.
+    \item[{\texttt{[2.2]}}] Estudo de técnicas de redução de dimensionalidade para texto, esta questão foi pouco estudada, e dada a sua importância, será desprendido mais estudos para a mesma.
+  \end{enumerate}
+  \item[{\texttt{[4]}}] Construção de um corpus de notícias e estruturação do mesmo, como o corpus já foi construído, esta tarefa já esta $95\%$ completa.
+  \begin{enumerate}
+    \item[{\texttt{[3.1]}}] Implementação de técnicas de pré-processamento de texto.
+    \item[{\texttt{[3.2]}}] Implementação de técnicas de representação de texto.
+  \end{enumerate}
+  \item[{\texttt{[4]}}] Estudo e aplicação de técnicas de Biclusterização.
+  \begin{enumerate}
+    \item[{\texttt{[3.1]}}] Estudo das técnicas de Biclusterização, incluindo algoritmos e formas de avaliação.
+    \item[{\texttt{[3.2]}}] Implementação das técnicas e algoritmos de Biclusterização.
+    \item[{\texttt{[3.3]}}] Validação das técnicas implementadas em conjuntos de dados sintéticos.
+    \item[{\texttt{[3.4]}}] Aplicação dos algoritmos no corpus iG.
+  \end{enumerate}
+  \item[{\texttt{[5]}}] Análise dos resultados obtidos pelas estratégias propostas e implementadas.
+  \begin{enumerate}
+    \item[{\texttt{[5.1]}}] Avaliação através de medidas internas de biclusterização.
+    \item[{\texttt{[5.2]}}] Avaliação através de medidas externas de biclusterização, como a informação dos canais presentes no corpus iG e a base de dados de cliques iG.
+  \end{enumerate}
+  \item[{\texttt{[6]}}] Escrita da dissertação.
+\end{enumerate}
 
-\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-
-\textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+%  \item Análise dos resultados obtidos pelas estratégias propostas.
+%      medidas internas de bicluster
+%      medidas externas (canais, base de cliques)
     
 % ********** REFERÊNCIAS **********
 
