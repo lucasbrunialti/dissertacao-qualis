@@ -490,7 +490,7 @@ Assim, faz-se interessante o desenvolvimento de estratégias que permitam melhor
 
 Há diferentes tipos de recomendação que podem ser considerados (Seção~\ref{sec:sr}). Aqui, o problema de recomendação com base em conteúdo é apresentado, fazendo uma adaptação de \citeonline{Adomavicius2005}.
 
-Seja um conjunto de usuários $U = \{ u_1, u_2, \dots, u_n, \dots u_N \}$, um conjunto de itens ${\cal I} = \{ I_1, I_2, \dots, I_m, \dots, I_M \}$ e o histórico $h_{u_n,I_m} \in {\cal H}$ indicando se o usuário $u_n$ acessou o item $I_m$.
+Seja um conjunto de usuários $U = \{ u_1, u_2, \dots, u_n, \dots, u_N \}$, um conjunto de itens ${\cal I} = \{ I_1, I_2, \dots, I_m, \dots, I_M \}$ e o histórico $h_{u_n,I_m} \in {\cal H}$ indicando se o usuário $u_n$ acessou o item $I_m$.
 O problema de recomendação, com base no conteúdo, pode ser visto como a definição de uma função de similaridade entre itens $s: I \rightarrow I \times I$ para aproximar uma função $l: {\cal H}_u, s \rightarrow L_u$, onde ${\cal H}_u$ é o subconjunto que representa o histórico de itens que $u$ acessou, e $L_u$ é a lista de recomendações de itens direcionadas à $u$.
 
 % Achei estranho não ter uma referência aqui. Geralmente definições de conceitos já maduros devem vir de referências importantes. 
@@ -562,7 +562,7 @@ Trata-se de um portal de notícias brasileiro muito conhecido, com um volume de 
 Essas características conferem liberdade para a configuração de experimentos de diferentes naturezas, como experimentos considerando determinadas classes de notícias, tipos de notícias ou datas de publicação das notícias.
 
 A partir do conteúdo de notícias do Portal iG deve ser construído um corpus de dados textuais, categorizados de acordo com as categorias já usadas no referido portal.
-Todo o conteúdo do corpus deve passar por rotinas de pré-processamento comuns na área de Mineração de Texto: \textit{tokenização}, filtragem de \textit{stopwords}, remoção de sufixos (\textit{stemming}), representação da relação ``termos $\times$ documentos'' usando estratégias de frequência relativa de termos e \textit{n-gramas}.
+Todo o conteúdo do corpus deve passar por rotinas de pré-processamento comuns na área de Mineração de Texto: \textit{tokenização}, filtragem de \textit{stopwords}, remoção de sufixos (\textit{stemming}), representação da relação ``termos $\times$ documentos'' usando estratégias de frequência termos (TF-IDF) e \textit{n-grams}.
 
 %Leia com muito cuidado e veja se faz sentido. MUITO CUIDADO.ALTERE O QUE FOR NECESSÄRIOS TAMBÉM COM MUITO CUIDADO.
 Também, o Portal iG possui informações históricas e anônimas referentes ao registro de navegação de usuários.
@@ -597,207 +597,144 @@ Em tempo, estuda-se a possibilidade de aplicar técnicas de \textit{ensemble} co
 
 Este documento é composto por quatro capítulos incluindo esta introdução. No Capítulo 2 conceitos fundamentais necessários para a compreensão deste projeto são apresentados, incluindo conceitos sobre SRs, biclusterização e mineração de texto; o Capítulo 3 apresenta uma revisão sistemática sobre aprendizado de máquina aplicado à SRs baseados em conteúdo; por fim, o capítulo 4 apresenta em detalhes a proposta desse projeto de mestrado, um relato sobre os resultados já obtidos e o cronograma que guia a realização das próximas atividades.
 
+
 \chapter{Conceitos Fundamentais}
 
-Este capítulo introduz os conceitos fundamentais para o entendimento dessa dissertação, fazendo um apanhado dos conceitos na área de Sistemas de Recomendação (seção~\ref{sec:sr}), Biclusterização (seção~\ref{sec:bicl}) e Mineração de Texto (seção~\ref{sec:mintexto}).
+Este capítulo introduz os conceitos fundamentais para o entendimento da proposta de trabalho de mestrado apresentada neste documento.
+Conceitos nas áreas de Sistemas de Recomendação (Seção~\ref{sec:sr}), Biclusterização (Seção~\ref{sec:bicl}) e Mineração de Texto (Seção~\ref{sec:mintexto}) são apresentados.
 
 \section{Sistemas de Recomendação}
 \label{sec:sr}
 
-% provavelmente vou ter que fazer o bib de tese-chap2: http://tampub.uta.fi/bitstream/handle/10024/95965/978-951-44-9551-9.pdf
-A grande maioria das pessoas que usam a Internet muito provavelmente já interagiram com algum Sistema de Recomendação (SR), por isso, o seu conceito é intuitivo.
-Porém, por ser uma área relativamente nova \cite{Lops2011}, muitos autores não usam uma definicão que reflete a realidade dos SRs, isso acontece por ser uma área relativamente nova que teve um crescimento muito grande nos últimos anos \cite{Leino2014}.
+A grande maioria das pessoas que usam a web muito provavelmente já interagiu com algum Sistema de Recomendação (SR), e por isso, o conceito que define esse tipo de sistema é intuitivo. Porém, por ser uma área forma de estudo relativamente nova \cite{Lops2011}, ainda diferentes autores usam diferentes definições, visto que a interpretação do que consiste um SR difere dependendo do ponto de vista do autor \cite{Leino2014}.
 
-\citeonline{Resnick1997}, quem criou o termo Sistemas de Recomendação (tese-chap2) \cite{Neumann2007}, argumentam que Sistemas de Recomendação servem para nos ajudar em processos de tomada de decisão do nosso dia-a-dia, como quais itens comprar, quais músicas ouvir, ou quais notícias ler.
-Além disso, \citeonline{Resnick1997} provê uma taxonomia para definição de Sistemas de Recomendação:
+\citeonline{Resnick1997}, autores que criaram o termo Sistemas de Recomendação \cite{Neumann2007,Leino2014}, argumentam que SRs servem para ajudar em processos de tomada de decisão do dia-a-dia, como quais itens comprar, quais músicas ouvir, ou quais notícias ler.
+Além disso, \citeonline{Resnick1997} provê uma taxonomia na área de Sistemas de Recomendação:
+
 \begin{itemize}
-  \item Conteúdo recomendado: os itens que são recomendados pelo Sistema de Recomendação, ex: produtos, músicas, notícias e/ou etc.
-  \item Entrada dos usuários: as interações que os usuários realizam com os itens são a entrada para um SR, estas podem ser implícitas (ex: o usuário $x$ leu a notícia $y$) ou explícitas (ex: o usuário $x$ classificou o filme $y$ como $5$ estrelas).
-  \item Target of recommendation: os itens recomendados podem ser diretamente para um usuário (personalizado), direcionados para um grupo de usuários ou todos os usuários (não-personalizado).
-  \item Técnicas para recomendação (agregações): qual as estratégias e os algoritmos que os SRs usam para criar recomendações.
-  \item Uso das recomendações: trata-se de como mostrar as recomendações para os usuários, ex: filtrando recomendações negativas, ordenando pelo fator numérico, etc.
+  \item Conteúdo recomendado: os itens que são recomendados pelo Sistema de Recomendação. Por exemplo: produtos, músicas, notícias e/ou etc.
+  \item Entrada dos usuários: as interações que os usuários realizam com os itens são a entrada para um SR, e elas podem ser implícitas (o usuário $u$ leu a notícia $I$) ou explícitas (o usuário $u$ classificou o filme $I$ como $5$ estrelas).
+  \item Alvo da recomendação: os itens podem ser recomendados especificamente para um usuário (personalizado), direcionados para um grupo de usuários ou a todos os usuários (não-personalizado).
+  \item Técnicas para recomendação (agregações): as estratégias e os algoritmos que os SRs usam para criar as recomendações.
+  \item Uso das recomendações: trata-se de como mostrar as recomendações para os usuários. Por exemplo: por meio do filtro de recomendações negativas, ordenando por um fator de classificação numérico, etc.
 \end{itemize}
 
-Porém, definições mais recentes \cite{Burke2002,Burke2007}, descrevem SRs como qualquer sistema que produz recomendações personalizadas ou tem o efeito de guiar um usuário de modo personalizado, mostrando itens que possam ser interessantes para este usuário, dentro de uma grande quantidade de opções.
-Isso faz com que SRs que provêm recomendações não personalizadas deixem de adequar com a definição de SR.
-É provável que isso se deve ao fato que das estratégias usadas atualmente, que têm o foco de produzir recomendações personalizadas.
+Porém, definições mais recentes \cite{Burke2002,Burke2007}, descrevem SRs como qualquer sistema que produz recomendações personalizadas ou tem o efeito de guiar um usuário de modo personalizado, mostrando itens que possam ser interessantes para ele, dentro de uma grande quantidade de opções.
+Isso faz com que SRs que provêm recomendações não-personalizadas deixem de se adequarem à definição de SR.
+% \textcolor{red}{Por outro lado, pode-se considerar que essa definição mais específica e a inadequação de alguns sistemas a ela ocorro porque ela está baseada nas estratégias para construção de SRs atualmente, ou mesmo na demanda pelo tipo de recomendação atual, que possuem o foco em produzir recomendações personalizadas.}
+%É provável que isso se deve ao fato que das estratégias usadas atualmente, que têm o foco de produzir recomendações personalizadas.
 
-Formalmente, \citeonline{Burke2002,Burke2007} define SRs como um conjunto de itens $I$  que podem ser recomendados e um conjunto de usuários $U$ que as preferências são conhecidas, um usuário $u$ pra o qual as recomendações são geradas, e algum item $i$ que queremos predizer a preferência para $u$.
-\citeonline{Adomavicius2005} extende a definição com uma função de utilidade $f$ que mede o quão útil é o item $i$ para o usuário $u$: $f: I \times U \rightarrow R$, em que $R = \{ r_{u_1,i_1}, r_{u_1,i_2}, \dots, r_{u_1,i_m}, \dots, r_{u_n,i_1}, \dots, r_{u_n,i_m} \}$ é um conjunto ordenado com valores faltantes, sendo $r_{u_i,i_j}$ um inteiro ou real que representa a interação do usuário $u_i$ no item $i_j$.
+Formalmente, \citeonline{Burke2002,Burke2007} define SRs como um conjunto de itens ${\cal I}$ que podem ser recomendados, um conjunto de usuários $U$ cujas preferências são conhecidas, um usuário $u$ pra o qual as recomendações são geradas, e algum item $i$ para o qual se quer predizer a preferência para $u$.
+\citeonline{Adomavicius2005} extendem a definição de SR com uma função de utilidade $f$ que mede o quão útil é o item $i$ para o usuário $u$: $f: {\cal I} \times U \rightarrow R$, em que $R = \{ r_{u_1,I_1}, \dots, r_{u_1,I_m}, \dots, r_{u_1,I_M}, \dots, r_{u_n,I_1}, \dots, r_{u_n,I_M}, \dots, r{u_N,I_1}, \dots, r_{u_N,I_m}, \dots, r_{u_N, I_M} \}$ é um conjunto ordenado com valores faltantes, sendo $r_{u_n,i_m}$ um inteiro ou real que representa a interação do usuário $u_i$ no item $i_j$.
 No entanto, existem tipos de SRs que não estimam $f$ completamente, podendo otimizar funções auxiliares para gerar as recomendações à um usuário $u$ \cite{Lops2011}.
 
-Em síntese, um Sistema de Recomendação tem a função de auxiliar os usuários de uma aplicação à interagir com itens, provendo sugestões de quais itens interagir, baseando-se no histórico de interações desses usuários com esses itens.
+% Essa função de utilidade poderia ser usada na definição de serendipidade. Não vamos conseguir isso para agora, mas é preciso pensar nisso.
+
+Em síntese, um Sistema de Recomendação tem a função de auxiliar os usuários de uma aplicação a interagir com itens, provendo sugestões de com quais itens interagir, baseando-se no histórico de interações desses usuários com esses itens.
 
  \subsection{Tipos de Sistemas de Recomendação}
  \label{subsec:tipossr}
 
-Para estimar $f$ e chegar no conjunto ordenado $R$ existem diversas estratégias, daí surgem os tipos de SRs.
-Os tipos de SRs diferem quanto ao domínio, informações usadas para recomendação, algoritmos \cite{Feldman2006}, e principalmente nas propriedades em que cada tipo se destaca.
+Para estimar $f$ e chegar no conjunto ordenado $R$ existem diversas estratégias, e do uso delas surgem os tipos de SRs. Os tipos de SRs diferem quanto ao domínio, informações usadas para recomendação, e principalmente nas propriedades em que cada tipo se destaca.
 
 % Não sei se coloco a taxonomia tradicional, ou se coloco essa, handbook-1 diz que é clássica, podem burke de 2002 para 2007 muda a taxonomia, enquanto isso, Adomavicius usa a tradicional e o livro usa a tradicional + baseado em conhecimento
-\citeonline{Burke2002,Burke2007} provê uma taxonomia já considerada clássica \citeonline{Lops2011}, que categoriza os SRs em cinco diferentes tipos:
+
+% Vc deve escolher a taxonomia que mais lhe agrada e depois dela criar um parágrafo dizendo o que você disse no comentário acima, mas criando um texto melhor do que o usado no comentário. Um texto mais claro.
+
+
+\citeonline{Jannach2011} provêm uma taxonomia que categoriza os SRs em quatro diferentes tipos:
 \begin{itemize}
- \item \textit{Filtragem colaborativo}, o primeiro tipo de SR que foi implementado \cite{Resnick1997}, tem como idéia básica encontrar outros usuários $u_{1,\dots,n}$ em $U$, sendo $n < |U|$ e não necessariamente em ordem, com preferências semelhantes à $u$, e então recomendar itens que $u_{1,\dots,n}$ interagiram e que $u$ ainda não interagiu, estabelecendo alguma métrica para estimar $f$. Medidas geralmente usadas incluem \textit{Correlação de Pearson} e \textit{Similaridade dos Cossenos}, também são usados técnicas para redução de dimensionalidade, como \textit{Decomposição de Valores Singulares} e \textit{Fatorização de Matriz} \cite{Jannach2011}.
- \item \textit{Baseado em conteúdo}, é um dos tipos de SR que otimiza funções auxiliares à $f$. Descreve os itens por características possibilitando o uso de medidas de similaridade entre itens. Então, com as interações dos usuários de $U$ sob itens em $I$, é construído um perfil de interesses para cada usuário. As recomendações são feitas a partir da combinação do perfil de interesses de um usuário $u$ com os itens em $I$ que $u$ ainda não interagiu. Neste caso são usadas técnicas de Recuperação de Informação \cite{Jannach2011} para representar os itens e calcular similaridades entre itens, assim como técnicas de Aprendizado de Máquina Supervisionado e não-supervisionado \cite{Jannach2011,Burke2002}.
- % \item Demográfico, considera atributos demográficos de cada usuário, estimando $f$ a partir dessas informações. Neste tipo também são usadas técnicas de Aprendizado de Máquina Supervisionado para classificar usuários em diferentes classes demográficas.%constrói recomendações personalizadas com base no perfil demográfico de usuários
- \item \textit{Baseado em Conhecimento}, tem o intuito de sugerir itens, de forma personalizada, baseando-se nas necessidades ou regras estabelecidas por um usuário $u$ e nas características dos itens em $I$. São estabelecidas medidas de similaridade para estimar o quanto as necessidades do usuário match as recomendações \cite{Jannach2011,Lops2011,Burke2007}.
- \item \textit{Híbrido}, é capaz de combinar as vantagens de cada tipo de SR descrito para suprir as limitações associadas à cada tipo. A dificuldade esta em como combinar as diferentes técnicas de cada algoritmo \cite{Jannach2011,Burke2007}. \citeonline{Burke2007} identificou 7 tipos de SRs Híbridos em uma revisão da literatura: Pesagem, atribui um peso para cada algoritmo; Switching, seleciona um dos algoritmos (ou tipos); Mixed, recomendações são mostradas em conjunto; Combinação de características, diferentes fontes são combinadas em apenas um algoritmo; Feature Augumentation, uma técnica é usada para computar características que servem de entrada para outra técnica; Cascade, é atribuído um grau de prioridade para cada algoritmo; Meta-level, uma técnica gera um modelo, que é usado como entrada para outras técnicas.
+ \item \textit{Filtragem colaborativa}, o primeiro tipo de SR que foi implementado \cite{Resnick1997}, tem como idéia básica encontrar outros usuários $u_{1,\dots,Z}$ em $U$, sendo $Z < N$ e não necessariamente em ordem, com preferências semelhantes à $u$, e então recomendar itens com os quais $u_{1,\dots,Z}$ interagiram e que $u$ ainda não interagiu, estabelecendo alguma métrica para estimar $f$. Medidas de similaridade geralmente usadas nesse contexto incluem \textit{Correlação de Pearson} e \textit{Similaridade dos Cossenos}. Também são usadas técnicas para redução de dimensionalidade como \textit{Decomposição de Valores Singulares} e \textit{Fatorização de Matriz} \cite{Jannach2011}.
+ \item \textit{Baseado em conteúdo}, é um dos tipos de SR que otimiza funções auxiliares à $f$. Descreve os itens por características possibilitando o uso de medidas de similaridade entre itens. Então, com as interações dos usuários de $U$ e itens em ${\cal I}$, é construído um perfil de interesses para cada usuário. As recomendações são feitas a partir da combinação do perfil de interesses de um usuário $u$ com os itens em ${\cal I}$ que $u$ ainda não interagiu. Neste caso são usadas técnicas de Recuperação de Informação \cite{Jannach2011} para representar os itens e calcular similaridades entre itens, assim como técnicas de Aprendizado de Máquina supervisionado e não-supervisionado \cite{Jannach2011,Burke2002}.
+ \item \textit{Baseado em Conhecimento}, tem o intuito de sugerir itens de forma personalizada, baseando-se nas necessidades ou regras estabelecidas por um usuário $u$ e nas características dos itens em ${\cal I}$. São estabelecidas medidas de similaridade para estimar o quanto as necessidades do usuário são atendidas pelas recomendações \cite{Jannach2011,Lops2011,Burke2007}.
+
+
+% diferentes técnicas de cada algoritmo ??? como assim ??? Não entendi o que voce quis dizer.
+%PESAGEM? Não é melhor deixar em ingles mesmo?
+ \item \textit{Híbrido}, é capaz de combinar as vantagens de cada tipo de SR para suprir as limitações associadas a cada um deles. A dificuldade, neste caso, está em como combinar as diferentes técnicas para recomendação \cite{Jannach2011,Burke2007}. \citeonline{Burke2007} identificou sete tipos de SRs Híbridos em uma revisão da literatura: \textit{Weighting}, atribui um peso para cada algoritmo a fim de ponderar as recomendações; \textit{Switching}, seleciona um dos algoritmos (ou tipos); \textit{Mixed}, recomendações são mostradas em conjunto; \textit{Combinação de características}, diferentes fontes são combinadas em apenas um algoritmo; \textit{Feature Augumentation}, uma técnica é usada para computar características que servem de entrada para outra técnica; \textit{Cascade}, é atribuído um grau de prioridade para cada algoritmo; \textit{Meta-level}, uma técnica gera um modelo, que é usado como entrada para outras técnicas.
 \end{itemize}
 
  \subsubsection{Vantagens e desvantagens}
  \label{subsubsec:lim}
 
-Cada um dos tipos de SRs descritos possuem algumas limitações independentes se comparados com os outros tipos ou não.
-Em \citeonline{Jannach2011,Adomavicius2005,Burke2002,Lops2011} são nomeadas os problemas no desenvolvimento de SRs de \textit{novo usuário} (\textit{user cold-start}), \textit{novo item} (\textit{item cold-start}), \textit{esparsidade}, \textit{sobre-especialização} e \textit{análise de conteúdo limitada} referentes aos SRs.
+Cada um dos tipos de SRs descritos possuem algumas limitações.
+Em \citeonline{Jannach2011,Adomavicius2005,Burke2002,Lops2011} os problemas comuns encontrados no desenvolvimento de SRs são nomeados: \textit{novo usuário} (\textit{user cold-start}), \textit{novo item} (\textit{item cold-start}), \textit{esparsidade}, \textit{sobre-especialização} e \textit{análise de conteúdo limitada}.
 
-Os problemas de \textit{novo usuário} e \textit{novo item} são similares, basicamente, enquanto o primeiro se trata da dificuldade de gerar recomendações para novos usuários, o segundo se trata de gerar recomendações para novos itens.
-O problema de \textit{novo usuário} esta presente como uma desvantagem nos SRs de filtragem colaborativa e baseado em conteúdo, pois o SR não conhece as preferências dos novos usuários, tendo dificuldade de construir um modelo que tem como base essas preferências.
-Já o problema de \textit{novo item} é considerado uma vantagem para os SRs baseados em conteúdo, enquanto uma desvantagem para os SRs baseados em filtragem colaborativa.
-Como a filtragem colaborativa se baseia apenas nas interações de usuários em itens, um item novo, que não teve ou teve poucas interações, não será recomendado, diferentemente do SR baseado em conteúdo, que leva em consideração a representação do item para construir recomendações.
+Os problemas de \textit{novo usuário} e \textit{novo item} são similares. Basicamente, enquanto o primeiro trata da dificuldade de gerar recomendações para novos usuários, o segundo trata de gerar recomendações para novos itens. O problema de \textit{novo usuário} esta presente como uma desvantagem nos SRs de filtragem colaborativa e baseado em conteúdo, pois o SR não conhece as preferências dos novos usuários, tendo dificuldade de construir um modelo que tenha como base essas preferências. Já o problema de \textit{novo item} é considerado uma vantagem para os SRs baseados em conteúdo, enquanto uma desvantagem para os SRs baseados em filtragem colaborativa. Como a filtragem colaborativa se baseia apenas nas interações de usuários e itens, um item novo, que não teve nenhuma ou teve poucas interações, não será recomendado. Diferentemente do SR baseado em conteúdo, que leva em consideração a representação do item para construir recomendações.
 
 Contrariamente, o problema de \textit{sobre-especialização} é uma vantagem para os SRs de filtragem colaborativa e uma desvantagem para os SRs baseados em conteúdo.
 A \textit{sobre-especialização} diz respeito ao problema de sugerir apenas itens previsíveis para o usuário, por exemplo, se o usuário viu notícias apenas de esporte, ele já espera receber sugestões de notícias de esporte, porém este usuário muito provavelmente pode gostar de ler notícias de outras categorias.
 A capacidade do SR de sugerir notícias imprevisíveis é chamado de \textit{serendipidade} \cite{Jannach2011,Lops2011}.
-SRs baseados em conteúdo sofrem desse problema pois combina o perfil de preferências de um usuário com os itens em $I$, restrigindo o espaço de busca para realizar a sugestão de itens.
+SRs baseados em conteúdo sofrem desse problema pois combinam o perfil de preferências de um usuário com os itens em ${\cal I}$, restrigindo o espaço de busca para realizar a sugestão de itens.
 Enquanto isso, os SRs baseados em filtragem colaborativa são capazes de oferecer sugestões úteis e serendipitas, pois são capazes de ampliar o espaço de busca através da estratégia de sugerir itens que usuários semelhantes à $u$ interagiram e que $u$ ainda não interagiu.
 
-Os SRs baseados em filtragem colaborativa são os únicos que sofrem do problema de \textit{esparsidade}, que é o fato de usuários interagirem com apenas um pequeno subconjunto do conjunto de itens, tornando a matriz de interações ou preferências ($U \times I$) esparsa.
-Isso faz com que aumente a necessidade de ter uma grande quantidade de usuários, pois este tipo de SR necessita de intersecções nas interações de itens por usuários, para que seja possível encontrar usuários similares a um dado usuário.
+Os SRs baseados em filtragem colaborativa são os únicos que sofrem do problema de \textit{esparsidade}, que é o fato de usuários interagirem com apenas um pequeno subconjunto do conjunto de itens, tornando a matriz de interações ou preferências ($U \times {\cal I}$) esparsa.
+Isso faz com que aumente a necessidade de ter uma grande quantidade de usuários, pois este tipo de SR necessita de intersecções nas interações de itens por usuários para que seja possível encontrar usuários similares a um dado usuário.
 
 Assim como os SRs de filtragem colaborativa, os SRs baseados em conteúdo sofrem de um problema único, que é a \textit{análise de conteúdo limitada}.
-Este problema se refere à representação dos itens, que tem de ser suficiente para discriminá-los \cite{Lops2011}.
-Em SRs baseados em conteúdo é comum ter que limitar a representação de itens, tanto pelo número de características quanto pela modelagem.
-Por exemplo, no contexto de notícias na web, se a representação for um vetor com o número de ocorrências de cada palavra, perdemos a relação entre as palavras, e também todo o conteúdo que não é texto, como imagens, vídeos, etc.
+Este problema se refere à representação dos itens, a qual precisa ser suficiente para discriminá-los \cite{Lops2011}.
+Em SRs baseados em conteúdo é comum haver a necessidade de limitar a representação de itens, tanto pelo número de atributos quanto pelo conteúdo que essas podem representar.
+Por exemplo, no contexto de notícias na web, se a representação for um vetor com o número de ocorrências de cada palavra, perde-se a relação entre as palavras, e também todo o conteúdo que não é texto, como imagens, vídeos, etc.
 
  \subsection{Avaliação da Recomendação}
  \label{subsec:evalsr}
 
-Diferentes técnicas foram mostradas e uma variedade de problemas relacionados à essas técnicas, mas como avaliar se uma estratégia adotada no desenvolvimento realmente é efetiva?
+Diferentes tipos de SRs foram discutidos juntamente com uma variedade de problemas relacionados a eles.
+Nesse contexto, faz-se a importância da discussão de como avaliar se uma estratégia adotada no desenvolvimento de um SR realmente é efetiva.
 SRs podem ser avaliados através de \textit{experimentos online}, que podem descobrir a real influência do SR no comportamento do usuário, e \textit{experimentos offline}, que estimam o erro de predição e simulam o comportamento do usuário no SR usando um conjunto de dados \cite{Ricci22011}.
 
-Para experimentos online podem ser estabelecidas variáveis através da captura implícita ou explícita do comportamento, como satisfação do usuário e taxa de cliques (\textit{click-through rate} - CTR).
-Uma das maneiras para realizar esse tipo de experimento é por meio de testes A/B \cite{Jannach2011}, em que cada usuário, ao interagir com o SR, recebe um tratamento diferente aleatóriamente, dentro dos possíveis tratamentos estabelecidos pelo experimento.
+Para experimentos \textit{online} podem ser estabelecidas variáveis através da captura implícita ou explícita do comportamento, como satisfação do usuário e taxa de cliques (\textit{click-through rate} - CTR).
+Uma das maneiras para realizar esse tipo de experimento é por meio de testes A/B \cite{Jannach2011}, em que cada usuário, ao interagir com o SR, recebe um tratamento diferente aleatoriamente, dentro dos possíveis tratamentos estabelecidos pelo experimento.
 Assim, é possível dizer, por exemplo, a influência de um novo componente no SR no comportamento dos usuários.
 
-Tradicionalmente, SRs são avaliados através de experimentos offline \cite{Jannach2011}.
-Por serem simples, esses tipos de experimentos podem ser usados para para selecionar algoritmos, no entanto, \citeonline{Ricci22011} argumentam que não é possível medir diretamente a influência das recomendações no comportamento dos usuários.
-Para simular o comportamento do usuário em um SR usando um conjunto de dados, são estabelecidos dois subconjunto das interações de $u$ aleatoriamente ($\{ r_{u,i_4}, r_{u,i_3}, \dots \}$), um para treinamento dos modelos $\text{conj treino}_u$ e outro para teste $\text{conj teste}_u$.
-Assim é possível adotar estratégias semelhantemente com às adotadas em Aprendizado de Máquina, como \textit{matriz de confusão}, \textit{precisão}, \textit{revocação}, \textit{f1-score}, \textit{cross-validation} e etc.
-A técnica de \textit{matriz de confusão} é possível ser usada em \textit{experimentos online} e \textit{offline}, da seguinte maneira: se o usuário gostar do item sugerido à ele, é considerada uma predição correta (verdadeiro positivo); se o usuário não solicita preferência pela sugestão ou se não existe informações da preferência do usuário para esta sugestão, será considerada uma predição errada (falso positivo); contrariamente, se o SR não fazer essas sugestões, é considerada uma emissão correta (verdadeiro negativo); por fim, se o SR não sugerir itens que o usuário tem preferência, é consuderada uma predição errada (falso negativo).
+Tradicionalmente, SRs são avaliados através de experimentos \textit{offline} \cite{Jannach2011}.
+Por serem mais simples, esses tipos de experimentos podem ser usados, por exemplo, para selecionar os melhores algoritmos a serem aplicados no desenvolvimento de um SR. No entanto, \citeonline{Ricci22011} argumentam que não é possível medir diretamente a influência das recomendações no comportamento dos usuários.
+Para simular o comportamento do usuário em um SR usando um conjunto de dados, são estabelecidos dois subconjunto das interações de $u$ aleatoriamente ($\{ r_{u,i_4}, r_{u,i_3}, \dots \}$), um para treinamento dos modelos $\text{conj\_treino}_u$ e outro para teste $\text{conj\_teste}_u$.
+Assim é possível adotar estratégias semelhantemente àquelas adotadas em Aprendizado de Máquina, como avaliação da \textit{matriz de confusão} e de medidas derivadas como \textit{precisão}, \textit{revocação}, \textit{f1-score}, \textit{cross-validation} e etc.
 
-Uma das métricas mais comuns usadas para \textit{experimentos offline} é o \textit{erro absoluto médio} (\textit{Mean Absolute Error} - MAE) e \textit{raiz do erro quadrático médio} (\textit{Root Mean Squared Error} - RMSE) \cite{Jannach2011}, o qual foi usado como métrica para a competição Netflix Prize\footnote{\textit{http://www.netflixprize.com/}}, que teve grande repercursão na academia e na indústria. A defição formal das métricas MAE e RMSE são descritas nas equações~\ref{eq:mae} e~\ref{eq:rmse}, respectivamente.
+Na realidade, a estratégia de avaliação via \textit{matriz de confusão} pode ser usada em  \textit{experimentos online} e \textit{offline}, da seguinte maneira: se o usuário gostar do item sugerido à ele, é considerada uma predição correta (verdadeiro positivo); se o usuário não solicita preferência pela sugestão ou se não existe informações da preferência do usuário para esta sugestão, a predição é considerada errada (falso positivo); contrariamente, se o SR não fizer essas sugestões, é considerada uma emissão correta (verdadeiro negativo); por fim, se o SR não sugerir itens que o usuário tem preferência, é considerada uma predição errada (falso negativo).
+
+Uma das métricas mais comuns usadas para \textit{experimentos offline} é o \textit{erro absoluto médio} (\textit{Mean Absolute Error} - MAE) e \textit{raiz do erro quadrático médio} (\textit{Root Mean Squared Error} - RMSE) \cite{Jannach2011}\footnote{Essa métrica foi a utilizada na competição Netflix Prize (\textit{http://www.netflixprize.com/}), que teve grande repercursão na academia e na indústria}. A definição formal das métricas MAE e RMSE são descritas nas equações~\ref{eq:mae} e~\ref{eq:rmse}, respectivamente.
 
 \begin{equation}
 \label{eq:mae}
-MAE = \sum_{u \in U} \frac{\sum_{i \in \text{conj teste}_u} |f(u,i) - r_{u,i}|}{|\text{conj teste}_u|}
+MAE = \sum_{u \in U} \frac{\sum_{i \in \text{conj\_teste}_u} |f(u,i) - r_{u,i}|}{|\text{conj\_teste}_u|}
 \end{equation}
 
 \begin{equation}
 \label{eq:rmse}
-RMSE = \sum_{u \in U} \sqrt{\frac{\sum_{i \in \text{conj teste}_u} (f(u,i) - r_{u,i}^2}{|\text{conj teste}_u|}}
+RMSE = \sum_{u \in U} \sqrt{\frac{\sum_{i \in \text{conj\_teste}_u} (f(u,i) - r_{u,i}^2}{|\text{conj\_teste}_u|}}
 \end{equation}
 
 A métrica MAE computa o erro médio entre as predições feitas pelo SR ($f(u,i)$) e os valores reais das preferências dos usuários ($r_{u,i}$) para todos os usuários em $U$, enquanto o RMSE amplifica erros grandes, pois eleva o mesmo ao quadrado. Essas métricas são usadas para valores reais, ou seja, $r_{u,i} \in [0,1]$, por exemplo.
 
-Para valores binários de $r_{u,i}$ ou quando deseja-se prever o número de recomendações relevantes para um usuário $u$, são usadas as métricas \textit{precisão} e \textit{revocação} \cite{Jannach2011}.
+Para valores binários de $r_{u,i}$, ou quando deseja-se prever o número de recomendações relevantes para um usuário $u$, são usadas as métricas \textit{precisão} e \textit{revocação} \cite{Jannach2011}.
 
 Para medir a \textit{serendipidade} das recomendações, \citeonline{Ricci22011} propõem uma estratégia: estabelecer uma medida de distância entre itens e rotular os itens com menor distância entre si como ausentes de \textit{serendipidade}, assim, algoritmos que evitem esses itens, serão considerados superiores.
+
+% acho que você pode citar esse autor na metodologia dizendo que ele apresenta uma métrica a ser usada para avaliar sua modelagem. Com isso vc vai dando um pouco mais de força para a sua metodologia.
 
 \section{Biclusterização}
 \label{sec:bicl}
 
 Técnicas e algoritmos de biclusterização são usadas, principalmente, no contexto de expressão genética.
-No entanto, algoritmos de biclusterização se fazem útil quando se deseja encontrar \textit{modelos locais}.
+No entanto, algoritmos de biclusterização se fazem úteis quando se deseja encontrar \textit{modelos locais}.
 Ou seja, enquanto algoritmos de clusterização têm o intuito de encontrar \textit{modelos globais}, que geram grupos de dados levando em consideração todas as características, algoritmos de biclusterização geram grupos de dados em que as características tem alta correlação \cite{Madeira2004}.
 
-Para a descrição do problema formal de biclusterização usa-se a seguinte definição \cite{Madeira2004}: uma matriz $A$, $n \times m$, um conjunto de linhas $X = \{ x_1, \dots, x_n \}$ e um conjunto de colunas $Y = \{ y_1, \dots, y_m \}$, em que $a_{ij}$, geralmente um número real, e representa a relação entre a linha $x_i$ e a coluna $y_j$.
-O problema de biclusterização é encontrar biclusters, que são submatrizes de $A$, denotados por $A_{IJ}$, em que $I \subseteq X$ e $J \subseteq Y$.
+%Lucas, melhore um pouquinho a introdução com base nisso que você tem aqui. Se ficar um pouco repetitivo, não tem problema. Melhor reclamarem que está repetindo do que reclamarem que está ruim. Embora eu ainda ache que você deva citar o Fabrício na introdução e em outros lugares do texto.
+
+%Outro problema. Na introdução eu comentei sobre agrupamento, em alguns lugares. Vc está usando clusterização. Acho que precisa padronizar. Escolha uma forma e arrume no texto todo.
+
+% veja o que vc decidiu na introdução sobre a notação e a depender do que decidiu lá veja se tem que arrumar aqui.
+
+Para a descrição do problema formal de biclusterização usa-se a seguinte definição \cite{Madeira2004}: seja uma matriz $A$, $n \times m$, um conjunto de linhas $X = \{ x_1, \dots, x_n \}$ e um conjunto de colunas $Y = \{ y_1, \dots, y_m \}$, em que $a_{ij}$ geralmente é um número real e representa a relação entre a linha $x_i$ e a coluna $y_j$; o problema de biclusterização é encontrar biclusters, que são submatrizes de $A$, denotados por $A_{IJ}$, em que $I \subseteq X$ e $J \subseteq Y$.
 Assim, o bicluster $A_{IJ}$ é um grupo dos exemplos em $I$, perante as características com alta correlação $J$.
 
 \subsection{Tipos de biclusters}
 \label{sec:tiposbic}
 
-<<<<<<< HEAD
-    Como a definição de bicluster não inclui uma prévia estrutura da matriz $A$ e dos biclusters $A_{IJ}$, diversos algoritmos propostos na literatura diferem quanto ao tipo de bicluster que são capazes de encontrar. Uma taxonomia dos tipos de biclusters é proposta por \citeonline{Madeira2004}:
-     \begin{itemize}
-      \item \textit{Biclusters com valores constantes}, se trata de biclusters em que todos os valores de $A_{IJ}$ são constantes: $a_{ij} = \mu, \forall i,j \in I,J$, onde $\mu$ é um valor constante dentro de $A_{IJ}$. Porém, em conjuntos de dados reais, esses biclusters estão presentes com algum tipo de ruído $\mu + \eta_{ij}$, onde $\eta_{ij}$ é o ruído associado com os valures de $\mu$ e $a_{ij}$ \cite{Madeira2004}.
-      \item \textit{Biclusters com valores constantes nas linhas ou colunas}, se trata de biclusters com valores constantes nas linhas: $a_{ij} = \mu + \alpha_i, \forall i,j \in I,J$ ou $a_{ij} = \mu \cdot \alpha_i, \forall i,j \in I,J$, onde $\alpha_i$ é um fator aditivo ou multiplicativo para cada linha; ou ainda biclusters com valores constantes nas colunas: $a_{ij} = \mu + \beta_j, \forall i,j \in I,J$ ou $a_{ij} = \mu \cdot \beta_j, \forall i,j \in I,J$, onde $\beta_j$ é um fator aditivo ou multiplicativo para cada coluna \cite{Madeira2004}.
-      \item \textit{Biclusters com valores coerentes}, em que são considerados valores próximos entre si (coerentes) para definição de um bicluster: $a_{ij} = \mu + \alpha_i + \beta_j, \forall i,j \in I,J$, ou $a_{ij} = \mu' \cdot \alpha_i' \cdot \beta_j', \forall i,j \in I,J$, sendo que se $\mu = \log \mu'\implies \alpha_i = \alpha_i', \beta_j = \beta_j'$ \cite{Madeira2004}.
-      \item \textit{Biclusters com evoluções coerentes}, têm seus valores com evoluções coerentes, por exemplo, um bicluster com $a_{i4} \leq a_{i3} \leq a_{i2} \leq a_{i1}$ tem valores com evolução coerente na coluna \cite{Madeira2004}. Seus valores podem ser gerados por uma função geradora de valores com evolução coerente $a_{ij} = g(a_{ij}), \forall i,j \in I,J$, sendo $g(\cdot)$ não linear e não constante, para que o tipo de bicluster não seja classificado nos casos anteriores.
-     \end{itemize}
-    
-    Os biclusters também se diferem quanto a sua estrutura, cada algoritmo faz uma suposição da estrutura de biclusters que é capaz de encontrar. A Figura~\ref{fig:bicstruct} sumariza as diferentes estruturas de biclusters, com as linhas e colunas ordenadas, para permitir a visualização dos biclusters por meio do mapa de calor dos valores de $A$.
+%Lucas, eu gostaria de revisar todas essa formalização com um pouco mais de cuidado. Mas não vai ser possível agora, pois eu preciso acessar os artigos fontes e olhar com cuidado. Por favor, nos próximos textos, me dê a chance de trabalhar com mais calma, tá? PLEASE!!!!!!!
 
-    \begin{figure}[h]
-        % \captionsetup[subfigure]{labelformat=simple}
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/a-bic-struct.png}
-                \caption{Bicluster único}
-                \label{fig:bicstruct-a}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/b-bic-struct.png}
-                \caption{Biclusters com linhas e colunas exclusivas}
-                \label{fig:bicstruct-b}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/c-bic-struct.png}
-                \caption{Biclusters com estrutura de tabuleiro de xadrez}
-                \label{fig:bicstruct-c}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/d-bic-struct.png}
-                \caption{Biclusters com linhas exclusivas}
-                \label{fig:bicstruct-d}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/e-bic-struct.png}
-                \caption{Biclusters com colunas exclusivas}
-                \label{fig:bicstruct-e}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/f-bic-struct.png}
-                \caption{Biclusters sem sobreposição com estrutura em árvore}
-                \label{fig:bicstruct-f}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/g-bic-struct.png}
-                \caption{Biclusters sem sobreposição e não exclusivos}
-                \label{fig:bicstruct-g}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/h-bic-struct.png}
-                \caption{Biclusters com sobreposição com estrutura hierarquica}
-                \label{fig:bicstruct-h}
-        \end{subfigure}
-        ~
-        \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=30mm]{img/i-bic-struct.png}
-                \caption{Biclusters com sobreposição arbitrariamente posicionados}
-                \label{fig:bicstruct-i}
-        \end{subfigure}
-        \caption{Diferentes estruturas de biclusters, quadrados com cores sólidas representam biclusters} %(Adaptado de \cite{Madeira2004})}  % LUCAS, RETIREI ISSO 
-        \label{fig:bicstruct}
-    \end{figure}
-    
-    \subsection{Algoritmos para biclusterização}
-=======
 Como a definição de bicluster não inclui uma prévia estrutura da matriz $A$ e dos biclusters $A_{IJ}$, diversos algoritmos propostos na literatura diferem quanto ao tipo de bicluster que são capazes de encontrar. Uma taxonomia dos tipos de biclusters é proposta por \citeonline{Madeira2004}:
  \begin{itemize}
   \item \textit{Biclusters com valores constantes}, se trata de biclusters em que todos os valores de $A_{IJ}$ são constantes: $a_{ij} = \mu, \forall i,j \in I,J$, onde $\mu$ é um valor constante dentro de $A_{IJ}$. Porém, em conjuntos de dados reais, esses biclusters estão presentes com algum tipo de ruído $\mu + \eta_{ij}$, onde $\eta_{ij}$ é o ruído associado com os valures de $\mu$ e $a_{ij}$ \cite{Madeira2004}.
@@ -805,9 +742,10 @@ Como a definição de bicluster não inclui uma prévia estrutura da matriz $A$ 
   \item \textit{Biclusters com valores coerentes}, em que são considerados valores próximos entre si (coerentes) para definição de um bicluster: $a_{ij} = \mu + \alpha_i + \beta_j, \forall i,j \in I,J$, ou $a_{ij} = \mu' \cdot \alpha_i' \cdot \beta_j', \forall i,j \in I,J$, sendo que se $\mu = \log \mu'\implies \alpha_i = \alpha_i', \beta_j = \beta_j'$ \cite{Madeira2004}.
   \item \textit{Biclusters com evoluções coerentes}, têm seus valores com evoluções coerentes, por exemplo, um bicluster com $a_{i4} \leq a_{i3} \leq a_{i2} \leq a_{i1}$ tem valores com evolução coerente na coluna \cite{Madeira2004}. Seus valores podem ser gerados por uma função geradora de valores com evolução coerente $a_{ij} = g(a_{ij}), \forall i,j \in I,J$, sendo $g(\cdot)$ não linear e não constante, para que o tipo de bicluster não seja classificado nos casos anteriores.
  \end{itemize}
->>>>>>> master
 
-Os biclusters também se diferem quanto a sua estrutura, cada algoritmo faz uma suposição da estrutura de biclusters que é capaz de encontrar. A Figura~\ref{fig:bicstruct} sumariza as diferentes estruturas de biclusters, com as linhas e colunas ordenadas, para permitir a visualização dos biclusters por meio do mapa de calor dos valores de $A$.
+Os biclusters também diferem quanto as suas estruturas. Cada algoritmo usado para implementar biclusterização faz uma suposição da estrutura de biclusters que é capaz de encontrar. A Figura~\ref{fig:bicstruct} sumariza as diferentes estruturas de biclusters, com as linhas e colunas ordenadas para permitir a visualização dos biclusters por meio do mapa de calor dos valores de $A$.
+
+% Para melhorar esse figura, deixe na figura apenas as letras (a), (b) etc e faça uma legenda. Acho que você pode usar \caption*{} em cima do \caption{} para fazer a legenda. Ou crie um parágrafo para explicar as letras na figura. Acho que aaté fica mais simpático fazer um parágrafo, pois pode explicar com mais cuidado.
 
 \begin{figure}[h]
     % \captionsetup[subfigure]{labelformat=simple}
@@ -873,22 +811,22 @@ Os biclusters também se diferem quanto a sua estrutura, cada algoritmo faz uma 
             \caption{Biclusters com sobreposição arbitrariamente posicionados}
             \label{fig:bicstruct-i}
     \end{subfigure}
-    \caption{Diferentes estruturas de biclusters, quadrados com cores sólidas representam biclusters (Adaptado de \cite{Madeira2004})}
+    \caption{Diferentes estruturas de biclusters, quadrados com cores sólidas representam biclusters }% (Adaptado de \cite{Madeira2004})}
     \label{fig:bicstruct}
 \end{figure}
 
 \subsection{Algoritmos para biclusterização}
 
-Diversos algoritmos para encontrar biclusters, de diferentes tipos e estruturas, foram propostos na literatura \cite{Tanay2005,Madeira2004}.
+Diversos algoritmos para encontrar biclusters, de diferentes tipos e estruturas, foram propostos na literatura \cite{Tanay2005,Madeira2004}. 
 
-Um dos mais comuns e simples algoritmos de biclusterização, que encontra biclusters com valores coerentes e estrutura com sobreposição e arbitrariamente posicionados, é o \textit{Coupled Two-way Clustering} (CTWC) \cite{Getz2000}, pois encontra biclusters através da clusterização de características e exemplos (linhas e colunas), separadamente.
-O algoritmo de clusterização usado por \cite{Getz2000} foi o \textit{Superparamagnetic Clustering} (SPC), pois é capaz de determinar o número de clusters automaticamente e com uma estratégia de clusterização hierárquica \textit{top-down} é capaz de gerar clusters estáveis \cite{Getz2000}.
-O SPC tem como entrada uma matriz de similaridade e um parâmetro temperatura, que controla o quão estáveis serão os clusters que o algoritmo irá gerar.
-Assim, o CTWC encontra clusters estáveis de linhas e colunas através do SPC, e iterativamente, performa o SPC novamente nos clusters de linhas e colunas encontrados, mantendo na memória um par do subconjunto de linhas e do subconjunto de colunas (biclusters), assim como os clusters estáveis de linhas e colunas, separadamente.
+Um dos algoritmos de biclusterização mais comum e simples. que encontra biclusters com valores coerentes, em estrutura com sobreposição e arbitrariamente posicionados, é o \textit{Coupled Two-way Clustering} (CTWC) \cite{Getz2000}. O algoritmo CTWC é capaz de encontrar biclusters através da clusterização de objetos e atributos (linhas e colunas), separadamente.
+O algoritmo de clusterização usado por \citeonline{Getz2000} foi o \textit{Superparamagnetic Clustering} (SPC), o qual é capaz de determinar o número de clusters automaticamente, e com uma estratégia de clusterização hierárquica \textit{top-down} é capaz de gerar clusters estáveis \cite{Getz2000}.
+O SPC tem como entrada uma matriz de similaridade e um parâmetro temperatura, que controla o quão estáveis serão os clusters que o algoritmo gerará.
+Assim, o CTWC encontra clusters estáveis de linhas e colunas através do SPC, e iterativamente executa o SPC nos clusters de linhas e colunas encontrados, mantendo na memória um par do subconjunto de linhas e do subconjunto de colunas (biclusters), assim como os clusters estáveis de linhas e colunas, separadamente.
 % O algoritmo se inicia com dois subconjuntos: um para exemplos (linhas) $I = \{ X \}$ e um para características (colunas) $J = \{ Y \}$, então, através do algoritmo de SPC
 
-O algoritmo Cheng e Church \cite{Cheng2000}, é capaz de encontrar o mesmo tipo de bicluster que o algoritmo CTWC, de forma gulosa: biclusters com valores coerentes e estrutura com sobreposição e arbitrariamente posicionados. Este algoritmo esta sendo objeto de estudo desse projeto de mestrado para aplicação em dados textuais.
-\citeonline{Cheng2000} introduz o conceito de bicluster no domínio de expressões genéticas. Além disso, para encontrar biclusters, ou $\delta$-biclusters, na matriz $A$, os autores definem o \textit{Resíduo Quadrático Médio} (RQM):
+Já o algoritmo de \citeonline{Cheng2000} é capaz de encontrar o mesmo tipo de bicluster que o algoritmo CTWC, porém usando uma estratégia gulosa: biclusters com valores coerentes e estrutura com sobreposição e arbitrariamente posicionados. Este algoritmo esta sendo objeto de estudo desse projeto de mestrado para aplicação em dados textuais e por isso segue aqui descrito em mais detalhes.
+Nesse algoritmos, para encontrar biclusters, ou $\delta$-biclusters, na matriz $A$, os autores definem o \textit{Resíduo Quadrático Médio} (RQM):
 \begin{equation}
 \begin{split}
     H_{IJ} = \frac{1}{|I||J|} \displaystyle\sum_{i,j \in I,J} (a_{ij} - a_{iJ} - a_{Ij} + a_{IJ})^2 \\
@@ -902,9 +840,9 @@ em que
 \end{equation}
 onde $H_{IJ}$ é o RQM de uma submatriz $A_{IJ}$, $H_{iJ}$ o RQM da linha $i$, $H_{Ij}$ o RQM da coluna $j$, $a_{iJ}$ a média dos valores da linha $i$, $a_{Ij}$ a média dos valores da coluna $j$ e $a_{IJ}$ a média dos valores da submatriz $A_{IJ}$, definida pelos subconjuntos $I$ e $J$.
 
-Então, um bicluster um perfeito $A_{IJ}$ teria o RQM $H_{IJ} = 0$, pois $a_{ij} = a_{ij}, \forall i,j \in I,J$, fazendo $a_{iJ} = a_{Ij} = a_{IJ}$. No entanto, se apenas minizar o RQM, um bicluster com apenas um elemento seria perfeito, o que pode não refletir a realidade. Além disso, em conjunto de dados reais existe ruído, podendo esconder o bicluster perfeito.
+Então, um bicluster perfeito $A_{IJ}$ teria o RQM $H_{IJ} = 0$, pois $a_{ij} = a_{ij}, \forall i,j \in I,J$, fazendo $a_{iJ} = a_{Ij} = a_{IJ}$. No entanto, se apenas minizar o RQM, um bicluster com apenas um elemento seria perfeito, o que pode não refletir a realidade. Além disso, em conjunto de dados reais existe ruído, podendo esconder o bicluster perfeito.
 
-Para encontrar biclusters, ou $\delta$-biclusters, \citeonline{Cheng2000} fazem uma estratégia gulosa que retira linhas e colunas, visando a minimização do RQM, respeitando um parâmetro $\delta$, que é calibrado pelo usuário. Então, um bicluster é encontrado quando o RQM de uma submatriz $A_{IJ}$ é $H_{IJ} \leq \delta$, para algum $\delta \geq 0$. As etapas de remoções de elementos da matriz são apresentadas nos algoritmos~\ref{algo:cc1} e~\ref{algo:cc2}.
+Para encontrar biclusters, ou $\delta$-biclusters, \citeonline{Cheng2000} usam uma estratégia gulosa que retira linhas e colunas, visando a minimização do RQM, respeitando um parâmetro $\delta$, que é calibrado pelo usuário. Então, um bicluster é encontrado quando o RQM de uma submatriz $A_{IJ}$ é $H_{IJ} \leq \delta$, para algum $\delta \geq 0$. As etapas de remoções de elementos da matriz são apresentadas nos algoritmos~\ref{algo:cc1} e~\ref{algo:cc2}.
 
 \begin{algorithm}[H]
 \label{algo:cc1}
@@ -937,7 +875,9 @@ Para encontrar biclusters, ou $\delta$-biclusters, \citeonline{Cheng2000} fazem 
  \caption{Remove múltiplas linhas e colunas de $A$ a cada iteração.}
 \end{algorithm}
 
-O algoritmo~\ref{algo:cc2} é usado para acelerar o processo de busca de um $\delta$-bicluster, convergindo mais rapidamente para uma solução quanto maior for o parâmetro $\alpha$, em que $\alpha \geq 0$. Ainda, para amenização do problema de encontrar $\delta$-biclusters perfeitos com apenas um elemento, ou poucos elemento, é utilizado o algoritmo~\ref{algo:cc3}, que adiciona nós sem aumentar o RQM do bicluster.
+O algoritmo~\ref{algo:cc2} é usado para acelerar o processo de busca de um $\delta$-bicluster, convergindo mais rapidamente para uma solução quanto maior for o parâmetro $\alpha$, em que $\alpha \geq 0$. Ainda, para amenização do problema de encontrar $\delta$-biclusters perfeitos com apenas um elemento, ou poucos elemento, é utilizado o \textcolor{blue}{algoritmo~\ref{algo:cc3}}, que adiciona nós sem aumentar o RQM do bicluster.
+
+% deu problema nessas referencias cruzadas, verifique.
 
 \begin{algorithm}[h]
 \label{algo:cc3}
@@ -956,7 +896,7 @@ O algoritmo~\ref{algo:cc2} é usado para acelerar o processo de busca de um $\de
  \caption{Adiciona linhas e colunas de $A_{IJ}$ a cada iteração.}
 \end{algorithm}
 
-Por fim, o algoritmo~\ref{algo:cc4} é a consolidação dos algoritmos~\ref{algo:cc3},~\ref{algo:cc2} e~\ref{algo:cc1} e a iteração para encontrar $k$ $\delta$-biclusters, um a um, sendo $k$ fornecido pelo usuário.
+Por fim, o \textcolor{blue}{algoritmo~\ref{algo:cc4}} é a consolidação dos \textcolor{blue}{algoritmos~\ref{algo:cc3}},~\ref{algo:cc2} e~\ref{algo:cc1} e a iteração para encontrar $k$ $\delta$-biclusters, um a um, sendo $k$ fornecido pelo usuário.
 
 \begin{algorithm}[h]
 \label{algo:cc4}
@@ -975,13 +915,13 @@ Por fim, o algoritmo~\ref{algo:cc4} é a consolidação dos algoritmos~\ref{algo
 
 % Algoritmo Spectral (?)
 
-Além dos algoritmos apresentados, existem outros algoritmos que são capazes de encontrar outros tipos de biclusters (seção~\ref{sec:tiposbic}), além de serem recentes \cite{Yang2013,Hochreiter2010,Cabanes2012}, mostrando que ainda há interesse na área de pesquisa de biclusterização.
+Além dos algoritmos apresentados, existem outros algoritmos que são capazes de encontrar outros tipos de biclusters (seção~\ref{sec:tiposbic}), além de serem recentes \cite{Franca20102,Yang2013,Hochreiter2010,Cabanes2012}, mostrando que ainda há interesse na área de pesquisa de biclusterização.
 
  \subsection{Avaliação de biclusterização}
 
 Para determinar parâmetros, descobrir a qualidade e/ou estabilidade dos biclusters encontrados por algoritmos, é necessário estabelecer métricas de avaliação. Existem duas maneiras de avaliar biclusters \cite{Hochreiter2010}: \textit{interna}, usa os dados dos resultados dos algoritmos, juntamente com métricas de qualidade e/ou estabilidade, para avaliar as soluções geradas; \textit{externa}, utiliza os dados reais das soluções de biclusters de um conjunto de dados, usando estratégias para comparação, obtendo assim, maior confiança nas soluções.
 
-A avaliação interna pode não ser tão precisa quanto a avaliação externa, porém é útil para descobrir parâmetros ótimos. Apesar de \citeonline{Prelic2006} sugerirem não usar avaliações internas, por não estar claro como extender noções de separação e homogeinidade, no entanto, \citeonline{Santamaria2007} descreveu métricas de consistência para verificando se um bicluster é consistente com a sua definição, seja aditiva, multiplicativa e/ou constante, fazendo uma comparação dos elementos do bicluster:
+A avaliação interna pode não ser tão precisa quanto a avaliação externa, porém é útil para descobrir parâmetros ótimos. Apesar de \citeonline{Prelic2006} sugerirem não usar avaliações internas, por não estar claro como extender noções de separação e homogeinidade, \citeonline{Santamaria2007} descreveu métricas de consistência para verificando se um bicluster é consistente com a sua definição, seja aditiva, multiplicativa e/ou constante, fazendo uma comparação dos elementos do bicluster:
 \begin{equation}
 \begin{split}
 C_l(A_{IJ}) = \frac{1}{|I|} \displaystyle\sum_{i = 1}^{|I| - 1} \displaystyle\sum_{j = i + 1}^{|I|} \sqrt{ \displaystyle\sum_{k = 1}^{|J|} (a_{ik} - a_{jk})^2 } \\
@@ -993,25 +933,20 @@ em que $C_l(A_{IJ})$ é o índice de consistência das linhas do bicluster $A_{I
 C(A_{IJ}) = \frac{|I| \cdot C_l + |J| \cdot C_c}{|I| + |J|}
 \end{equation}
 
-Uma das métricas externas, que são usadas para comparar biclusters encontrados com biclusters reais em um conjunto de dados, é a métrica \textit{concensus score} \cite{Hochreiter2010}. Através da maximização das similaridades entre biclusters encontrados e reais, usando o \textit{índice de Jaccard} como medida de similaridade e o algoritmo Húngaro para solucionar o problema de maximização. Tendo como saída um $\textit{score} \in [0,1]$, em que 0 significa que os biclusters comparados são totalmente diferentes, e 1 o inverso.
+Uma das métricas externas que são usadas para comparar biclusters encontrados com biclusters reais em um conjunto de dados, é a métrica \textit{concensus score} \cite{Hochreiter2010}. Essa métrica calcula a maximização das similaridades entre biclusters encontrados e reais, usando o \textit{índice de Jaccard} como medida de similaridade e o algoritmo Húngaro para solucionar o problema de maximização. A saída da avaliação é um $\textit{score} \in [0,1]$, em que $0$ significa que os biclusters comparados são totalmente diferentes, e $1$ o inverso.
 
 %    \subsection{Essembles para clusterização}
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
         
 \section{Mineração de Texto}
 \label{sec:mintexto}
 
-Técnicas de Mineração de Texto são muito usadas para SRs baseados em conteúdo textual \cite{Lops2011}, principalmente quando o contexto do SR se trata de informações não-estruturadas. Mineração de Texto lida com análise de texto, suportando a sua natureza não-estruturada, imprecisa, incerta e difusa, para extração de informação e conhecimento \cite{Hotho2005}.
-Além disso, a área de Mineração de Texto utiliza de técnicas das áreas de Recuperação de Informação, Processamento de Linguagem Natural (PLN), conectando essas técnicas com algoritmos e métodos de Descoberta de Conhecimento em Banco de Dados, Mineração de Dados, Aprendizado de Máquina e Estatística \cite{Hotho2005}.
+Técnicas de Mineração de Texto são muito usadas para SRs baseados em conteúdo textual \cite{Lops2011}, principalmente quando o contexto do SR trata de informações não-estruturadas. Mineração de Texto lida com análise de texto, suportando a sua natureza não-estruturada, imprecisa, incerta e difusa, para extração de informação e conhecimento \cite{Hotho2005}.
+Além disso, a área de Mineração de Texto utiliza de técnicas das áreas de Recuperação de Informação e Processamento de Linguagem Natural (PLN), conectando essas técnicas com algoritmos e métodos de Descoberta de Conhecimento em Banco de Dados, Mineração de Dados, Aprendizado de Máquina e Estatística \cite{Hotho2005}.
 
 % MOTIVAÇAO (?)
 
-\citeonline{Feldman2006}, apresentam uma arquitetura geral para aplicações de Mineração de Textos composta por quatro etapas: tarefas de pré-processamento, que preparam os dados para a central de operações de mineração; central de operações de mineração, incluem algoritmos para a descoberta de padrões, tendências e conhecimentos através de técnicas e algoritmos; componentes de apresentação, incluem interfaces para o usuário apresentando visualizações dos conhecimentos gerados na etapa anterior; e técnicas de refinamento, também descrito como uma fase de pós-processamento, que inclui métodos para filtrar informações redundantes.
+\citeonline{Feldman2006} apresentam uma arquitetura geral para aplicações de Mineração de Textos composta por quatro etapas: \textit{tarefas de pré-processamento}, que preparam os dados para a central de operações de mineração; \textit{central de operações de mineração}, que incluem algoritmos para a descoberta de padrões, tendências e conhecimentos por meio de técnicas e algoritmos; \textit{componentes de apresentação}, que incluem interfaces para o usuário, apresentando visualizações dos conhecimentos gerados na etapa anterior; e \textit{técnicas de refinamento}, também descritas como uma fase de pós-processamento, que incluem métodos para filtrar informações redundantes.
 
 \subsection{Tarefas de pré-processamento}
 \label{subsec:preprocessamento}
@@ -1022,21 +957,24 @@ A estruturação se faz necessária para a extração de informações e descobe
 \subsubsection{Representação textual}
 
 Para a estruturação dos textos é necessário a definição da representação textual dos documentos.
-O vetor de termos, ou \textit{Vector Space Model} \cite{Salton1975}, é a representação clássica usada para representar documentos textuais (referencia). Cada dimensão desse vetor esta associado à um termo, sendo que todas as dimensões representam todos os termos do conjunto de documentos.
-Formalmente, temos um conjunto de documentos $D = \{ d_1, d_2, \dots, d_n \}$, em que $d_i$ representa um documento e $n$ o número total de documentos, e um conjunto de termos ${\cal T} = \{ t_1, t_2, \dots, t_m \}$, em que $t_j$ representa um termo e $m$ o número de termos presentes em todos os documentos.
-Representando a frequência de um termo pelo número de vezes que $t_j$ aparece em um documento $d_i$, denotado por $ft(p_j, d_i)$, o vetor de termos pode ser construído e representado da seguinte forma: $\vec{vt}_{d_i} = ( ft(p_1, d_i), ft(p_2, d_i), \dots, fp(t_m, d_i) )$.
+O vetor de termos, ou \textit{Vector Space Model} \cite{Salton1975}, é a representação clássica usada para representar documentos textuais \cite{Sebastiani2002,Lops2011}.
+Cada dimensão desse vetor está associada a um termo, sendo que todas as dimensões representam todos os termos do conjunto de documentos.
+Formalmente, há um conjunto de documentos $D = \{ d_1, d_2, \dots, d_n \}$, em que $d_i$ representa um documento e $n$ o número total de documentos, e um conjunto de termos ${\cal T} = \{ t_1, t_2, \dots, t_m \}$, em que $t_j$ representa um termo e $m$ o número de termos presentes em todos os documentos.
+Representando a frequência de um termo pelo número de vezes que $t_j$ aparece em um documento $d_i$, denotado por $ft(t_j, d_i)$, o vetor de termos pode ser construído e representado da seguinte forma: $\vec{vt}_{d_i} = ( TF(t_1, d_i), TF(t_2, d_i), \dots, TF(t_m, d_i) )$.
 \citeonline{Salton1975} argumentam que a representação textual de documentos em vetor de termos é suficiente para separar documentos.
-Ao invés de frequência de termos, também é comumente usado, a representação binária (referencia), ou seja, $t_j$ aparecendo em $d_i$ corresponde à entrada $1$ na dimensão $j$ em $\vec{vt}_{d_i}$.
-Há também outros métodos para representação textual, como \textit{n-gramas} e \textit{ontologias} (referencia).
+Ao invés de frequência de termos, também é usado, a representação binária \cite{Sebastiani2002}, ou seja, $t_j$ aparecendo em $d_i$ corresponde à entrada $1$ na dimensão $j$ em $\vec{vt}_{d_i}$.
+Há também outros métodos para representação textual, como \textit{n-gramas} e \textit{ontologias} \cite{Lops2011}.
 
-Ainda sobre o vetor de termos, \citeonline{Salton1975} mostram com experimentos em diversos conjuntos de dados, que o uso da normalização nos vetores usando a técnica de Frequência de Termos-Frequência de Documentos Inversa (\textit{Term Frequency-Inversed Document Frequency} - TF-IDF) é capaz de melhorar a separação de documentos:
+Ainda sobre o vetor de termos, \citeonline{Salton1975} mostram com experimentos em diversos conjuntos de dados, que o uso da normalização nos vetores usando a técnica de Frequência de Termos-Frequência de Documentos Inversa (\textit{Term Frequency-Inversed Document Frequency} -- TF-IDF) é capaz de melhorar a separação de documentos:
 \begin{equation}
 \begin{split}
-    \text{\textit{ft-fdi}}(t_j, d_i) = ft(t_j, d_i) \cdot fdi(t_j) \\
-    \text{\textit{ft-fdi}}(t_j, d_i) = ft(t_j, d_i) \cdot \left( log_{2} \frac{n}{ft(t_j) + 1} \right)
+    \text{\textit{TF-IDF}}(t_j, d_i) = TF(t_j, d_i) \cdot IDF(t_j) \\
+    \text{\textit{TF-IDF}}(t_j, d_i) = TF(t_j, d_i) \cdot \left( log_{2} \frac{n}{DF(t_j) + 1} \right)
 \end{split}
 \end{equation}
-em que $fdi(t_j)$ representa a Frequência de Documentos Inversa do termo $t_j$, e $fd(t_j)$ a frequência de documentos que contém $t_j$. Essa normalização faz com que a frequência dos termos que aparecem em muitos documentos seja reduzida, e a frequência das termos que aparecem em alguns raros documentos seja aumentada, com um fator de $\log_{2}$.
+em que $IDF(t_j)$ representa a frequência de documentos inversa do termo $t_j$, e $DF(t_j)$ a frequência de documentos que contém $t_j$. Essa normalização faz com que a frequência dos termos que aparecem em muitos documentos seja reduzida, e a frequência dos termos que aparecem em alguns raros documentos seja aumentada, com um fator de $\log_{2}$.
+
+% use esse nomenclatura na introdução, eu coloquei coisas lá mas não usei essa nomenclatura. Melhor padronizar.
 
 \subsubsection{Tokenização}
 
@@ -1054,11 +992,11 @@ Também são usadas outras técnicas, como a eliminação de termos com a frequ�
 
 \subsubsection{Stemming}
 
-A fim de reduzir a ambiguidade de termos, o método de \textit{stemming} é capaz de juntar em uma única forma termos relacionadas \cite{Miner2012}, como exemplo o verbo \textit{fazer}, que pode se apresentar em diversas formas, como \textit{fazendo}, \textit{fez}, etc. Esse processo pode ser capaz de aumentar a capacidade da representação em distinguir ou identificar documentos, além de reduzir a dimensionalidade, reduzindo também a esparsidade.
+A fim de reduzir a ambiguidade de termos, o método de \textit{stemming} é capaz de juntar, em uma única forma, termos relacionados \cite{Miner2012}. Por exemplo, o verbo \textit{fazer} pode se apresentar em diversas formas, como \textit{fazendo}, \textit{fez}, etc. Esse processo é capaz de aumentar a capacidade da representação em distinguir ou identificar documentos, além de reduzir a dimensionalidade, reduzindo também a esparsidade.
 
 \subsubsection{Redução de Dimensionalidade}
 
-A representação em vetor de termos pode resultar em vetores esparsos num espaço de alta dimensão, que pode fazer com que algoritmos sofram do problema de \textit{Maldição de Dimensionalidade} (footnote haykin).
+A representação em vetor de termos pode resultar em vetores esparsos num espaço de alta dimensão, que pode fazer com que algoritmos sofram do problema de \textit{Maldição de Dimensionalidade}, que diz respeito à perda de densidade em espaços de alta dimensão, isto significa que medidas de distância se tornam incapazes de detectar padrões em um conjunto de dados \cite{Haykin2008}.
 Para amenização desse problema, são usados métodos de \textit{redução de dimensionalidade}.
 A técnica mais comum de \textit{redução de dimensionalidade} é chamada \textit{Análise dos Componentes Principais} (\textit{Principal Component Analysis - PCA}) \cite{Murphy2012}.
 Esta técnica tem o objetivo de encontrar uma representação compacta através da descoberta de $k$ vetores n-dimensionais ortogonais aos dados ($\vec{v}$), em que $k \leq m$. Os vetores são encontrados a partir da minimização da projeção dos dados em $\vec{v}$.
