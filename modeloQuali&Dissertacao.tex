@@ -356,14 +356,14 @@ Folha de Aprovação
 \end{flushleft}
 
 
-\noindent Biclusterização representa uma estratégia de análise de dados com potencial para encontrar grupos de objetos similares considerando a correlação parcial existente entre os atributos descritivos dos mesmos.
+\noindent Biclusterização representa uma estratégia de Análise de Dados com potencial para encontrar clusters de objetos similares considerando a correlação parcial existente entre os atributos descritivos dos mesmos.
 Esse potencial pode ser particularmente útil para Sistemas de Recomendação baseados em conteúdo, nos quais se faz necessária a sugestão de itens úteis, porém diversificados, para um usuário.
 Esta necessidade configura-se como um problema de \textit{serendipidade}, uma das propriedades de Sistemas de Recomendação.
 O objetivo deste trabalho é analisar a aderência dos resultados provenientes de algoritmos de biclusterização, aplicados aos itens a serem recomendados, à meta de otimização da \textit{serendipidade}.
 Para alcançar tal objetivo, este trabalho propõe um estudo da aplicação de algoritmos clássicos de biclusterização à conteúdo textual referente ao escopo de um Sistema de Recomendação de notícias.
 % Ainda, este trabalho propõe a utilização de \emph{essembles} como uma forma alternativa de encontrar biclusters.
 A hipótese defendida é que devido à análise de correlações parciais dos atributos descritivos dos dados, seria possível encontrar notícias com similaridades parciais entre si devido às particularidades presentes nas mesmas.
-Desta forma, uma mesma notícia que pertence a mais de um contexto poderia ser recomendada a usuários que estariam, à princípio, interessandos em assuntos diferentes.
+Desta forma, uma mesma notícia que pertence a mais de um contexto poderia ser recomendada à usuários que estariam, à princípio, interessados em assuntos diferentes.
 Como forma de avaliação dos resultados obtidos, é proposta uma análise comparativa entre os resultados da recomendação obtida via biclusterização e os resultados de recomendação obtida via filtro colaborativo, onde o problema da \textit{serendipidade} é reconhecidamente bem resolvido.
 \end{resumo}
 
@@ -374,7 +374,7 @@ Como forma de avaliação dos resultados obtidos, é proposta uma análise compa
 \noindent \textbf{Palavras-chave}: Biclusterização.
 Sistemas de Recomendação.
 Recomendação de Notícias.
-Mineração de Textos.
+Mineração de Texto.
 % \emph{Essembles}.
 
 
@@ -399,17 +399,27 @@ Mineração de Textos.
 
 \begin{abstract}
 \begin{flushleft}
-\noindent BRUNIALTI, Lucas Fernandes. \textbf{Work title}. 2015. NumberOfPages p. Dissertation (Master of Science) -- School of Arts, Sciences and Humanities, University of São Paulo, São Paulo, Year2.
+\noindent BRUNIALTI, Lucas Fernandes. \textbf{Work title}. 2015. NumberOfPages p. Dissertation (Master of Science) -- School of Arts, Sciences and Humanities, University of São Paulo, São Paulo, 2015.
 \newline
 \end{flushleft}
 
 
-\noindent Write here the English version of your \textquotedblleft Resumo \textquotedblright...
+\noindent Biclustering represents a strategy for Data Analysis with potential to find clusters of similar objects considering partial correlation between their descriptive attributes.
+This potential can be especially useful for Content Based Recommender Systems, in which the suggestion of useful items is necessary, however diverse, for a user.
+This need is configured as a serendipity problem, one of the properties of Recommender Systems.
+The objective of this study is to analyze the adherence of results derived from biclustering algorithms, applied to the items to be recommended, aiming to optimize the serendipity property.
+To achieve this goal, this thesis proposes a study of applied classical biclustering algorithms to textual content regarding the scope of a news Recommendation System.
+The hypothesis is that due to the partial correlation analysis of the data descriptive attributes by these algorithms, it is possible to find news with partial similarities due to the characteristics of these news.
+Thus, the same news that belongs to more than one context could be recommended for users who would also be interested in different subjects.
+In order to evaluate the results obtained, we propose a comparative analysis results obtained from recommendations obtained by biclustering algorithms and recommendations obtained by collaborative filtering, where the problem of serendipity is admittedly well resolved.
 \end{abstract}
 
 \par
 \vspace{2em}
-\noindent \textbf{Keywords}: Keyword1. Keyword2. Keyword3. Etc.
+\noindent \textbf{Keywords}: Biclustering.
+Recommender Systems.
+News Recomendation.
+Text Mining.
 
 % 1 - Lista de Figuras
 \listoffigures
@@ -439,21 +449,33 @@ Mineração de Textos.
 %\fancyhead[LO,LE]{\it\nouppercase\leftmark}
 %\fancyfoot{}
 
-Dada a quantidade e dinamicidade de informação presente na web, as pessoas, usuárias da web, se vêem diante de uma dificuldade de achar o que querem e quando querem.
-Quando usuários da web querem comprar um produto ou ler sobre uma notícia em específica, não conseguem localizar o que querem, ou até mesmo, não sabem nem o que querem.
-\citeonline{Ricci2011} argumenta que muitos usuários não tem conhecimento suficiente para saber o que querem ou não, consumir da web.
-Com o objetivo de solucionar esse problema, surgem os Sistemas de Recomendação (SRs), que com base nas preferências do usuário, buscam predizer ou sugerir itens (produtos, artigos, músicas e etc), com potencial de serem de grande valia para os usuários.
+Dada a quantidade e dinamicidade de informação presente na web, é comum as pessoas, usuárias da web, se verem diante de um problema de difícil resolução quando querem encontrar alguma informação.
+Ainda mais do que isso, facilmente as pessoas se veêm em situações onde não conseguem definir exatamente o que querem encontrar.
+Por exemplo, quando usuários da web querem comprar um produto ou ler uma notícia sobre algum assunto específico, frequentemente não conseguem decidir onde o qual produto específico comprar diante de tantas possibilidades, ou até mesmo, embora tenham a intenção de ler sobre um assunto específico, encontram tanta informação que não entendem mais exatamente o que estão procurando.
+\citeonline{Ricci2011} argumentam que muitos usuários da web não têm conhecimento suficiente para saber o que querem consumir da web, ou o que não querem.
+Com o objetivo de amenizar esse problema, surgem os Sistemas de Recomendação (SRs) que, com base em preferências do usuário, predizem ou sugerem itens (produtos, artigos, músicas e etc), com potencial de serem de grande valia para tais usuários.
 
-No domínio de notícias, o mesmo problema acontece.
-Para isso, portais de notícias da web necessitam de oferecer conteúdo personalizado.
-No entanto, aprender as preferências dos usuários e ao mesmo tempo oferecer conteúdo útil, não é uma tarefa trivial, principalmente no contexto de notícias, em que as preferências dos usuários mudam com muita frequência \cite{Li2011}.
+Considerando especificamente a ocorrência desse problema no domínio de notícias, uma solução apresentada pelos portais de notícias da web começam a ver é o oferecimento de conteúdo personalizado.
+No entanto, aprender as preferências dos usuários e ao mesmo tempo oferecer conteúdo útil não é uma tarefa trivial, principalmente no contexto em questão, em que as preferências dos usuários mudam com muita frequência \cite{Li2011}.
 
-Um SR de notícias simples e hipotético poderia ter a seguinte estratégia para recomendação: dado o histórico de notícias visitadas pelo usuário, as notícias recomendadas seriam as mais semelhantes ao seu histórico.
-Esse sistema seria especializado em oferecer notícias que o usuário já esta acostumado à ler, então, há uma grande probabilidade de não existir nada de novo para o usuário nas recomendações oferecidas.
-Por exemplo, se dois usuários estão navegando nesse sistema, um com padrão de leitura de notícias sobre esporte e outro de notícias sobre música, o sistema hipotético recomendaria para o primeiro usuário apenas notícias sobre esporte, e para o segundo, apenas notícias sobre música.
-O problema esta em o SR não apresentar nenhuma novidade nas recomendações, nenhuma recomendação que, provavelmente, será útil para o usuário, pois os mesmos já sabem buscar as notícias que costumam ler.
-Sendo assim, o SR precisa ser capaz de apresentar recomendações com \textit{serendipidade}, ou seja, que sejam diversas o bastante, e recomendações úteis para os usuários.
-Uma melhoria para o sistema hipotético (Figura~\ref{fig:story}) seria o SR perceber de alguma forma que as notícias sobre esporte tem intersecção com as notícias sobre música, e recomendar algumas notícias sobre música para o usuário com preferências de notícias de esporte, como exemplo, é sabido que o o evento de beisebol - superbowl - tem abertura com grandes artigos da música, notícias sobre esse fato poderiam ser de grande interesse para o usuário com preferências de notícias de esporte, e vice-versa.
+Um SR de notícias simples e hipotético poderia apresentar a seguinte estratégia para elaborar suas recomendações: dado o histórico de notícias visitadas pelo usuário, as notícias recomendadas seriam aquelas que mais se assemelham ao seu histórico.
+Esse sistema seria especializado em oferecer notícias que o usuário já esta acostumado a ler, e portanto apresentaria a desvantagem de não recomendar nenhum tipo de conteúdo novo para o usuário -- ainda que esse conteúdo pudesse ser interessante à ele.
+
+Olhando o exemplo do SR hipotético com mais detalhes, considere o caso de dois usuários.
+O primeiro apresenta um padrão de leitura, e portanto um padrão de navegação, sobre notícias referentes à esporte.
+O segundo apresenta um padrão de leitura relacionado à notícias que permeiam o campo da música.
+O sistema hipotético, muito provavelmente, recomendaria aos tais usuários apenas notícias de esporte e música, respectivamente.
+Embora essas recomendações pareçam ser ideais, e sob um aspecto de análise objetivo elas o são, é factível assumir que esses usuários estão recebendo um serviço de recomendação prático, mas talvez menos útil do que poderia ser, por dois motivos principais: esses usuários possuem um padrão de navegação que foi aprendido pelo sistema, e muito provavelmente eles já sabem seguir esse padrão e não precisam das recomendações senão por comodidade e praticidade; esses usuários estão presos a esse padrão de navegação por não saberem, ou não terem tido motivação, para sair desse padrão e acessar notícias interessantes que tangeiam seus interesses de alguma forma.
+
+O contexto discutido leva à discussão de uma característica de recomendação denominada \textit{serendipidade}.
+Um SR precisa ser capaz também de apresentar recomendações com serendipidade, ou seja, que sejam diversas do que é comumente acessado pelo usuário, sem que essas se distanciem muito dos interesses dele.
+O contexto de recomendações, no caso de notícias, é complexo o suficiente para apresentar itens de recomendação que embora estejam prioritariamente dizendo respeito a um assunto, possuem informações relevantes a outros também.
+
+Uma melhoria para o sistema hipotético (Figura~\ref{fig:story}) seria dotá-lo da capacidade de perceber, por exemplo, que notícias sobre esporte podem trazer conteúdo interessante sobre música, recomendando uma notícia ao usuário interessado em música que, originalmente, só seria recomendada ao usuário interessado em esporte. Por exemplo, é sabido que eventos de beisebol -- o \textit{superbowl} -- possuem uma abertura cultural na qual grandes artistas da música fazem apresentações. Da mesma maneira, notícias inicialmente classificadas como sendo de esporte poderiam interessar a quem gosta de música, desde que apresentem informações atraentes sobre música, por exemplo os eventos de esportes radicais, como tirolesa, que acontecem em eventos de música contemporâneos -- \textit{rock in rio}.
+
+% Eu mudaria uma pouco a figura. Você está dizendo que notícias rotulada como esporte e notícias rotuladas como música possuem uma interesecão. Nesse caso então as notícias sào sobre as duas coisas e alguem poderia dizer que elas seriam recomendadas no SR original. Eu mudaria um pouco a figura e não trataria as notícias como sendo conjuntos que tem a interseção. Eu pegaria uma figura como aquelas dos biclusters. Estou enviando uma imagem onde eu ilustro mais ou menos o que eu estou pensando. Eu também mudaria um pouco a figura nos labels. Colocando:
+% - sugere noticias sobre esporte, com alguma informacao atraente/importante sobre musica
+% - sugere noticias sobre musica, com alguma informacao atraente/importante sobre esporte
 
 \begin{figure}[h]
 \centering
@@ -462,79 +484,118 @@ Uma melhoria para o sistema hipotético (Figura~\ref{fig:story}) seria o SR perc
 \label{fig:story}
 \end{figure}
 
-% Sendo assim, este trabalho tem o intuito de aplicar técnicas e algoritmos em SRs que se baseiam no conteúdo das notícias para propor recomendações que sejam diversificadas e úteis para o usuário.
+Assim, faz-se interessante o desenvolvimento de estratégias que permitam melhorar a característica de serendipidade de SR e, especificamente neste trabalho, estratégias de biclusterização, que permitem a análise de correlações parciais entre os atributos descritivos de dados que comporão um grupo de objetos similares, são consideradas candidatas a suprir essa lacuna \cite{Hartigan1972,Mirkin1996,Madeira2004}.
 
 \section{Apresentação do Problema de Recomendação}
 
-% Apresentar de maneira mais formal (acima foi só um cenário), o problema de recomendação. Tentar caracterizar (aí acho que de maneira não formal necessariamente) a propriedade de \textit{serendipidade}.
-Seja um conjunto de usuários $U = \{ u_1, \dots, u_n \}$, notícias ${\cal N} = \{ N_1, N_2, \dots, N_m \}$ que podem ser representadas, por exemplo, como um conjunto de termos $N = \{ t_1, t_2, \dots \}$, e o histórico $h_{u_i,N_j} \in {\cal H}$ indicando se o usuário $u_i$ leu a notícia $N_j$.
-O problema de recomendação de notícias, com base no contexto, é a definição de uma função de similaridade entre notícias $s: N \rightarrow N \times N$ para aprender uma função $l: {\cal H}_u, s \rightarrow L_u$, onde ${\cal H}_u$ é o subconjunto que representa o histórico de notícias que $u$ leu, e $L_u$ a lista de recomendações de notícias direcionadas à $u$.
+Há diferentes tipos de recomendação que podem ser considerados (Seção~\ref{sec:sr}). Aqui, o problema de recomendação com base em conteúdo é apresentado, fazendo uma adaptação de \citeonline{Adomavicius2005}.
 
-A idéia é que a lista de recomendações $L_u$ apresentem \textit{serendipidade} o bastante para serem úteis para o usuário $u$.
+Seja um conjunto de usuários $U = \{ u_1, u_2, \dots, u_n, \dots u_N \}$, um conjunto de itens ${\cal I} = \{ I_1, I_2, \dots, I_m, \dots, I_M \}$ e o histórico $h_{u_n,I_m} \in {\cal H}$ indicando se o usuário $u_n$ acessou o item $I_m$.
+O problema de recomendação, com base no conteúdo, pode ser visto como a definição de uma função de similaridade entre itens $s: I \rightarrow I \times I$ para aproximar uma função $l: {\cal H}_u, s \rightarrow L_u$, onde ${\cal H}_u$ é o subconjunto que representa o histórico de itens que $u$ acessou, e $L_u$ é a lista de recomendações de itens direcionadas à $u$.
+
+% Achei estranho não ter uma referência aqui. Geralmente definições de conceitos já maduros devem vir de referências importantes. 
+
+A idéia é que a lista de recomendações $L_u$ permita a ocorrência de \textit{serendipidade}, incluindo um fator de ponderação na função de similaridade $s$, que considere similaridades parciais.
 
 \section{Apresentação do contexto de Biclusterização}
 
-% Apresentar o que é biclusterização, em linhas gerais e com uma pequena formulação. Falar que existem vários algoritmos.
+O problema de biclusterização, em Mineração de Dados, é referente ao processo de clusterização simultâneo de linhas e colunas em um conjunto de dados.
+Capaz de agrupar objetos similares desse conjunto de dados, considerando seus atributos que apresentem alta correlação, formando grupos de objetos e atributos, simultaneamente, chamados de biclusters.
+Com maior formalidade, o problema de biclusterização consiste em uma matriz $A$, de dimensão $N \times M$, um conjunto de linhas (objetos) $X = \{ x_1, \dots, x_N \}$ e um conjunto de colunas (atributos) $Y = \{ y_1, \dots, y_M \}$, em que $a_{nm}$, geralmente um número real, e representa a relação entre a linha $x_n$ e a coluna $y_m$ \cite{Franca2010,Mirkin1996,Madeira2004}.
 
-Seja um conjunto de dados definido por um conjunto de objetos $\{ x_1, \dots, x_n \} \in X$ e atributos descritivos desses objetos $\{ y_1, \dots, y_m \} \in Y$.
-A biclusterização é uma técnica para análise e mineração de dados que é capaz de agrupar objetos ($x$) similares, considerando condicionalmente, os atributos descritivos ($y$) desses objetos, formando grupos de objetos e atributos, simultâneamente ou não, chamados de biclusters.
+O problema de biclusterização pode ser ilustrado na Figura~\ref{fig:bicluster-exp}, onde se tem um conjunto de dados que possui objetos $x_1, x_2, x_3, x_4, x_5$ e $x_6$ que são representados pelos atributos $y_1, y_2, y_3, y_4, y_5$ e $y_6$, onde $N,M = 6$.
+Na Figura~\ref{fig:bicluster-exp} também estão ilustrados dois biclusters hipotéticos: o primeiro formado pelos objetos $x_5$ e $x_6$ e todos os atributos ($y_1, \dots, y_6$), representando um bicluster com \textit{modelo global}; e o segundo formado pelos objetos $x_2, x_3, x_4$ e $x_5$ e atributos $y_4, y_5$ e $y_6$, representando um bicluster com \textit{modelo local}, que leva em consideração apenas um subconjunto dos atributos.
 
-Os biclusters podem apresentar de diferentes formas (Seção~\ref{sec:tiposbic}), alguns algoritmos impõem restrições à esses grupos, como por exemplo, o par de objeto atributo $(x_i,y_j)$ pode pertencer apenas a um bicluster \cite{Kluger2003}, enquanto outros permitem sobreposição de biclusters \cite{Cheng2000}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=80mm]{img/bicluster.png}
+\caption{Conjunto de dados com dois biclusters encontrados.}
+\label{fig:bicluster-exp}
+\end{figure}
+
 % Apresentar em linhas gerais a possibilidade de implementar bicluterização usando a alternativa de essemble.
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
-
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+% PELO QUE ENTENDI ESSA PARTE DE ESSEMBLE NAO VAI SER TRATADA NA QUALI. MAS NAO ESQUEÇA QUE ELA DEVERÁ ENTRAR NO SEU TRABALHO. ENTAO, TANTO ESSEMBLE QUANTO MARKOV DEVEM SER CITADAS NA PROPOSTA COMO POSSIBILIDADES DE USO E PARA QUE.
 
 \section{Hipótese}
 
-% Apresentar a nossa hipótese de que se juntar biclusterização com recomendação vai resolver \textit{serendipidade}.
-
-A falta de \textit{serendipidade} em recomendações é um problema para SRs baseados em conteúdo, então, como a Biclusterização é capaz de expandir o espaço de busca, levando em consideração subconjuntos de atributos para a determinação de grupos, ou biclusters, com sobreposição. Então, a hipótese desse projeto é que a aplicação de algoritmos de Biclusterização em SRs baseados em conteúdo pode contribuir para melhorar a função de similaridade entre itens $s$, otimizando a \textit{serendipidade} e, portanto, melhorando a qualidade das recomendações, fazendo uma contribuição para a área de SRs.
+A falta de \textit{serendipidade} nas recomendações é um problema para SRs baseados em conteúdo.
+Biclusterização é uma técnica capaz de expandir as possibilidades de formação de clusters, levando em consideração a análise de subconjuntos de atributos para análise de similaridade entre dados a serem considerados como pertencentes a um cluster, ou bicluster.
+A possibilidade de considerar a análise de subconjuntos de atributos pode levar à descoberta de objetos similares, que não são necessariamente similares, quando todo o conjunto de atributos é considerado.
+Sendo assim, a hipótese formulada nesse projeto é que considerar similaridades parciais entre itens a serem recomendados pode melhorar a serendipidade das recomendações e, uma forma de implementar essa estratégia em SRs, seria por meio da aplicação de algoritmos de biclusterização sobre o conjunto de itens a serem recomendados.
 
 \section{Objetivos}
 
-% Colocar o objetivo de resolver o problema acima, otimizando a \textit{serendipidade}, através do uso de biclusterização nos documentos (notícias).
-O objetivo geral desse trabalho é amenizar o problema de oferecer recomendações com \textit{serendipidade} em Sistemas de Recomendação que se baseiam no conteúdo de notícias.
-O objetivo será atingido através do uso de técnicas de mineração de texto para estruturação do conteúdo textual presentes nas notícias.
-Então, usando as técnicas e algoritmos de Biclusterização, que possibilita encontrar grupos de notícias com sobreposição de diferentes assuntos.
-Assim, foram estabelecidos os seguintes objetivos específicos:
+O objetivo geral desse trabalho é amenizar a dificuldade de oferecer recomendações com \textit{serendipidade} em SRs que se baseiam no conteúdo textual.
+Esse objetivo deverá ser atingido por meio da aplicação de técnicas de clusterização de texto, em particular pela aplicação de algoritmos de biclusterização.
+
+%Lucas, leia esse parágrafo abaixo com cuidado e reflita se é isso mesmo.
+A clusterização, nesse contexto, deve atuar como estratégia de organização do conteúdo textual, agrupando itens em biclusters.
+Sendo que a partir da observação dos interesses do usuário e dos biclusters à que estes itens pertencem, é possível organizar a lista recomendação com itens desses biclusters que esse usuário ainda não interagiu.
+
+Assim, com o intuito de melhor definir o contexto de estudo neste trabalho, foram estabelecidos os seguintes objetivos específicos:
 
 \begin{itemize}
-  \item Levantamento do referencial teórico de Sistemas de Recomendação.
-  \begin{itemize}
-    \item Levantamento do estado da arte de Sistemas de Recomendação baseados em conteúdo textual.
-  \end{itemize}
-  \item Levantamento do referencial teórico de Biclusterização.
-  \item Construção de um corpus de notícias e um conjunto de dados de recomendação.
-  \item Estudo das técnicas de Mineração de Texto.
-  \item Estudo das técnicas de biclusterização.
-  \item Implementação das técnicas de biclusterização aplicadas à texto
-  \item Análise dos resultados obtidos pelas estratégias propostas.
-  % \item estudo das técnicas de essemble aplicadas a texto
+ \item Levantamento do referencial teórico de SRs.
+ \begin{itemize}
+  \item Levantamento do estado da arte sobre o uso de aprendizado de máquina na implementação de SRs baseados em conteúdo textual.
+ \end{itemize}
+ \item Levantamento do referencial teórico sobre Biclusterização e Mineração de Texto.
+ \item Construção de um corpus de itens textuais e um conjunto de dados de recomendação.
+ \item Implementação e teste dos algoritmos de biclusterização sobre o corpus construído.
+ \item Modelagem do problema de recomendação baseado em conteúdo considerando a existência de biclusters de itens.
+ \item Análise da viabilidade da modelagem proposta frente ao conjunto de dados de recomendação e frente a análise qualitativa do alcance da serendipidade.
+ % \item estudo das técnicas de essemble aplicadas a texto
 \end{itemize}
 
 \section{Metodologia}
 
-% Aqui explicar cada um dos passos. Explicar que o levantamento do referencial teórico através de análise exploratória. Explicar como é a revisão sistemática (um parágrafo). Explicar a motivação de tê-la realizado.
-
-Para conhecer a área de Sistemas de Recomendação foi realizado um levantamento do referencial teórico através da análise exploratória de livros e artigos do tipo revisão bibliográfica \cite{Adomavicius2005,Lops2011,Ricci2011,Ricci22011,Jannach2011,Burke2002}, o que permitiu, em seguida, o aprofundamento na área de SRs.
-Para o aprofundamento na área de SRs, foi realizada uma Revisão Sistemática de SRs baseados em conteúdo textual.
-A Revisão Sistemática (RS) é um tipo de revisão bibliográfica documentada, na qual cada passo da pesquisa é registrado seguindo-se rigorosos critérios, permitindo facilmente a auditoria e reprodução da pesquisa.
+A análise exploratória da literatura especilizada foi escolhida como estratégia para a aquisição de conhecimento sobre a área de SR, biclusterização e mineração de textos.
+Já para o levantamento do estado da arte em SRs baseados em conteúdo textual e sobre a aplicação de técnicas de Aprendizado de Máquina, mais especificamente clustering, em SRs baseados em conteúdo textual, optou-se por aplicar a técnica de construção de revisões sistemáticas.
+A Revisão Sistemática (RS) é um tipo de revisão bibliográfica documentada, na qual cada passo da pesquisa é registrado seguindo critérios rigorosos, e portanto permitindo facilmente a auditoria e reprodução da pesquisa.
 Segundo \citeonline{Kitchenham2004}, a RS é um meio de avaliar, identificar e interpretar todas as pesquisas relevantes disponíveis em uma determinada área com base em questões de pesquisa.
-Também foi realizado um levantamento do referencial teórico, através da análise exploratória de livros e artigos do tipo revisão bibliográfica, na área de Mineração de Dados \cite{Berry2010,Feldman2006,Miner2012,Hotho2005,Weiss2010}, para que fosse possível realizar a análise e estruturação do conteúdo não-estruturado, presentes nas notícias.
+A revisão sistemas que relaciona Aprendizado de Máquina e SRs se faz útil uma vez que a aplicação de Biclusterização como estratégia de resolução do problema é o núcleo deste projeto.
 
-Sendo assim, com a extração das notícias do portal iG\footnote{\textit{http://ig.com.br/}} através de um \textit{web crawler} utilizando a linguagem python\footnote{\textit{https://www.python.org/}} e do banco de dados postgreSQL\footnote{\textit{http://www.postgresql.org/}} para guardar as notícias, foi possível construir o corpus iG (Subseção~\ref{subsec:corpusig}) de notícias.
-As notícias foram capturadas a partir de uma página de início, fornecida para o \textit{web crawler}, que era selecionada a fim de equalizar a distribuição de notícias por ano e por assunto. Este trabalho também conta com uma base de cliques em notícias (Subseção~\ref{subsec:basecliquesig}), doada pelo portal de notícias iG.
+A fim de permitir os testes e validações sobre a modelagem a ser proposta para verificação da hipótese formulada neste projeto, faz-se necessário a definição de um contexto para realização de uma prova de conceito.
+Assim, foi escolhido usar o conteúdo referente à notícias publicadas no Portal iG\footnote{http://ig.com.br/}.
+Trata-se de um portal de notícias brasileiro muito conhecido, com um volume de notícias bastante grande e com alguma estrutura de classificação de notícias já existente.
+Essas características conferem liberdade para a configuração de experimentos de diferentes naturezas, como experimentos considerando determinadas classes de notícias, tipos de notícias ou datas de publicação das notícias.
 
-Para aplicação dos algoritmos de biclusterização, foi realizado um levantamento do referencial teórico, através da análise exploratória de livros, artigos do tipo revisão bibliográfica e artigos que se referem à criação dos algoritmos \cite{Cheng2000,Tanay2005,Madeira2004,Santamaria2007,Kluger2003,Prelic2006}.
+A partir do conteúdo de notícias do Portal iG deve ser construído um corpus de dados textuais, categorizados de acordo com as categorias já usadas no referido portal.
+Todo o conteúdo do corpus deve passar por rotinas de pré-processamento comuns na área de Mineração de Texto: \textit{tokenização}, filtragem de \textit{stopwords}, remoção de sufixos (\textit{stemming}), representação da relação ``termos $\times$ documentos'' usando estratégias de frequência relativa de termos e \textit{n-gramas}.
 
-% Explicar que as técnica de biclusterização e essemble serão aplicadas aos textos processados e que uma avaliação será feita com base nas informações de cliques.
-Para gerar conhecimento do corpus iG, serão aplicados algoritmos de Biclusterização que estão sendo implementados\footnote{\textit{https://github.com/lucasbrunialti/biclustering-experiments}} nos textos das notícias processados e representados por diversas estratégias (TF-IDF, TF-IDF normalizado e n-gramas). Assim, será possível avaliar o resultado dos algoritmos utilizando a base de dados de cliques iG.
+%Leia com muito cuidado e veja se faz sentido. MUITO CUIDADO.ALTERE O QUE FOR NECESSÄRIOS TAMBÉM COM MUITO CUIDADO.
+Também, o Portal iG possui informações históricas e anônimas referentes ao registro de navegação de usuários.
+Esse registro permite a construção de um conjunto de dados de preferências, que pode ser usado para realização de \textit{testes offline} entre recomendações oferecidas pela abordagem proposta e a navegação real realizada por um conjunto de usuários, utilizando métricas como precisão e revocação \cite{Jannach2011}.
+
+Os resultados da aplicação dos algoritmos de análise de texto via biclusterização deverão ser validados fazendo a técnicas de avaliação internas, para a verificação da consistência dos biclusters encontrados \cite{Santamaria2007}, e externas \cite{Hochreiter2010}, avaliando o quanto os biclusters encontrados estão em consenso com as classes de notícias \cite{Hochreiter2010}.
+% essa parte aqui ficou bem frágil. 
+% Os algoritmos de análise de texto via biclusterização deverão ser validados antes de serem aplicados ao corpus criado.
+% Para isso, conjuntos de dados de referência para biclusterização e para clusterização de texto deverão ser usados.
+% Uma vez alcançada a análise dos textos via biclusterização, o modelo de uso dos biclusters em um contexto de recomendação deverá ser delineado e analisado.
+% A análise deverá estar baseando tanto em comparações com o conjunto de dados de recomendação do portal iG quando por análise qualitativa do alcance da serendipidade. 
+
+% Veja se você se sente seguro com isso.
+Em tempo, estuda-se a possibilidade de aplicar técnicas de \textit{ensemble} com algoritmos clássicos de clusterização a fim de substituir o uso de algoritmos de biclusterização na análise da correlação parcial dos atributos descritivos dos itens sob recomendação. Ainda, modelos escondidos de Markov podem ser aplicados na modelagem da recomendação sobre o conjunto de dados de recomendação a fim de gerar instâncias de comparação para avaliação da análise proposta neste projeto.
+
+% essa parte você coloca no capítulo 4. Na proposta. Em algum lugar você vai dizer o que já foi feito então você pode dizer que acessou esse material na análise exploratória. Aqui é para falar qual é a metodologia, e não relatar o que já foi feito.
+
+%Para conhecer a área de Sistemas de Recomendação foi realizado um levantamento do referencial teórico através da análise exploratória de livros e artigos do tipo revisão bibliográfica \cite{Adomavicius2005,Lops2011,Ricci2011,Ricci22011,Jannach2011,Burke2002}, o que permitiu, em seguida, o aprofundamento na área de SRs.
+%Para o aprofundamento na área de SRs, foi realizada uma Revisão Sistemática de SRs baseados em conteúdo textual.
+%Também foi realizado um levantamento do referencial teórico, através da análise exploratória de livros e artigos do tipo revisão bibliográfica, na área de Mineração de Dados \cite{Berry2010,Feldman2006,Miner2012,Hotho2005,Weiss2010}, para que fosse possível realizar a análise e estruturação do conteúdo não-estruturado, presentes nas notícias.
+
+%Isso tudo tem que vir no capitulo da propsota, como eu disse, aqui é não é um momento de relatar atividades realizadas.
+% Sendo assim, com a extração das notícias do portal iG\footnote{http://ig.com.br/} através de um \textit{web crawler} utilizando a linguagem python\footnote{https://www.python.org/}, foi possível construir o corpus iG (Subseção~\ref{subsec:corpusig}) de notícias.
+%As notícias foram capturadas a partir de uma página de início, fornecida para o \textit{web crawler}, que era selecionada a fim de equalizar a distribuição de notícias por ano e por assunto. Este trabalho também conta com uma base de cliques em notícias (Subseção~\ref{subsec:basecliquesig}), doada pelo portal de notícias iG.
+
+%idem
+%Para aplicação dos algoritmos de biclusterização, foi realizado um levantamento do referencial teórico, através da análise exploratória de livros, artigos do tipo revisão bibliográfica e artigos que se referem à criação dos algoritmos \cite{Cheng2000,Tanay2005,Madeira2004,Santamaria2007,Kluger2003,Prelic2006}.
+
+%Para gerar conhecimento do corpus iG, serão aplicados algoritmos de Biclusterização que estão sendo implementados\footnote{https://github.com/lucasbrunialti/biclustering-experiments} nos textos das notícias processados e representados por diversas estratégias (TF-IDF, TF-IDF normalizado e n-gramas). Assim, será possível avaliar o resultado dos algoritmos utilizando a base de dados de cliques iG.
 
 \section{Organização do documento}
 
-Este documento é composto por 4 capítulos incluindo esta introdução. O Capítulo 2 conceitos fundamentais necessários para a compreensão deste projeto, incluindo as áreas de Sistemas de Recomendação, Biclusterização e Mineração de Texto; o capítulo 3 apresenta uma revisão bibliográfica de Aprendizado de Máquina aplicado à SRs baseados em Conteúdo; por fim, o capítulo 4 apresenta a proposta desse projeto de mestrado, assim como o cronograma para a sua conclusão.
+Este documento é composto por quatro capítulos incluindo esta introdução. No Capítulo 2 conceitos fundamentais necessários para a compreensão deste projeto são apresentados, incluindo conceitos sobre SRs, biclusterização e mineração de texto; o Capítulo 3 apresenta uma revisão sistemática sobre aprendizado de máquina aplicado à SRs baseados em conteúdo; por fim, o capítulo 4 apresenta em detalhes a proposta desse projeto de mestrado, um relato sobre os resultados já obtidos e o cronograma que guia a realização das próximas atividades.
 
 \chapter{Conceitos Fundamentais}
 
@@ -545,7 +606,7 @@ Este capítulo introduz os conceitos fundamentais para o entendimento dessa diss
 
 % provavelmente vou ter que fazer o bib de tese-chap2: http://tampub.uta.fi/bitstream/handle/10024/95965/978-951-44-9551-9.pdf
 A grande maioria das pessoas que usam a Internet muito provavelmente já interagiram com algum Sistema de Recomendação (SR), por isso, o seu conceito é intuitivo.
-Porém, por ser uma área relativamente nova \cite{Lops2011}, muitos autores não usam uma definicão que reflete a realidade dos SRs, isso acontece por ser uma área relativamente nova que teve um crescimento muito grande nos últimos anos (tese-chap2).
+Porém, por ser uma área relativamente nova \cite{Lops2011}, muitos autores não usam uma definicão que reflete a realidade dos SRs, isso acontece por ser uma área relativamente nova que teve um crescimento muito grande nos últimos anos \cite{Leino2014}.
 
 \citeonline{Resnick1997}, quem criou o termo Sistemas de Recomendação (tese-chap2) \cite{Neumann2007}, argumentam que Sistemas de Recomendação servem para nos ajudar em processos de tomada de decisão do nosso dia-a-dia, como quais itens comprar, quais músicas ouvir, ou quais notícias ler.
 Além disso, \citeonline{Resnick1997} provê uma taxonomia para definição de Sistemas de Recomendação:
@@ -656,6 +717,87 @@ Assim, o bicluster $A_{IJ}$ é um grupo dos exemplos em $I$, perante as caracter
 \subsection{Tipos de biclusters}
 \label{sec:tiposbic}
 
+<<<<<<< HEAD
+    Como a definição de bicluster não inclui uma prévia estrutura da matriz $A$ e dos biclusters $A_{IJ}$, diversos algoritmos propostos na literatura diferem quanto ao tipo de bicluster que são capazes de encontrar. Uma taxonomia dos tipos de biclusters é proposta por \citeonline{Madeira2004}:
+     \begin{itemize}
+      \item \textit{Biclusters com valores constantes}, se trata de biclusters em que todos os valores de $A_{IJ}$ são constantes: $a_{ij} = \mu, \forall i,j \in I,J$, onde $\mu$ é um valor constante dentro de $A_{IJ}$. Porém, em conjuntos de dados reais, esses biclusters estão presentes com algum tipo de ruído $\mu + \eta_{ij}$, onde $\eta_{ij}$ é o ruído associado com os valures de $\mu$ e $a_{ij}$ \cite{Madeira2004}.
+      \item \textit{Biclusters com valores constantes nas linhas ou colunas}, se trata de biclusters com valores constantes nas linhas: $a_{ij} = \mu + \alpha_i, \forall i,j \in I,J$ ou $a_{ij} = \mu \cdot \alpha_i, \forall i,j \in I,J$, onde $\alpha_i$ é um fator aditivo ou multiplicativo para cada linha; ou ainda biclusters com valores constantes nas colunas: $a_{ij} = \mu + \beta_j, \forall i,j \in I,J$ ou $a_{ij} = \mu \cdot \beta_j, \forall i,j \in I,J$, onde $\beta_j$ é um fator aditivo ou multiplicativo para cada coluna \cite{Madeira2004}.
+      \item \textit{Biclusters com valores coerentes}, em que são considerados valores próximos entre si (coerentes) para definição de um bicluster: $a_{ij} = \mu + \alpha_i + \beta_j, \forall i,j \in I,J$, ou $a_{ij} = \mu' \cdot \alpha_i' \cdot \beta_j', \forall i,j \in I,J$, sendo que se $\mu = \log \mu'\implies \alpha_i = \alpha_i', \beta_j = \beta_j'$ \cite{Madeira2004}.
+      \item \textit{Biclusters com evoluções coerentes}, têm seus valores com evoluções coerentes, por exemplo, um bicluster com $a_{i4} \leq a_{i3} \leq a_{i2} \leq a_{i1}$ tem valores com evolução coerente na coluna \cite{Madeira2004}. Seus valores podem ser gerados por uma função geradora de valores com evolução coerente $a_{ij} = g(a_{ij}), \forall i,j \in I,J$, sendo $g(\cdot)$ não linear e não constante, para que o tipo de bicluster não seja classificado nos casos anteriores.
+     \end{itemize}
+    
+    Os biclusters também se diferem quanto a sua estrutura, cada algoritmo faz uma suposição da estrutura de biclusters que é capaz de encontrar. A Figura~\ref{fig:bicstruct} sumariza as diferentes estruturas de biclusters, com as linhas e colunas ordenadas, para permitir a visualização dos biclusters por meio do mapa de calor dos valores de $A$.
+
+    \begin{figure}[h]
+        % \captionsetup[subfigure]{labelformat=simple}
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/a-bic-struct.png}
+                \caption{Bicluster único}
+                \label{fig:bicstruct-a}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/b-bic-struct.png}
+                \caption{Biclusters com linhas e colunas exclusivas}
+                \label{fig:bicstruct-b}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/c-bic-struct.png}
+                \caption{Biclusters com estrutura de tabuleiro de xadrez}
+                \label{fig:bicstruct-c}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/d-bic-struct.png}
+                \caption{Biclusters com linhas exclusivas}
+                \label{fig:bicstruct-d}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/e-bic-struct.png}
+                \caption{Biclusters com colunas exclusivas}
+                \label{fig:bicstruct-e}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/f-bic-struct.png}
+                \caption{Biclusters sem sobreposição com estrutura em árvore}
+                \label{fig:bicstruct-f}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/g-bic-struct.png}
+                \caption{Biclusters sem sobreposição e não exclusivos}
+                \label{fig:bicstruct-g}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/h-bic-struct.png}
+                \caption{Biclusters com sobreposição com estrutura hierarquica}
+                \label{fig:bicstruct-h}
+        \end{subfigure}
+        ~
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=30mm]{img/i-bic-struct.png}
+                \caption{Biclusters com sobreposição arbitrariamente posicionados}
+                \label{fig:bicstruct-i}
+        \end{subfigure}
+        \caption{Diferentes estruturas de biclusters, quadrados com cores sólidas representam biclusters} %(Adaptado de \cite{Madeira2004})}  % LUCAS, RETIREI ISSO 
+        \label{fig:bicstruct}
+    \end{figure}
+    
+    \subsection{Algoritmos para biclusterização}
+=======
 Como a definição de bicluster não inclui uma prévia estrutura da matriz $A$ e dos biclusters $A_{IJ}$, diversos algoritmos propostos na literatura diferem quanto ao tipo de bicluster que são capazes de encontrar. Uma taxonomia dos tipos de biclusters é proposta por \citeonline{Madeira2004}:
  \begin{itemize}
   \item \textit{Biclusters com valores constantes}, se trata de biclusters em que todos os valores de $A_{IJ}$ são constantes: $a_{ij} = \mu, \forall i,j \in I,J$, onde $\mu$ é um valor constante dentro de $A_{IJ}$. Porém, em conjuntos de dados reais, esses biclusters estão presentes com algum tipo de ruído $\mu + \eta_{ij}$, onde $\eta_{ij}$ é o ruído associado com os valures de $\mu$ e $a_{ij}$ \cite{Madeira2004}.
@@ -663,6 +805,7 @@ Como a definição de bicluster não inclui uma prévia estrutura da matriz $A$ 
   \item \textit{Biclusters com valores coerentes}, em que são considerados valores próximos entre si (coerentes) para definição de um bicluster: $a_{ij} = \mu + \alpha_i + \beta_j, \forall i,j \in I,J$, ou $a_{ij} = \mu' \cdot \alpha_i' \cdot \beta_j', \forall i,j \in I,J$, sendo que se $\mu = \log \mu'\implies \alpha_i = \alpha_i', \beta_j = \beta_j'$ \cite{Madeira2004}.
   \item \textit{Biclusters com evoluções coerentes}, têm seus valores com evoluções coerentes, por exemplo, um bicluster com $a_{i4} \leq a_{i3} \leq a_{i2} \leq a_{i1}$ tem valores com evolução coerente na coluna \cite{Madeira2004}. Seus valores podem ser gerados por uma função geradora de valores com evolução coerente $a_{ij} = g(a_{ij}), \forall i,j \in I,J$, sendo $g(\cdot)$ não linear e não constante, para que o tipo de bicluster não seja classificado nos casos anteriores.
  \end{itemize}
+>>>>>>> master
 
 Os biclusters também se diferem quanto a sua estrutura, cada algoritmo faz uma suposição da estrutura de biclusters que é capaz de encontrar. A Figura~\ref{fig:bicstruct} sumariza as diferentes estruturas de biclusters, com as linhas e colunas ordenadas, para permitir a visualização dos biclusters por meio do mapa de calor dos valores de $A$.
 
@@ -951,8 +1094,8 @@ A terceira fase é o Componente de Filtragem, que basicamente recebe a saída do
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=110mm]{img/approach.png}
-\caption{Arquitetura de um SRbC (Adaptado de \citeonline{Lops2011}).}
+\includegraphics[width=100mm]{img/approach.png}
+\caption{Arquitetura de um CBRS}
 \label{fig:approach}
 \end{figure}
 
