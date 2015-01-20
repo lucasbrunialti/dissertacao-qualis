@@ -350,7 +350,7 @@ Folha de Aprovação
 
 \begin{resumo}
 \begin{flushleft}
-\noindent BRUNIALTI, Lucas Fernandes. \textbf{Biclusterização aplicada em Sistemas de Recomendação baseados em Conteúdo Textual}. 2015. NúmeroDePáginas f. Dissertação (Mestrado em Ciências) -- Escola de Artes, Ciências e Humanidades, Universidade de São Paulo, São Paulo, Ano2.
+\noindent BRUNIALTI, Lucas Fernandes. \textbf{Biclusterização aplicada em Sistemas de Recomendação baseados em Conteúdo Textual}. 2015. 59 f. Dissertação (Mestrado em Ciências) -- Escola de Artes, Ciências e Humanidades, Universidade de São Paulo, São Paulo, 2015.
 \newline
 \end{flushleft}
 
@@ -398,7 +398,7 @@ Mineração de Texto.
 
 \begin{abstract}
 \begin{flushleft}
-\noindent BRUNIALTI, Lucas Fernandes. \textbf{Work title}. 2015. NumberOfPages p. Dissertation (Master of Science) -- School of Arts, Sciences and Humanities, University of São Paulo, São Paulo, 2015.
+\noindent BRUNIALTI, Lucas Fernandes. \textbf{Biclustering applied to Content Based Recommender Systems in Textual Domain}. 2015. 59 p. Dissertation (Master of Science) -- School of Arts, Sciences and Humanities, University of São Paulo, São Paulo, 2015.
 \newline
 \end{flushleft}
 
@@ -448,13 +448,13 @@ Text Mining.
 %\fancyhead[LO,LE]{\it\nouppercase\leftmark}
 %\fancyfoot{}
 
-Dada a quantidade e dinamicidade de informação presente na web, é comum as pessoas, usuárias da web, se verem diante de um problema de difícil resolução quando querem encontrar alguma informação.
+Dada a quantidade e dinamicidade de informação presente na \textit{web}, é comum as pessoas, usuárias da \textit{web}, se verem diante de um problema de difícil resolução quando querem encontrar alguma informação.
 Ainda mais do que isso, facilmente as pessoas se veêm em situações onde não conseguem definir exatamente o que querem encontrar.
-Por exemplo, quando usuários da web querem comprar um produto ou ler uma notícia sobre algum assunto específico, frequentemente não conseguem decidir onde o qual produto específico comprar diante de tantas possibilidades, ou até mesmo, embora tenham a intenção de ler sobre um assunto específico, encontram tanta informação que não entendem mais exatamente o que estão procurando.
-\citeonline{Ricci2011} argumentam que muitos usuários da web não têm conhecimento suficiente para saber o que querem consumir da web, ou o que não querem.
+Por exemplo, quando usuários da \textit{web} querem comprar um produto ou ler uma notícia sobre algum assunto específico, frequentemente não conseguem decidir onde o qual produto específico comprar diante de tantas possibilidades, ou até mesmo, embora tenham a intenção de ler sobre um assunto específico, encontram tanta informação que não entendem mais exatamente o que estão procurando.
+\citeonline{Ricci2011} argumentam que muitos usuários da \textit{web} não têm conhecimento suficiente para saber o que querem consumir da \textit{web}, ou o que não querem.
 Com o objetivo de amenizar esse problema, surgem os Sistemas de Recomendação (SRs) que, com base em preferências do usuário, predizem ou sugerem itens (produtos, artigos, músicas e etc), com potencial de serem de grande valia para tais usuários.
 
-Considerando especificamente a ocorrência desse problema no domínio de notícias, uma solução apresentada pelos portais de notícias da web começam a ver é o oferecimento de conteúdo personalizado.
+Considerando especificamente a ocorrência desse problema no domínio de notícias, os portais de notícias da \textit{web} começam a perceber a necessidade do oferecimento de conteúdo personalizado, e portanto, da construção de um SR.
 No entanto, aprender as preferências dos usuários e ao mesmo tempo oferecer conteúdo útil não é uma tarefa trivial, principalmente no contexto em questão, em que as preferências dos usuários mudam com muita frequência \cite{Li2011}.
 
 Um SR de notícias simples e hipotético poderia apresentar a seguinte estratégia para elaborar suas recomendações: dado o histórico de notícias visitadas pelo usuário, as notícias recomendadas seriam aquelas que mais se assemelham ao seu histórico.
@@ -466,7 +466,7 @@ O segundo apresenta um padrão de leitura relacionado à notícias que permeiam 
 O sistema hipotético, muito provavelmente, recomendaria aos tais usuários apenas notícias de esporte e música, respectivamente.
 Embora essas recomendações pareçam ser ideais, e sob um aspecto de análise objetivo elas o são, é factível assumir que esses usuários estão recebendo um serviço de recomendação prático, mas talvez menos útil do que poderia ser, por dois motivos principais: esses usuários possuem um padrão de navegação que foi aprendido pelo sistema, e muito provavelmente eles já sabem seguir esse padrão e não precisam das recomendações senão por comodidade e praticidade; esses usuários estão presos a esse padrão de navegação por não saberem, ou não terem tido motivação, para sair desse padrão e acessar notícias interessantes que tangeiam seus interesses de alguma forma.
 
-O contexto discutido leva à discussão de uma característica de recomendação denominada serendipidade.
+O contexto apresentado leva à discussão de uma característica de recomendação denominada serendipidade.
 Um SR precisa ser capaz também de apresentar recomendações com serendipidade, ou seja, que sejam diversas do que é comumente acessado pelo usuário, sem que essas se distanciem muito dos interesses dele.
 O contexto de recomendações, no caso de notícias, é complexo o suficiente para apresentar itens de recomendação que embora estejam prioritariamente dizendo respeito a um assunto, possuem informações relevantes a outros também.
 
@@ -490,11 +490,11 @@ Assim, faz-se interessante o desenvolvimento de estratégias que permitam melhor
 Há diferentes tipos de recomendação que podem ser considerados (Seção~\ref{sec:sr}). Aqui, o problema de recomendação com base em conteúdo é apresentado, fazendo uma adaptação de \citeonline{Adomavicius2005}.
 
 Seja um conjunto de usuários $U = \{ u_1, u_2, \dots, u_n, \dots, u_N \}$, um conjunto de itens ${\cal I} = \{ I_1, I_2, \dots, I_m, \dots, I_M \}$ e o histórico $h_{u_n,I_m} \in {\cal H}$ indicando se o usuário $u_n$ acessou o item $I_m$.
-O problema de recomendação, com base no conteúdo, pode ser visto como a definição de uma função de similaridade entre itens $s: I \rightarrow I \times I$ para aproximar uma função $l_u$, que irá representar o perfil do usuário $u$, $l_u: {\cal H}_u, s \rightarrow L_u$, onde ${\cal H}_u$ é o subconjunto que representa o histórico de itens que $u$ acessou, e $L_u$ é a lista de recomendações de itens direcionadas à $u$.
+O problema de recomendação, com base no conteúdo, pode ser visto como a definição de uma função de similaridade entre itens $s: I \rightarrow I \times I$ para aproximar uma função $l_{u_n}$, que irá representar o perfil do usuário $u_n$, $l_{u_n}: {\cal H}_{u_n}, s \rightarrow L_{u_n}$, onde ${\cal H}_{u_n}$ é o subconjunto que representa o histórico de itens que $u_n$ acessou, e $L_{u_n}$ é a lista de recomendações de itens direcionadas à $u_n$.
 
 % Achei estranho não ter uma referência aqui. Geralmente definições de conceitos já maduros devem vir de referências importantes. 
 
-A idéia é que a lista de recomendações $L_u$ permita a ocorrência de serendipidade, incluindo um fator de ponderação na função de similaridade $s$, que considere similaridades parciais.
+A idéia é que a lista de recomendações $L_{u_n}$ permita a ocorrência de serendipidade, incluindo um fator de ponderação na função de similaridade $s$, que considere similaridades parciais.
 
 \section{Apresentação do contexto de Biclusterização}
 
@@ -537,7 +537,7 @@ Assim, com o intuito de melhor definir o contexto de estudo neste trabalho, fora
 \begin{itemize}
  \item Levantamento do referencial teórico de SRs.
  \begin{itemize}
-  \item Levantamento do estado da arte sobre o uso de aprendizado de máquina na implementação de SRs baseados em conteúdo textual.
+  \item Levantamento do estado da arte sobre o uso de Aprendizado de Máquina na implementação de SRs baseados em conteúdo textual.
  \end{itemize}
  \item Levantamento do referencial teórico sobre Biclusterização e Mineração de Texto.
  \item Construção de um corpus de itens textuais e um conjunto de dados de recomendação.
@@ -549,7 +549,7 @@ Assim, com o intuito de melhor definir o contexto de estudo neste trabalho, fora
 
 \section{Metodologia}
 
-A análise exploratória da literatura especilizada foi escolhida como estratégia para a aquisição de conhecimento sobre a área de SR, Biclusterização e mineração de textos.
+A análise exploratória da literatura especilizada foi escolhida como estratégia para a aquisição de conhecimento sobre a área de SR, Biclusterização e Mineração de Texto.
 Já para o levantamento do estado da arte em SRs baseados em conteúdo textual e sobre a aplicação de técnicas de Aprendizado de Máquina, mais especificamente clusterização, em SRs baseados em conteúdo textual, optou-se por aplicar a técnica de construção de revisões sistemáticas.
 A Revisão Sistemática (RS) é um tipo de revisão bibliográfica documentada, na qual cada passo da pesquisa é registrado seguindo critérios rigorosos, e portanto permitindo facilmente a auditoria e reprodução da pesquisa.
 Segundo \citeonline{Kitchenham2004}, a RS é um meio de avaliar, identificar e interpretar todas as pesquisas relevantes disponíveis em uma determinada área com base em questões de pesquisa.
@@ -562,7 +562,7 @@ Trata-se de um portal de notícias brasileiro muito conhecido, com um volume de 
 Essas características conferem liberdade para a configuração de experimentos de diferentes naturezas, como experimentos considerando determinadas categorias de notícias, tipos de notícias ou datas de publicação das notícias.
 
 A partir do conteúdo de notícias do portal iG deve ser construído um corpus de dados textuais, categorizados de acordo com as categorias já usadas no referido portal.
-Todo o conteúdo do corpus deve passar por rotinas de pré-processamento comuns na área de Mineração de Texto: \textit{tokenização}, filtragem de \textit{stopwords}, remoção de sufixos (\textit{stemming}), representação da relação ``termos $\times$ documentos'' usando estratégias de frequência termos (TF-IDF) e \textit{n-grams}.
+Todo o conteúdo do corpus deve passar por rotinas de pré-processamento comuns na área de Mineração de Texto: \textit{tokenização}, filtragem de \textit{stopwords}, remoção de sufixos (\textit{stemming}), representação da relação ``termos $\times$ documentos'' usando estratégias de frequência de termos, como TF-IDF e \textit{n-grams}.
 
 %Leia com muito cuidado e veja se faz sentido. MUITO CUIDADO.ALTERE O QUE FOR NECESSÄRIOS TAMBÉM COM MUITO CUIDADO.
 Também, o portal iG possui informações históricas e anônimas referentes ao registro de navegação de usuários.
@@ -595,7 +595,7 @@ Em tempo, estuda-se a possibilidade de aplicar técnicas de \textit{ensemble} co
 
 \section{Organização do documento}
 
-Este documento é composto por quatro capítulos incluindo esta introdução. No Capítulo 2 conceitos fundamentais necessários para a compreensão deste projeto são apresentados, incluindo conceitos sobre SRs, Biclusterização e mineração de texto; o Capítulo 3 apresenta uma revisão bibliográfica sobre Aprendizado de Máquina aplicado à SRs baseados em conteúdo; por fim, o capítulo 4 apresenta em detalhes a proposta desse projeto de mestrado, um relato sobre os resultados já obtidos e o cronograma que guia a realização das próximas atividades.
+Este documento é composto por quatro capítulos incluindo esta introdução. No Capítulo 2 conceitos fundamentais necessários para a compreensão deste projeto são apresentados, incluindo conceitos sobre SRs, Biclusterização e mineração de texto; o Capítulo 3 apresenta uma revisão bibliográfica sobre Aprendizado de Máquina aplicado à SRs baseados em conteúdo textual; por fim, o capítulo 4 apresenta em detalhes a proposta desse projeto de mestrado, um relato sobre os resultados já obtidos e o cronograma que guia a realização das próximas atividades.
 
 
 \chapter{Conceitos Fundamentais}
@@ -606,7 +606,7 @@ Conceitos nas áreas de Sistemas de Recomendação (Seção~\ref{sec:sr}), Biclu
 \section{Sistemas de Recomendação}
 \label{sec:sr}
 
-A grande maioria das pessoas que usam a web muito provavelmente já interagiu com algum Sistema de Recomendação (SR), e por isso, o conceito que define esse tipo de sistema é intuitivo. Porém, por ser uma área forma de estudo relativamente nova \cite{Lops2011}, ainda diferentes autores usam diferentes definições, visto que a interpretação do que consiste um SR difere dependendo do ponto de vista do autor \cite{Leino2014}.
+A grande maioria das pessoas que usam a \textit{web} muito provavelmente já interagiu com algum Sistema de Recomendação (SR), e por isso, o conceito que define esse tipo de sistema é intuitivo. Porém, por ser uma área de estudo relativamente nova \cite{Lops2011}, diferentes autores usam definições diversas, visto que a interpretação do que consiste um SR difere dependendo do ponto de vista de cada autor \cite{Leino2014}.
 
 \citeonline{Resnick1997}, autores que criaram o termo Sistemas de Recomendação \cite{Neumann2007,Leino2014}, argumentam que SRs servem para ajudar em processos de tomada de decisão do dia-a-dia, como quais itens comprar, quais músicas ouvir, ou quais notícias ler.
 Além disso, \citeonline{Resnick1997} provê uma taxonomia na área de Sistemas de Recomendação:
@@ -625,12 +625,12 @@ Isso faz com que SRs que provêm recomendações não-personalizadas deixem de s
 %É provável que isso se deve ao fato que das estratégias usadas atualmente, que têm o foco de produzir recomendações personalizadas.
 
 Formalmente, \citeonline{Burke2002,Burke2007} define SRs como um conjunto de itens ${\cal I}$ que podem ser recomendados, um conjunto de usuários $U$ cujas preferências são conhecidas, um usuário $u$ pra o qual as recomendações são geradas, e algum item $i$ para o qual se quer predizer a preferência para $u$.
-\citeonline{Adomavicius2005} extendem a definição de SR com uma função de utilidade $f$ que mede o quão útil é o item $i$ para o usuário $u$: $f: {\cal I} \times U \rightarrow R$, em que $R = \{ r_{u_1,I_1}, \dots, r_{u_1,I_m}, \dots, r_{u_1,I_M}, \dots, r_{u_n,I_1}, \dots, r_{u_n,I_M}, \dots, r{u_N,I_1}, \dots, r_{u_N,I_m}, \dots, r_{u_N, I_M} \}$ é um conjunto ordenado com valores faltantes, sendo $r_{u_n,i_m}$ um inteiro ou real que representa a interação do usuário $u_i$ no item $i_j$.
+\citeonline{Adomavicius2005} extendem a definição de SR com uma função de utilidade $f$ que mede o quão útil é o item $i$ para o usuário $u$: $f: {\cal I} \times U \rightarrow R$, em que $R = \{ r_{u_1,I_1}, \dots, r_{u_1,I_m}, \dots, r_{u_1,I_M}, \dots, r_{u_n,I_1}, \dots, r_{u_n,I_M}, \dots, r_{u_N,I_1}, \dots, r_{u_N,I_m}, \dots,\\ r_{u_N, I_M} \}$ é um conjunto ordenado com valores faltantes, sendo $r_{u_n,i_m}$ um inteiro ou real que representa a interação do usuário $u_n$ no item $i_m$.
 No entanto, existem tipos de SRs que não estimam $f$ completamente, podendo otimizar funções auxiliares para gerar as recomendações à um usuário $u$ \cite{Lops2011}.
 
 % Essa função de utilidade poderia ser usada na definição de serendipidade. Não vamos conseguir isso para agora, mas é preciso pensar nisso.
 
-Em síntese, um Sistema de Recomendação tem a função de auxiliar os usuários de uma aplicação a interagir com itens, provendo sugestões de com quais itens interagir, baseando-se no histórico de interações desses usuários com esses itens.
+Em síntese, um SR tem a função de auxiliar os usuários de uma aplicação a interagir com itens, provendo sugestões de com quais itens interagir, baseando-se no histórico de interações desses usuários com esses itens.
 
  \subsection{Tipos de Sistemas de Recomendação}
  \label{subsec:tipossr}
@@ -644,7 +644,7 @@ Para estimar $f$ e chegar no conjunto ordenado $R$ existem diversas estratégias
 \citeonline{Jannach2011} provêm uma taxonomia que categoriza os SRs em quatro diferentes tipos:
 \begin{itemize}
  \item \textit{Filtragem colaborativa}, o primeiro tipo de SR que foi implementado \cite{Resnick1997}, tem como idéia básica encontrar outros usuários $u_{1,\dots,Z}$ em $U$, sendo $Z < N$ e não necessariamente em ordem, com preferências semelhantes à $u$, e então recomendar itens com os quais $u_{1,\dots,Z}$ interagiram e que $u$ ainda não interagiu, estabelecendo alguma métrica para estimar $f$. Medidas de similaridade geralmente usadas nesse contexto incluem \textit{Correlação de Pearson} e \textit{Similaridade dos Cossenos}. Também são usadas técnicas para redução de dimensionalidade como \textit{Decomposição de Valores Singulares} e \textit{Fatorização de Matriz} \cite{Jannach2011}.
- \item \textit{Baseado em conteúdo}, é um dos tipos de SR que otimiza funções auxiliares à $f$. Descreve os itens por características possibilitando o uso de medidas de similaridade entre itens. Então, com as interações dos usuários de $U$ e itens em ${\cal I}$, é construído um perfil de interesses para cada usuário. As recomendações são feitas a partir da combinação do perfil de interesses de um usuário $u$ com os itens em ${\cal I}$ que $u$ ainda não interagiu. Neste caso são usadas técnicas de Recuperação de Informação \cite{Jannach2011} para representar os itens e calcular similaridades entre itens, assim como técnicas de Aprendizado de Máquina supervisionado e não-supervisionado \cite{Jannach2011,Burke2002}.
+ \item \textit{Baseado em conteúdo}, é um dos tipos de SR que otimiza funções auxiliares à $f$. Descreve os itens por atributos que possibilitam o uso de medidas de similaridade entre itens. Então, com as interações dos usuários de $U$ e itens em ${\cal I}$, é construído um perfil de interesses para cada usuário. As recomendações são feitas a partir da combinação do perfil de interesses de um usuário $u$ com os itens em ${\cal I}$ que $u$ ainda não interagiu. Neste caso são usadas técnicas de Recuperação de Informação \cite{Jannach2011} para representar os itens e calcular similaridades entre itens, assim como técnicas de Aprendizado de Máquina supervisionado e não-supervisionado \cite{Jannach2011,Burke2002}.
  \item \textit{Baseado em Conhecimento}, tem o intuito de sugerir itens de forma personalizada, baseando-se nas necessidades ou regras estabelecidas por um usuário $u$ e nas características dos itens em ${\cal I}$. São estabelecidas medidas de similaridade para estimar o quanto as necessidades do usuário são atendidas pelas recomendações \cite{Jannach2011,Lops2011,Burke2007}.
  \item \textit{Híbrido}, é capaz de combinar as vantagens de cada tipo de SR para suprir as limitações associadas a cada um deles. A dificuldade, neste caso, está em como combinar as diferentes técnicas para recomendação \cite{Jannach2011,Burke2007}. \citeonline{Burke2007} identificou sete tipos de SRs Híbridos em uma revisão da literatura: \textit{Weighting}, atribui um peso para cada algoritmo a fim de ponderar as recomendações; \textit{Switching}, seleciona um dos algoritmos (ou tipos); \textit{Mixed}, recomendações são mostradas em conjunto; \textit{Combinação de características}, diferentes fontes são combinadas em apenas um algoritmo; \textit{Feature Augumentation}, uma técnica é usada para computar características que servem de entrada para outra técnica; \textit{Cascade}, é atribuído um grau de prioridade para cada algoritmo; \textit{Meta-level}, uma técnica gera um modelo, que é usado como entrada para outras técnicas.
 \end{itemize}
@@ -669,7 +669,7 @@ Isso faz com que aumente a necessidade de ter uma grande quantidade de usuários
 Assim como os SRs de filtragem colaborativa, os SRs baseados em conteúdo sofrem de um problema único, que é a \textit{análise de conteúdo limitada}.
 Este problema se refere à representação dos itens, a qual precisa ser suficiente para discriminá-los \cite{Lops2011}.
 Em SRs baseados em conteúdo é comum haver a necessidade de limitar a representação de itens, tanto pelo número de atributos quanto pelo conteúdo que essas podem representar.
-Por exemplo, no contexto de notícias na web, se a representação for um vetor com o número de ocorrências de cada palavra, perde-se a relação entre as palavras, e também todo o conteúdo que não é texto, como imagens, vídeos, etc.
+Por exemplo, no contexto de notícias na \textit{web}, se a representação for um vetor com o número de ocorrências de cada palavra, perde-se a relação entre as palavras, e também todo o conteúdo que não é texto, como imagens, vídeos, etc.
 
  \subsection{Avaliação da Recomendação}
  \label{subsec:evalsr}
@@ -698,7 +698,7 @@ MAE = \sum_{u \in U} \frac{\sum_{i \in \text{conj\_teste}_u} |f(u,i) - r_{u,i}|}
 
 \begin{equation}
 \label{eq:rmse}
-RMSE = \sum_{u \in U} \sqrt{\frac{\sum_{i \in \text{conj\_teste}_u} (f(u,i) - r_{u,i}^2}{|\text{conj\_teste}_u|}}
+RMSE = \sum_{u \in U} \sqrt{\frac{\sum_{i \in \text{conj\_teste}_u} (f(u,i) - r_{u,i}^2)}{|\text{conj\_teste}_u|}}
 \end{equation}
 
 A métrica MAE computa o erro médio entre as predições feitas pelo SR ($f(u,i)$) e os valores reais das preferências dos usuários ($r_{u,i}$) para todos os usuários em $U$, enquanto o RMSE amplifica erros grandes, pois eleva o mesmo ao quadrado. Essas métricas são usadas para valores reais, ou seja, $r_{u,i} \in [0,1]$, por exemplo.
@@ -717,7 +717,7 @@ No entanto, algoritmos de Biclusterização se fazem úteis quando se deseja enc
 Ou seja, enquanto algoritmos de clusterização têm o intuito de encontrar \textit{modelos globais}, que geram grupos de dados levando em consideração todas as características, algoritmos de Biclusterização geram grupos de dados em que as características tem alta correlação \cite{Franca2010,Madeira2004}.
 
 Para a descrição do problema formal de Biclusterização usa-se a seguinte definição \cite{Madeira2004}: seja uma matriz $A$, de dimensão $N \times M$, um conjunto de linhas $X = \{ x_1, \dots, x_n, \dots, x_N \}$ e um conjunto de colunas $Y = \{ y_1, \dots, y_m, \dots, y_M \}$, em que $a_{nm}$ geralmente é um número real e representa a relação entre a linha $x_n$ e a coluna $y_m$; o problema de Biclusterização é encontrar biclusters, que são submatrizes de $A$, denotados por $A_{IJ}$, em que $I \subseteq X$ e $J \subseteq Y$.
-Assim, o bicluster $A_{IJ}$ é um grupo dos exemplos em $I$, perante as características com alta correlação $J$.
+Assim, o bicluster $A_{IJ}$ é um grupo dos objetos em $I$, perante as características com alta correlação $J$.
 
 \subsection{Tipos de biclusters}
 \label{sec:tiposbic}
@@ -807,7 +807,7 @@ A Figura~\ref{fig:bicstruct} sumariza as diferentes estruturas de biclusters, co
 
 \subsection{Algoritmos para Biclusterização}
 
-Diversos algoritmos para encontrar biclusters, de diferentes tipos e estruturas, foram propostos na literatura \cite{Tanay2005,Madeira2004}. 
+Diversos algoritmos para encontrar biclusters, de diferentes tipos e estruturas, foram propostos na literatura \cite{Tanay2005,Madeira2004}.
 
 Um dos algoritmos de Biclusterização mais comum e simples. que encontra biclusters com valores coerentes, em estrutura com sobreposição e arbitrariamente posicionados, é o \textit{Coupled Two-way Clustering} (CTWC) \cite{Getz2000}. O algoritmo CTWC é capaz de encontrar biclusters através da clusterização de objetos e atributos (linhas e colunas), separadamente.
 O algoritmo de clusterização usado por \citeonline{Getz2000} foi o \textit{Superparamagnetic Clustering} (SPC), o qual é capaz de determinar o número de clusters automaticamente, e com uma estratégia de clusterização hierárquica \textit{top-down} é capaz de gerar clusters estáveis \cite{Getz2000}.
@@ -832,7 +832,7 @@ onde $H_{IJ}$ é o RQM de uma submatriz $A_{IJ}$, $H_{iJ}$ o RQM da linha $i$, $
 
 Então, um bicluster perfeito $A_{IJ}$ teria o RQM $H_{IJ} = 0$, pois $a_{ij} = a_{ij}, \forall i,j \in I,J$, fazendo $a_{iJ} = a_{Ij} = a_{IJ}$. No entanto, se apenas minizar o RQM, um bicluster com apenas um elemento seria perfeito, o que pode não refletir a realidade. Além disso, em conjunto de dados reais existe ruído, podendo esconder o bicluster perfeito.
 
-Para encontrar biclusters, ou $\delta$-biclusters, \citeonline{Cheng2000} usam uma estratégia gulosa que retira linhas e colunas, visando a minimização do RQM, respeitando um parâmetro $\delta$, que é calibrado pelo usuário. Então, um bicluster é encontrado quando o RQM de uma submatriz $A_{IJ}$ é $H_{IJ} \leq \delta$, para algum $\delta \geq 0$. As etapas de remoções de elementos da matriz são apresentadas nos algoritmos~\ref{algo:cc1} e~\ref{algo:cc2}.
+Para encontrar biclusters, ou $\delta$-biclusters, \citeonline{Cheng2000} usam uma estratégia gulosa que retira linhas e colunas, visando a minimização do RQM, respeitando um parâmetro $\delta$, que é calibrado pelo usuário. Então, um bicluster é encontrado quando o RQM de uma submatriz $A_{IJ}$ é $H_{IJ} \leq \delta$, para algum $\delta \geq 0$. As etapas de remoções de elementos da matriz são apresentadas nos algoritmos 1 e 2.
 
 \begin{algorithm}[H]
 \label{algo:cc1}
@@ -859,13 +859,13 @@ Para encontrar biclusters, ou $\delta$-biclusters, \citeonline{Cheng2000} usam u
   remova $j \in J$ onde $H_{Ij} > \alpha \cdot H_{IJ}$\;
   encontre a coluna $c_{max} = \operatorname*{arg\,max}_{j \in J} H_{Ij}$\;
   \If{não houve nenhuma remoção}{
-   chame o algoritmo~\ref{algo:cc1}
+   chame o algoritmo 1
   }
  }
  \caption{Remove múltiplas linhas e colunas de $A$ a cada iteração.}
 \end{algorithm}
 
-O algoritmo~\ref{algo:cc2} é usado para acelerar o processo de busca de um $\delta$-bicluster, convergindo mais rapidamente para uma solução quanto maior for o parâmetro $\alpha$, em que $\alpha \geq 0$. Ainda, para amenização do problema de encontrar $\delta$-biclusters perfeitos com apenas um elemento, ou poucos elemento, é utilizado o \textcolor{blue}{algoritmo~\ref{algo:cc3}}, que adiciona nós sem aumentar o RQM do bicluster.
+O algoritmo 2 é usado para acelerar o processo de busca de um $\delta$-bicluster, convergindo mais rapidamente para uma solução quanto maior for o parâmetro $\alpha$, em que $\alpha \geq 0$. Ainda, para amenização do problema de encontrar $\delta$-biclusters perfeitos com apenas um elemento, ou poucos elemento, é utilizado o algoritmo 3, que adiciona nós sem aumentar o RQM do bicluster.
 
 % deu problema nessas referencias cruzadas, verifique.
 
@@ -886,7 +886,7 @@ O algoritmo~\ref{algo:cc2} é usado para acelerar o processo de busca de um $\de
  \caption{Adiciona linhas e colunas de $A_{IJ}$ a cada iteração.}
 \end{algorithm}
 
-Por fim, o \textcolor{blue}{algoritmo~\ref{algo:cc4}} é a consolidação dos \textcolor{blue}{algoritmos~\ref{algo:cc3}},~\ref{algo:cc2} e~\ref{algo:cc1} e a iteração para encontrar $k$ $\delta$-biclusters, um a um, sendo $k$ fornecido pelo usuário.
+Por fim, o algoritmo 4 é a consolidação dos algoritmos 3, 2 e 1 e a iteração para encontrar $k$ $\delta$-biclusters, um a um, sendo $k$ fornecido pelo usuário.
 
 \begin{algorithm}[h]
 \label{algo:cc4}
@@ -894,9 +894,9 @@ Por fim, o \textcolor{blue}{algoritmo~\ref{algo:cc4}} é a consolidação dos \t
  \KwOut{$k$ $\delta$-biclusters}
  $A' \leftarrow A$\;
  \For{$1$ \KwTo $k$}{
-   $B \leftarrow$ algoritmo~\ref{algo:cc2} com $A', \delta, \alpha$\;
-   $C \leftarrow$ algoritmo~\ref{algo:cc1} com $B, \delta$\;
-   $D \leftarrow$ algoritmo~\ref{algo:cc3} com $A, C$\;
+   $B \leftarrow$ algoritmo 2 com $A', \delta, \alpha$\;
+   $C \leftarrow$ algoritmo 1 com $B, \delta$\;
+   $D \leftarrow$ algoritmo 3 com $A, C$\;
    reporte $D$ como uma solução\;
    adicione ruído em $A'$ para a submatriz $D$\;
  }
@@ -905,7 +905,7 @@ Por fim, o \textcolor{blue}{algoritmo~\ref{algo:cc4}} é a consolidação dos \t
 
 % Algoritmo Spectral (?)
 
-Além dos algoritmos apresentados, existem outros algoritmos que são capazes de encontrar outros tipos de biclusters (seção~\ref{sec:tiposbic}), além de serem recentes \cite{Franca20102,Yang2013,Hochreiter2010,Cabanes2012}, mostrando que ainda há interesse na área de pesquisa de Biclusterização.
+Além dos algoritmos apresentados, existem outros algoritmos que são capazes de encontrar outros tipos de biclusters (Seção~\ref{sec:tiposbic}), além de serem recentes \cite{Franca20102,Yang2013,Hochreiter2010,Cabanes2012}, mostrando que ainda há interesse na área de pesquisa de Biclusterização.
 
  \subsection{Avaliação de Biclusterização}
 
@@ -999,15 +999,15 @@ Depois de encontrados os vetores $\vec{v}$, é feita a projeção dos dados ness
 %  TODO instanciação do framework de text mining
 %  TODO falar sobre artigos de clustering (email)
 
-Os Sistemas de Recomendação baseados em Conteúdo (SRbC) têm fortes relações com a área de Recuperação de Informação \cite{Adomavicius2005,Jannach2011} e Aprendizado de Máquina \cite{Adomavicius2005,Lops2011}, para representação de itens e perfis de usuários, e aprendizado do perfil do usuário.
+Os Sistemas de Recomendação baseados em Conteúdo (SRsbC) têm fortes relações com a área de Recuperação de Informação \cite{Adomavicius2005,Jannach2011} e Aprendizado de Máquina \cite{Adomavicius2005,Lops2011}, para representação de itens e perfis de usuários, e aprendizado do perfil do usuário.
 Basicamente, este tipo de sistema analisa o conteúdo de diversos itens, extraindo atributos para representação, com esses mesmos atributos (ou às vezes até mais \cite{Capelle2012}) representa-se o perfil do usuário.
 Sabendo os interesses dos usuários, através do perfil construído, o sistema seleciona itens que o usuário ainda não consumiu e que sejam relacionados com os seus interesses.
 
 \section{Arquitetura de Sistemas de Recomendação baseados em Conteúdo}
 \label{sec:arquitetura}
 
-\citeonline{Lops2011} propõem uma arquitetura para o desenvolvimento de SRbC, a qual separa o processo de recomendação em três fases (Figura ~\ref{fig:approach}). O analisador de conteúdo tem como entrada os itens não estruturados, assim, através de técnicas de Mineração de Dados, os itens são representados de forma estruturada.
-Uma representão comum, no contexto de conteúdo textual, é o \textit{Vector Space Model} \cite{Adomavicius2005,Lops2011,Jannach2011} (Seção~\ref{subsec:preprocessamento}).
+\citeonline{Lops2011} propõem uma arquitetura para o desenvolvimento de SRsbC, a qual separa o processo de recomendação em três fases (Figura ~\ref{fig:approach}). O analisador de conteúdo tem como entrada os itens não estruturados, assim, através de técnicas de Mineração de Dados, os itens são representados de forma estruturada.
+Uma representação comum, no contexto de conteúdo textual, é o \textit{Vector Space Model} \cite{Adomavicius2005,Lops2011,Jannach2011} (Seção~\ref{subsec:preprocessamento}).
 Onde representa-se o vetor de termos do documento $d_i$ por $\vec{vt}_{d_i} = ( ft(t_1, d_i),\\ ft(t_2, d_i), \dots, ft(t_m, d_i) )$, em que $t_i$ é um termo, para então usar a representação de TF-IDF.
 % Uma das representações mais comuns \cite{Adomavicius2005,Lops2011,Jannach2011} para representação textual é o Modelo do Espaço Vetorial \cite{Salton1975}, aonde cada item ou documento $d_i \in D$, sendo $D$ um conjunto de documentos de tamanho $n$, é representado por um vetor de termos $d_i = \{t_1, t_2, \dots, t_m\}$, em que $m$ é o número de termos. Assim, calcula-se o \textit{$TFIDF^{d_i}_{t_k}$ (Term-Frequency Index-Frequency)} do documento $d_i$ e o termo $t_k$ \cite{Salton1975}:
 
@@ -1018,7 +1018,7 @@ Onde representa-se o vetor de termos do documento $d_i$ por $\vec{vt}_{d_i} = ( 
 Com a representação dos itens estruturada realizada, ocorre a representação dos perfis, que geralmente é baseado na representação dos itens, ou seja, o perfil do usuário $u$ é dado por $\{ (d_1, r_{u,d_1}), \dots, (d_j, r_{u,d_n}) \}$, sendo $r_{u,d_n}$ o quão o usuário $u$ gostou do documento $d_n$, seja pela manifestação explícita, por exemplo em que o usuário avaliou o documento, ou pela manifestação implícita, tendo como exemplo quando o usuário lê uma notícia, fica muito tempo na página, etc.
 Finalmente, é possível aprender os perfis dos usuários utilizando de técnicas e algoritmos de Aprendizado de Máquina \cite{Adomavicius2005,Lops2011,Jannach2011}, por exemplo, para prever se o usuário gosta ou não de um determinado item (classificação).
 
-A terceira fase é o Componente de Filtragem, que basicamente recebe a saída do classificador, seleciona os itens mais relevantes para os usuários, e apresenta uma lista de recomendações. Geralmente, essa lista é ordenada e apresentada os top $N$ itens mais relevantes.
+A terceira fase é a fase Componente de Filtragem, que basicamente recebe a saída do classificador, seleciona os itens mais relevantes para os usuários, e apresenta uma lista de recomendações. Geralmente, essa lista é ordenada por um \textit{score}, apresentando os itens mais relevantes (\textit{top $N$}).
 
 \begin{figure}[h]
 \centering
@@ -1027,8 +1027,8 @@ A terceira fase é o Componente de Filtragem, que basicamente recebe a saída do
 \label{fig:approach}
 \end{figure}
 
-Essa arquitetura apresentada foi adaptada de \cite{Lops2011}, para maior compreendimento e maior adequação com esse trabalho.
-As subseções~\ref{subsec:analisadorcontexto},~\ref{subsec:perfil} e~\ref{subsec:filtragem} fazem uma revisão da literatura das técnicas de Aprendizado de Máquina aplicadas aos módulos de um SRbC. 
+Essa arquitetura apresentada foi adaptada de \citeonline{Lops2011}, para maior compreendimento e maior adequação com esse trabalho.
+As subseções~\ref{subsec:analisadorcontexto},~\ref{subsec:perfil} e~\ref{subsec:filtragem} fazem uma revisão da literatura das técnicas de Aprendizado de Máquina aplicadas aos módulos de um SRsbC. 
 
 \subsection{Analisador de Contexto}
 \label{subsec:analisadorcontexto}
@@ -1060,21 +1060,21 @@ Atributos que não são textuais também são usados no contexto de notícias, c
 
 Nesta etapa é onde o perfil do usuário é representado e aprendido pelo SR. Na maioria das vezes o perfil é representado por um vetor de documentos de tamanho $k$, que o usuário visitou ou apresentou um feedback positivo $d_{prefs} = \{d_{pref_1}, d_{pref_2}, \dots, d_{pref_k}\}$.
 Há outras formas de representação, como em \citeonline{Yeung2012}, que além da anterior, incorpora informações demográficas, tratando o problema de \textit{user cold-start} em SRsbC.
-\citeonline{Vaz2012} propõem uma representação para o perfil do usuário usando um método da área de Recuperação de Informação: algoritmo de \textit{Rocchio}, onde cada documento $d_{pref_i}$ é classificado pelo usuário em positivo ou negativo (como exemplo, gostou ou não gostou), assim o algoritmo faz uma mistura dos exemplos positivos e negativos, com um peso diferente para cada tipo de exemplo, obtendo um vetor.
+\citeonline{Vaz2012} propõem uma representação para o perfil do usuário usando um método da área de Recuperação de Informação: algoritmo de \textit{Rocchio}, onde cada documento $d_{pref_i}$ é classificado pelo usuário em positivo ou negativo (como exemplo, gostou ou não gostou), assim o algoritmo faz uma mistura dos objetos positivos e negativos, com um peso diferente para cada tipo de objeto, obtendo um vetor.
 Então, esse vetor é comparado com vetores de itens (usando similaridade dos cossenos), para obter itens semelhantes.
-Variando os parâmetros, os autores chegaram na conclusão que, incorporando exemplos negativos na representação do perfil para treinamento do algoritmo, piora a qualidade das recomendações.
+Variando os parâmetros, os autores chegaram na conclusão que, incorporando objetos negativos na representação do perfil para treinamento do algoritmo, piora a qualidade das recomendações.
 
-O aprendizado do perfil do usuário é como um problema de classificação, onde o vetor de exemplos é dado por $X = \{d_{pref_i}, y^{+-}_i\}$, sendo que $y^{+-}_i$ representa o rótulo, ou seja, se $d_{pref_i}$ é um item que o usuário gostou($+$) ou não($-$).
+O aprendizado do perfil do usuário é como um problema de classificação, onde o vetor de objetos é dado por $X = \{d_{pref_i}, y^{+-}_i\}$, sendo que $y^{+-}_i$ representa o rótulo, ou seja, se $d_{pref_i}$ é um item que o usuário gostou($+$) ou não($-$).
 Então, é treinado um classificador que irá classificar itens que o usuário ainda não consumiu, para saber se é um item que o usuário irá consumir/gostar.
 Diversos algoritmos são usados para resolver esse tipo de problema: Redes Bayesianas \cite{Yeung2012, Cleger2012}, Naïve Bayes \cite{Lee2012, Semeraro2012}, SVM (\textit{Support Vector Machine}) \cite{Tantanasiriwong2012, Lee2012}.
 
-Existem trabalhos que tratam o aprendizado do perfil com técnicas de Aprendizado Semi-Supervisionado, \citeonline{Lee2012} faz uso de comitê de máquinas para construir um modelo de Aprendizado de Máquina que classifica apenas classes positivas, visando classificar se o usuário de um e-commerce irá gostar ou não de um produto. Primeiramente, classifica exemplos sem rótulo, para depois entrarem no modelo final que agrega todos os exemplos (SVM ou Naïve Bayes).
+Existem trabalhos que tratam o aprendizado do perfil com técnicas de Aprendizado Semi-Supervisionado, \citeonline{Lee2012} faz uso de comitê de máquinas para construir um modelo de Aprendizado de Máquina que classifica apenas classes positivas, visando classificar se o usuário de um e-commerce irá gostar ou não de um produto. Primeiramente, classifica objetos sem rótulo, para depois entrarem no modelo final que agrega todos os objetos (SVM ou Naïve Bayes).
 Foi verificado que o SR proposto trata o problema de poucos dados para a identificação do perfil do usuário, pois não necessita apenas de dados rotulados.
 
 É possível tratar o problema de aprendizado do perfil como um problema de clusterização \cite{Davoodi2012, Bielikova2012}.
 \citeonline{Davoodi2012} apresentam um SR de especialistas, que representa o perfil dos usuários com semântica e constrói uma \textit{Rede Social}, para então, usar o algoritmo de clusterização (\textit{k-means}) para encontrar perfis de usuário.
 Além desse, \cite{Bielikova2012} apresenta um SR de notícias que faz o uso de clusterização hierárquica, tendo como medidade de similaridade a similaridade dos cossenos e índice de jaccard.
-Com uma abordagem \textit{bottom-up} de clusterização e uma estrutura de árvore binária, é realizado a clusterização das notícias: as folhas representam as notícias e os nós pais, clusters que representam temas das notícias.
+Com uma abordagem \textit{bottom-up} de clusterização e uma estrutura de árvore binária, é realizado a clusterização das notícias: as folhas representam as notícias, e os nós pais, clusters que representam temas das notícias.
 O usuário desse sistema é representado por caminhos nesta árvore construída, podendo ser recomendados diversas notícias dentro de diversos tópicos, que podem surpreender o usuário, amenizando o problema de serendipidade em SRsbC. 
 
 \subsection{Componente de Filtragem}
@@ -1141,7 +1141,7 @@ O trabalho desenvolvido por \citeonline{Bielikova2012} foi o único que apresent
 
 A proposta desse projeto de mestrado envolve a aplicação de algoritmos de Biclusterização para o problema de recomendação baseado em conteúdo textual, com a hipótese de que as recomendação geradas, possam amenizar o problema da serendipidade, visto que técnicas de Biclusterização são capazes de encontrar clusters através da análise de subconjuntos de atributos.
 
-Formalmente, os algoritmos de Biclusterização irão atingir o módulo de representação dos itens em um SRbC, mais especificamente, na função de similaridade entre itens $s: I \rightarrow I \times I$, que pode ser capaz de encontrar itens similares, que poderiam não ser similares caso $s$ fosse gerado por um algoritmo de clusterização, por exemplo.
+Formalmente, os algoritmos de Biclusterização irão atingir o módulo de representação dos itens em um SRsbC, mais especificamente, na função de similaridade entre itens $s: I \rightarrow I \times I$, que pode ser capaz de encontrar itens similares, que poderiam não ser similares caso $s$ fosse gerado por um algoritmo de clusterização, por exemplo.
 Então, espera-se que o fator de mudança na função de similaridade entre itens $s$, acrescente um fator de serendipidade que influencie na aproximação da função $l_u$, que representa o perfil do usuário $u$, e portanto, na lista de recomendações $L_u$, direcionadas à $u$, dado que $l_u: {\cal H}_u, s \rightarrow L_u$, sendo ${\cal H}_u$ o subconjunto que representa o histórico de itens que $u$ acessou.
 
 Então, para a validação dessa hipótese, se faz necessária a definição de um contexto para servir de prova de conceito.
@@ -1154,7 +1154,7 @@ Para então, realizar a implementação de algoritmos de Biclusterização, que 
 Também, o portal iG possui informações históricas e anônimas referentes ao registro de navegação de usuários.
 Esse registro permitirá a construção de um conjunto de dados de preferências, que poderá ser usado para realização de \textit{testes offline} para validar a prova de conceito, e portanto, a hipótese.
 
-Os passos da proposta são sumarizados na Figura~\ref{fig:proposta}, onde se tem a fase de aquisição de notícias que comporá o corpus de notícias, para entrada na fase de pré-processamento, que utilizará de técnicas de Mineração de Texto para a estruturação do conteúdo textual, realizando diversas representações (TF-IDF, TF-IDF normalizado e \textit{n-grams}). Isso possibilitará a criação de biclusters através de algoritmos de Biclusterização, para então, dado o histórico de itens que o usuário navegou, analisar os biclusters que contém esses itens, e construir a lista de recomendação com base em outras notícias presentes nesses biclusters. Assim, será possível avaliar a qualidade dos biclusters gerados, em relação às notícias recomendadas e as informações históricas. Verificando também, como a estratégia se adequa à serendipidade, através da comparação das recomendações geradas pela estratégia por recomendações geradas através da técnica de filtro colaborativo.
+Os passos da proposta são sumarizados na Figura~\ref{fig:proposta}, onde se tem a fase de aquisição de notícias que comporá o corpus de notícias, para entrada na fase de pré-processamento, que utilizará de técnicas de Mineração de Texto para a estruturação do conteúdo textual, realizando diversas representações (TF-IDF, TF-IDF normalizado e \textit{n-grams}). Isso possibilitará a criação de biclusters através de algoritmos de Biclusterização, para então, dado o histórico de itens que o usuário navegou, analisar os biclusters que contém esses itens, e construir a lista de recomendação com base em outras notícias presentes nesses biclusters. Assim, será possível avaliar a qualidade dos biclusters gerados, em relação às notícias recomendadas e às informações históricas. Verificando também, como a estratégia se adequa à serendipidade, através da comparação das recomendações geradas pela estratégia por recomendações geradas através da técnica de filtro colaborativo.
 
 \begin{figure}[h]
 \centering
@@ -1163,7 +1163,7 @@ Os passos da proposta são sumarizados na Figura~\ref{fig:proposta}, onde se tem
 \label{fig:proposta}
 \end{figure}
 
-Com o objetivo de especificar ainda mais as etapas da proposta e trazer informações sobre o desenvolvimento das mesmas, as seções Revisões Bibliográficas (Seção~\ref{sec:revisoesbibliograficas}), Construção das Bases de Dados (Seção~\ref{sec:basesig}) e Possibilidades são apresentadas.
+Com o objetivo de especificar ainda mais as etapas da proposta e trazer informações sobre o desenvolvimento das mesmas, as seções Revisões Bibliográficas (Seção~\ref{sec:revisoesbibliograficas}), Construção das Bases de Dados (Seção~\ref{sec:basesig}), Estratégias para Validação e Extensões (Seção~\ref{sec:estrategiasvalidacao}) e Cronograma - Próximos Passos (Seção~\ref{misc:cronograma}) são apresentadas.
 
 \section{Revisões Bibliográficas}
 \label{sec:revisoesbibliograficas}
@@ -1171,14 +1171,14 @@ Com o objetivo de especificar ainda mais as etapas da proposta e trazer informa�
 Se fez necessária, primeiramente, de uma análise exploratória para obter noções básicas da área de SRs, que foi realizada através da leitura de livros e artigos do tipo revisão bibliográfica, o que permitiu, em seguida, o aprofundamento na área de SRs, por meio da RS em Aprendizado de Máquina e SRsbC Textual.
 
 A RS compreende estudos entre 2003 à 2014 que fazem referência ao estudo do estado da arte ou estado da prática sobre SRsbC textuais e apresentem alguma solução com o uso de técnicas de Aprendizado de Máquina.
-Os estudos foram selecionados através da busca sistemática nas seguintes bases de dados: Scopus\footnote{http://www.scopus.com/}, ISI Web of Science (WoS)\footnote{http://apps.webofknowledge.com/}, IEEE Xplore\footnote{http://ieeexplore.ieee.org}, ACM Digital Library\footnote{http://dl.acm.org} e SpringerLink\footnote{http://link.springer.com/}. Para cada busca foi escrito um protocolo (veja um exemplo em~\ref{app:protocolo}).
+Os estudos foram selecionados através da busca sistemática nas seguintes bases de dados: Scopus\footnote{http://www.scopus.com/}, ISI \textit{web} of Science (WoS)\footnote{http://apps.webofknowledge.com/}, IEEE Xplore\footnote{http://ieeexplore.ieee.org}, ACM Digital Library\footnote{http://dl.acm.org} e SpringerLink\footnote{http://link.springer.com/}. Para cada busca foi escrito um protocolo (veja um exemplo no Apêndice~\ref{app:protocolo}).
 Para realizar a filtragem dos estudos encontrados foi utilizada uma abordagem \textit{Tollgate}: três pesquisadores aplicam os critérios de inclusão de maneira independente, e então, o consenso na decisão final é decidido pela maioria.
-Sendo assim, a fim de extrair os dados dos estudos, é realizada a leitura dos estudos incluídos e seus dados sumarizados em uma tabela (veja um exemplo em~\ref{app:protocolo-extracao}).
+Sendo assim, a fim de extrair os dados dos estudos, é realizada a leitura dos estudos incluídos e seus dados sumarizados em uma tabela (veja um exemplo no Apêndice~\ref{app:protocolo-extracao}).
 
 Com um total de $304$ estudos após a identificação nas bases de dados e remoção de duplicatas, foi feita a leitura e extração de dados de $18$ estudos, que compreendem os estudos publicados entre os anos de 2012 à 2014. A finalização da RS se dará após aplicação da filtragem e extração de dados para os demais anos.
 
 Para aplicação dos algoritmos de Biclusterização, foi realizado um levantamento do referencial teórico, através da análise exploratória de livros, artigos do tipo revisão bibliográfica e artigos que se referem à criação dos algoritmos \cite{Franca2010,Cheng2000,Tanay2005,Madeira2004,Santamaria2007,Kluger2003,Prelic2006}.
-Isso possibilitou a geração de conjuntos de dados sintéticos (Seção~\ref{sec:tiposbic}), e implementação do algoritmo de \citeonline{Cheng2000} nesses conjuntos, disponibilizado em \textit{https://github.com/lucasbrunialti/biclustering-experiments}.
+Isso possibilitou a geração de conjuntos de dados sintéticos (Seção~\ref{sec:tiposbic}), e implementação do algoritmo de \citeonline{Cheng2000} nesses conjuntos, disponibilizado em \textit{https://github.com/lucasbruni\\alti/biclustering-experiments}.
 
 Além disso, também foi necessária a realização de uma análise exploratória das áreas de Mineração de Texto, para que fosse possível a estruturação dos conteúdos textuais presentes nas notícias (Seção~\ref{sec:basesig}).
 
@@ -1191,9 +1191,9 @@ Além disso, também foi necessária a realização de uma análise exploratóri
 A extração das notícias do portal iG foi realizada através da implementação de um \textit{web crawler} utilizando a linguagem python\footnote{https://www.python.org/}.
 As notícias foram capturadas a partir de uma página de início, fornecida para o \textit{web crawler}, que era selecionada a fim de equalizar a distribuição de notícias por ano e por categoria (canal).
 
-O corpus iG é composto por um conjunto de notícias do portal iG\footnote{http://www.ig.com.br/} ${\cal N} = \{ I_1, \dots, I_m, \dots, I_M \}$, em que cada notícia $I_m$ é representada pela tupla $(\text{\textit{permalink}}, \text{\textit{título}}, \text{\textit{subtítulo}}, \text{\textit{corpo}}, c_i)$, em que $\text{\textit{permalink}}$ é o endereço eletrônico fixo da notícia, e, $c_i$ um elemento do conjunto de canais $\;{\cal C} = \{ \text{\textit{gente}}, \text{\textit{ultimosegundo}}, \text{\textit{delas}}, \text{\textit{economia}},\\ \text{\textit{esporte}}, \text{\textit{saude}}, \text{\textit{igay}}, \text{\textit{deles}}, \text{\textit{tecnologia}}, \text{\textit{igirl}}, \text{\textit{jovem}}, \text{\textit{arena}}, \text{\textit{luxo}} \}$, onde cada canal representa um assunto ou categoria de notícias.
+O corpus iG é composto por um conjunto de notícias do portal iG\footnote{http://www.ig.com.br/} ${\cal N} = \{ I_1, \dots, I_m,\\ \dots, I_M \}$, em que cada notícia $I_m$ é representada pela tupla $(\text{\textit{permalink}}, \text{\textit{título}}, \text{\textit{subtítulo}}, \text{\textit{corpo}},\\ c_i)$, em que $\text{\textit{permalink}}$ é o endereço eletrônico fixo da notícia, e, $c_i$ um elemento do conjunto de canais $\;{\cal C} = \{ \text{\textit{gente}}, \text{\textit{ultimosegundo}}, \text{\textit{delas}}, \text{\textit{economia}}, \text{\textit{esporte}}, \text{\textit{saude}}, \text{\textit{igay}}, \text{\textit{deles}},\\ \text{\textit{tecnologia}}, \text{\textit{igirl}}, \text{\textit{jovem}}, \text{\textit{arena}}, \text{\textit{luxo}} \}$, onde cada canal representa um assunto ou categoria de notícias.
 
-O número total de notícias do corpus é $M = 4\;593$, com mais de $250$ caracteres no corpo, no perído de 02 de Janeiro de 2012 à 11 de Outubro de 2014. As notícias estão bem distribuídas por ano: $1\;551$ notícias em 2012, $1\;933$ notícias em 2013 e $1\;109$ em 2014. Como cada notícia esta associada com um canal, foi coletada a distribuição de notícias por canal (Tabela~\ref{tab:distcanais}).
+O número total de notícias do corpus é $M = 4\;593$, com mais de $250$ caracteres no \textit{corpo}, no perído de 02 de Janeiro de 2012 à 11 de Outubro de 2014. As notícias estão bem distribuídas por ano: $1\;551$ notícias em 2012, $1\;933$ notícias em 2013 e $1\;109$ em 2014. Como cada notícia esta associada com um canal, foi coletada a distribuição de notícias por canal (Tabela 1).
 
 \begin{table}[h]
 \label{tab:distcanais}
@@ -1253,19 +1253,75 @@ Assim, se considerar cada clique $h_{u_n,I_m}^t$ como uma preferência do usuár
 A base de cliques iG é composta de $487\;487\;395$ cliques, com notícias coletadas, aproximadamente, do período de abril de 2013 à novembro de 2014. Essa base de dados tem tamanho total, sem compressão, de $100GB$, o que dificulta a sua mineração. No entanto, pretende-se usar apenas as notícias que compõem o corpus iG.
 
 
+\section{Estratégias para Validação e Extensões}
+\label{sec:estrategiasvalidacao}
 
-% \section{Estudos iniciais de Biclusterização em conjunto de dados sintéticos} (?)
-% \section{Estudos iniciais de Biclusterização no corpus IG}
+\subsection{Estratégias para Validação}
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+A primeira forma de avaliação do trabalho, consistirá na análise dos biclusters criados através de medidas de avaliação internas, onde usa-se os próprios biclusters, juntamente com métricas de qualidade e/ou estabilidade, para avaliar as soluções geradas. A métrica estudada até o momento para avaliação interna é a métrica de consistência \cite{Santamaria2007}, que verifica se os biclusters encontrados correspondem com a definição de bicluster.
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+Também serão realizados \textit{testes offline}, utilizando a base de cliques iG, para verificar se o modelo proposto, é capaz de oferecer recomendações consistentes, comparando as recomendações geradas para um usuário $u$ com o histórico deste mesmo usuário, utilizando as métricas de precisão e revocação, variando o número de recomendações oferecidas.
+Segundo \citeonline{Jannach2011}, essa estratégia é a que mais se adequa quando a recomendação é em forma de lista que é apresentado à um usuário.
+Este método também pode ser interpretado como uma avaliação externa dos biclusters.
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+Ainda utilizando a base de cliques iG, será realizada outra avaliação com \textit{testes offline}, comparando as recomendações obtidas com recomendações geradas por um filtro colaborativo, que será, a princípio, implementado neste trabalho, fazendo uma comparação da recomendação gerada com a estratégia proposta e da recomendação gerada com o filtro colaborativo. Serão utilizadas as mesmas métricas presentes na avaliação anterior.
 
-% \textcolor{red}{Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.}
+\subsection{Possíveis Extensões}
+
+Sobre a geração da lista de recomendações direcionadas à um usuário ($L_{u_n}$), uma forma mais simples, já descrita neste trabalho, é verificar os itens do histórico do usuário, buscando os biclusters aos quais esses itens pertencem, e dentro desses biclusters procurar por notícias para a construção da recomendação.
+Uma possível abordagem para a geração de $L_{u_n}$ é observar o histórico de itens que o usuário $u_n$ interagiu, como um modelo escondido de Markov, em que deseja-se descobrir a probabilidade do próximo item que o usuário vai consumir: $P( h_{u_n,I_{m+1}} | h_{u_n,I_{1}},\dots,h_{u_n,I_{m}} )$, este modelo é chamado, especificamente, de \textit{Variable Length Markov Chains} \cite{Murphy2012}.
+Ainda, é possível combinar os resultados dos biclusters com o modelo escondido de Markov, fazendo com que que esteo calcule a probabilidade do próximo bicluster em que o usuário irá navegar.
+
+Outra possível extensão, diz respeito ao uso de \textit{Ensemble} de Clusterização \cite{Strehl2002}, como forma de substituir os algoritmos de Biclusterização, visto que estes podem considerar subconjuntos de atributos para a formação de clusters.
+Assim, é possível fazer comparações com uma técnica semelhante à originalmente proposta: Biclusterização.
 
 \section{Próximos passos - cronograma}
+
+\noindent
+\begin{ganttchart}[
+    vgrid,
+    hgrid,
+    x unit=4.5mm,
+  ]{1}{33}
+  \label{misc:cronograma}
+  \gantttitle{Jan}{3}
+  \gantttitle{Fev}{3}
+  \gantttitle{Mar}{3}
+  \gantttitle{Abr}{3}
+  \gantttitle{Mai}{3}
+  \gantttitle{Jun}{3}
+  \gantttitle{Jul}{3}
+  \gantttitle{Ago}{3}
+  \gantttitle{Set}{3}
+  \gantttitle{Out}{3}
+  \gantttitle{Nov}{3} \\
+
+  \ganttgroup[progress=40]{[1]}{1}{9} \\
+  \ganttbar[progress=30]{[1.1]}{1}{6} \\
+  \ganttbar[progress=10]{[1.2]}{3}{8} \\
+  \ganttbar[progress=0]{[1.3]}{1}{3} \\
+  \ganttbar[progress=0]{[1.4]}{1}{9} \\
+
+  \ganttgroup[progress=80]{[2]}{1}{7.5} \\
+  \ganttbar[progress=95]{[2.1]}{1}{1.5} \\
+  \ganttbar[progress=20]{[2.2]}{2}{4} \\
+
+  \ganttgroup[progress=15]{[3]}{1}{27} \\
+  \ganttbar[progress=45]{[3.1]}{1}{24} \\
+  \ganttbar[progress=00]{[3.2]}{1}{21} \\
+  \ganttbar[progress=20]{[3.3]}{2}{24} \\
+  \ganttbar[progress=00]{[3.4]}{6}{27} \\
+
+  \ganttgroup[progress=0]{[4]}{12}{18} \\
+  \ganttbar[progress=00]{[4.1]}{12}{18} \\
+  \ganttbar[progress=00]{[4.2]}{12}{18} \\
+
+  \ganttgroup[progress=0]{[5]}{19}{27} \\
+  \ganttbar[progress=00]{[5.1]}{19}{27} \\
+  \ganttbar[progress=00]{[5.2]}{19}{27} \\
+
+  \ganttgroup[progress=0]{[6]}{4}{33}
+\end{ganttchart}
 
 O cronograma apresentado no Gráfico~\ref{misc:cronograma} se refere às atividades a serem desenvolvidas, o progresso indica o que já foi realizado, sendo que as subtarefas já realizadas podem já ter sido completas e não estão indicadas neste cronograma. As tarefas e subtarefas são descritas:
 \begin{enumerate}
@@ -1281,17 +1337,17 @@ O cronograma apresentado no Gráfico~\ref{misc:cronograma} se refere às ativida
     \item[{\texttt{[2.1]}}] Estudo de técnicas de pré-processamento de texto.
     \item[{\texttt{[2.2]}}] Estudo de técnicas de redução de dimensionalidade para texto, esta questão foi pouco estudada, e dada a sua importância, será desprendido mais estudos para a mesma.
   \end{enumerate}
-  \item[{\texttt{[4]}}] Construção de um corpus de notícias e estruturação do mesmo, como o corpus já foi construído, esta tarefa já esta $95\%$ completa.
-  \begin{enumerate}
-    \item[{\texttt{[3.1]}}] Implementação de técnicas de pré-processamento de texto.
-    \item[{\texttt{[3.2]}}] Implementação de técnicas de representação de texto.
-  \end{enumerate}
-  \item[{\texttt{[4]}}] Estudo e aplicação de técnicas de Biclusterização.
+  \item[{\texttt{[3]}}] Estudo e aplicação de técnicas de Biclusterização.
   \begin{enumerate}
     \item[{\texttt{[3.1]}}] Estudo das técnicas de Biclusterização, incluindo algoritmos e formas de avaliação.
-    \item[{\texttt{[3.2]}}] Implementação das técnicas e algoritmos de Biclusterização, um dos algoritmos estudados já foi implementado \cite{Cheng2000} e esta disponibilizado em \textit{https://github.com/lucasbrunialti/biclustering-experiments}.
+    \item[{\texttt{[3.2]}}] Implementação de outras técnicas e algoritmos de Biclusterização
     \item[{\texttt{[3.3]}}] Validação das técnicas implementadas em conjuntos de dados sintéticos, o algoritmo implementado já foi testado em conjuntos de dados sintéticos, possibilitando a aprendizagem do seu comportamento.
     \item[{\texttt{[3.4]}}] Aplicação dos algoritmos no corpus iG.
+  \end{enumerate}
+  \item[{\texttt{[4]}}] Estudos de possíveis extensões para o trabalho.
+  \begin{enumerate}
+    \item[{\texttt{[4.1]}}] Estudo de técnicas para recomendação utilizando modelos escondidos de Markov.
+    \item[{\texttt{[4.2]}}] Estudo de técnicas de \textit{ensemble} de clusterização para uma representação alternativa dos itens.
   \end{enumerate}
   \item[{\texttt{[5]}}] Análise dos resultados obtidos pelas estratégias propostas e implementadas.
   \begin{enumerate}
@@ -1315,26 +1371,26 @@ O cronograma apresentado no Gráfico~\ref{misc:cronograma} se refere às ativida
 \appendix
 
 \chapter{Exemplo de protocolo de condução para uma base de dados}
+\label{app:protocolo}
 
-\section{Scopus}
-\label{sec:scopus}
+\section*{Scopus}
 
-\paragraph{\textbf{\textit{String} de busca:}}
+\paragraph*{\textbf{\textit{String} de busca:}}
 (TITLE-ABS-KEY("content based filter" OR "content based filters" OR "content based filtering" OR "content based recommender" OR "content based recommendation" OR "content based recommenders" OR "content-based filter" OR "content-based filters" OR "content-based filtering" OR "content-based recommender" OR "content-based recommendation" OR "content-based recommenders")) AND (TITLE-ABS-KEY(text OR textual OR news) OR TITLE(article OR articles OR paper OR papers OR book OR books) OR KEY(article OR articles OR paper OR papers OR book OR books)) AND (LIMIT-TO(PUBYEAR, 2014) OR LIMIT-TO(PUBYEAR, 2013) OR LIMIT-TO(PUBYEAR, 2012) OR LIMIT-TO(PUBYEAR, 2011) OR LIMIT-TO(PUBYEAR, 2010) OR LIMIT-TO(PUBYEAR, 2009) OR LIMIT-TO(PUBYEAR, 2008) OR LIMIT-TO(PUBYEAR, 2007) OR LIMIT-TO(PUBYEAR, 2006) OR LIMIT-TO(PUBYEAR, 2005) OR LIMIT-TO(PUBYEAR, 2004) OR LIMIT-TO(PUBYEAR, 2003)) AND (LIMIT-TO(LANGUAGE, "English"))
 
-\paragraph{\textbf{Filtro de Data de Publicação:}} 2003 - 2014
+\paragraph*{\textbf{Filtro de Data de Publicação:}} 2003 - 2014
 
-\paragraph{\textbf{Data da Busca:}} August 30, 2014
+\paragraph*{\textbf{Data da Busca:}} August 30, 2014
 
-\paragraph{\textbf{Número de Resultados:}} 126
+\paragraph*{\textbf{Número de Resultados:}} 126
 
-\paragraph{\textbf{Filtro por Idioma:}} Inglês
+\paragraph*{\textbf{Filtro por Idioma:}} Inglês
 
 
 \chapter{Exemplo de protocolo de extração para um trabalho incluído}
 \label{app:protocolo-extracao}
 
-\section{~\cite{Bouras2014}}
+\section*{~\cite{Bouras2014}}
 
 \begin{tabular}{|>{\centering}m{3cm}|p{10cm}|}
 \hline
@@ -1358,7 +1414,7 @@ O cronograma apresentado no Gráfico~\ref{misc:cronograma} se refere às ativida
 
 \begin{tabular}{|>{\centering}m{3cm}|p{10cm}|}
 \hline
- Resumo & Propõem uma abordagem para o problema de \textit{user cold-start}, faz o uso de classes/entidades extraídas do \textit{WordNet} e \textit{n-grams} dos termos (\textit{keywords}) extraídos das notícias com \textit{POS tag}. É usado um algoritmo de de clustering W-kmeans para clusterização de notícias e perfis de usuários. Foram feitos testes considerando o número de artigos que eram apresentados para o usuário classificar um número $R_{min}$ de artigos classificados (online). MAE para determinar o número de artigos que serão apresentados. Foram feitos testes comparando diversas estratégias vs a proposta de clustering. Além disso, são realizados testes offline usando medidas de avaliação de clustering para determinar o melhor $n$ do \textit{n-gram}, e os melhores pesos $A,B$: $A*BagOfWords$ e $B*ngram$, W-kmeans vs kmeans. \\
+ Resumo & Propõem uma abordagem para o problema de \textit{user cold-start}, faz o uso de classes/entidades extraídas do \textit{WordNet} e \textit{n-grams} dos termos (\textit{keywords}) extraídos das notícias com \textit{POS tag}. É usado um algoritmo de de clustering W-kmeans para clusterização de notícias e perfis de usuários. Foram feitos testes considerando o número de artigos que eram apresentados para o usuário classificar um número $R_{min}$ de artigos classificados (online). MAE para determinar o número de artigos que serão apresentados. Foram feitos testes comparando diversas estratégias vs a proposta de clustering. Além disso, são realizados \textit{testes offline} usando medidas de avaliação de clustering para determinar o melhor $n$ do \textit{n-gram}, e os melhores pesos $A,B$: $A*BagOfWords$ e $B*ngram$, W-kmeans vs kmeans. \\
 \hline
 \end{tabular}
 
