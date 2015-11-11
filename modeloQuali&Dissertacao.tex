@@ -1258,13 +1258,15 @@ A base de cliques iG é composta de $487\;487\;395$ cliques, com notícias colet
 
 \subsection{Estratégias para Validação}
 
-A primeira forma de avaliação do trabalho, consistirá na análise dos biclusters criados através de medidas de avaliação internas, onde usa-se os próprios biclusters, juntamente com métricas de qualidade e/ou estabilidade, para avaliar as soluções geradas. A métrica estudada até o momento para avaliação interna é a métrica de consistência \cite{Santamaria2007}, que verifica se os biclusters encontrados correspondem com a definição de bicluster.
+A primeira forma de avaliação do trabalho, consistirá na análise dos biclusters criados através de medidas de avaliação internas, onde usa-se os próprios biclusters, juntamente com métricas de qualidade e/ou estabilidade, para avaliar as soluções geradas.
+A métrica estudada até o momento para avaliação interna é a métrica de consistência \cite{Santamaria2007}, que verifica se os biclusters encontrados correspondem com a definição de bicluster.
 
 Também serão realizados \textit{testes offline}, utilizando a base de cliques iG, para verificar se o modelo proposto, é capaz de oferecer recomendações consistentes, comparando as recomendações geradas para um usuário $u$ com o histórico deste mesmo usuário, utilizando as métricas de precisão e revocação, variando o número de recomendações oferecidas.
 Segundo \citeonline{Jannach2011}, essa estratégia é a que mais se adequa quando a recomendação é em forma de lista que é apresentado à um usuário.
 Este método também pode ser interpretado como uma avaliação externa dos biclusters.
 
-Ainda utilizando a base de cliques iG, será realizada outra avaliação com \textit{testes offline}, comparando as recomendações obtidas com recomendações geradas por um filtro colaborativo, que será, a princípio, implementado neste trabalho, fazendo uma comparação da recomendação gerada com a estratégia proposta e da recomendação gerada com o filtro colaborativo. Serão utilizadas as mesmas métricas presentes na avaliação anterior.
+Ainda utilizando a base de cliques iG, será realizada outra avaliação com \textit{testes offline}, comparando as recomendações obtidas com recomendações geradas por um filtro colaborativo, que será, a princípio, implementado neste trabalho, fazendo uma comparação da recomendação gerada com a estratégia proposta e da recomendação gerada com o filtro colaborativo.
+Serão utilizadas as mesmas métricas presentes na avaliação anterior.
 
 \subsection{Possíveis Extensões}
 
